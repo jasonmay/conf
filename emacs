@@ -4,7 +4,6 @@
 (global-font-lock-mode 1)
 (set-foreground-color "gray")
 (set-background-color "black")
-
 ;;(setq-default viper-mode t)
 ;;(require 'viper)
 (setq load-path (cons (expand-file-name "~/.emacs.d/lisp") load-path))
@@ -25,10 +24,10 @@
  (append auto-mode-alist interpreter-mode-alist))
 
 (setq cperl-invalid-face nil)
-(setq cperl-electric-keywords t)
 (setq cperl-hairy t)
 (setq cperl-indent-level 4
       cperl-close-paren-offset -4
       cperl-continued-statement-offset 4
       cperl-indent-parens-as-block t
       cperl-tab-always-indent t)
+(setq cperl-electric-keywords t)
