@@ -1,5 +1,6 @@
 (setq load-path (cons "~/.emacs-el" load-path))
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+(setq vc-follow-symlinks t)
 (global-font-lock-mode 1)
 (set-foreground-color "gray")
 (set-background-color "black")
