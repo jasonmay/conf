@@ -7361,6 +7361,8 @@ indentation and initial hashes.  Behaves usually outside of comment."
 	       '("if" "until" "while" "elsif" "else" "unless" "for"
 		 "foreach" "continue" "exit" "die" "last" "goto" "next"
 		 "redo" "return" "local" "exec" "sub" "do" "dump" "use" "our"
+                 "has" "class" "extends" "around" "before" "after" "with"
+		 "role" 
 		 "require" "package" "eval" "my" "BEGIN" "END" "CHECK" "INIT")
 	       "\\|")			; Flow control
 	      "\\)\\>") 2)		; was "\\)[ \n\t;():,\|&]"
