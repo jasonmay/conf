@@ -1,3 +1,4 @@
+PATH="$HOME/bin:$PATH"
 typeset -U path # rid duplicates
 
 typeset -U manpath # rid duplicates
