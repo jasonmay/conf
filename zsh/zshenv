@@ -1,0 +1,5 @@
+typeset -U path # rid duplicates
+
+typeset -U manpath # rid duplicates
+
+export EDITOR="vim"
