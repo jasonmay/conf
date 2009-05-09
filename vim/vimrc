@@ -1,0 +1,217 @@
+syntax on
+set si
+set ai
+set cindent
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set shiftwidth=2
+autocmd FileType ruby set softtabstop=2
+
+autocmd FileType html set tabstop=1
+autocmd FileType html set shiftwidth=1
+autocmd FileType html set softtabstop=1
+
+" PHP stuff I had for MCTG {{{
+map <F2> ^ywoif(!<ESC>pi)<ENTER>{<ENTER>die('Mysql error (<ESC>pi): ' . $mysqli->error);<ENTER>}<ESC>
+map <F3> ywoif(!<ESC>pi)<ENTER>{<ENTER>die('Mysql error (<ESC>pi): ' . $mysqli->error);<ENTER>}<ESC>
+map <F5> ^iif(!<END><BS>)<ENTER>{<ENTER>die('Mysql error: ' . $mysqli->error);<ENTER>}<ESC>
+map <F9> i<END>;<ESC>^lywoif(!$<ESC>pi)<ENTER>{j<ESC>^3xo}<ESC>
+" }}}
+" Stuff I stole from Sartak {{{
+autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl     | normal G
+nohlsearch
+au BufWritePost *.sh silent !chmod +x %
+au BufWritePost *.pl silent !chmod +x %
+
+set foldmethod=marker
+"set foldclose=all
+set hidden
+nmap <Space> i <Esc>r
+
+set noshowmatch
+
+autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType perl setlocal errorformat=%f:%l:%m
+autocmd FileType perl setlocal keywordprg=perldoc\ -f
+
+let perl_extended_vars=1
+
+" Hit <C-a> in insert mode after a bad paste (thanks absolon) {{{
+inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
+"}}}
+
+" color end of line whitespace {{{
+"autocmd BufWinEnter * syn match EOLWS excludenl /\s\+$/
+"hi EOLWS ctermbg=red
+"hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
+" }}}
+
+" Indentation {{{
+" no-longer skinny tabs!
+set tabstop=4
+
+" set to the same as tabstop (see #4 in :help tabstop)
+set shiftwidth=4
+
+" if it looks like a tab, we can delete it like a tab
+set softtabstop=4
+
+" no tabs! spaces only..
+set expandtab
+
+" < and > will hit indentation levels instead of always -4/+4
+set shiftround
+
+" new line has indentation equal to previous line
+set autoindent
+
+" braces affect autoindentation
+set smartindent
+
+" figure out indent when ; is pressed
+set cinkeys+=;
+
+" align break with case in a switch
+set cinoptions+=b1
+"}}}
+" }}}
+" Stuff I stole from doy {{{
+function Perl_foldtext()
+    let line = getline(v:foldstart)
+
+    let matches = matchlist(line,
+    \   '^\s*\(sub\|around\|before\|after\|guard\)\s*\(\w\+\)')
+    if !empty(matches)
+        let linenum = v:foldstart - 1
+        let sub_type = matches[1]
+        let params = []
+        while linenum <= v:foldend
+            let linenum += 1
+            let next_line = getline(linenum)
+            " skip the opening brace and comment lines and blank lines
+            if next_line =~ '\s*{\s*' || next_line =~ '^\s*#' || next_line == ''
+                continue
+            endif
+
+            " handle 'my $var = shift;' type lines
+            let var = '\%(\$\|@\|%\|\*\)\w\+'
+            let shift_line = matchlist(next_line,
+            \   'my\s*\(' . var . '\)\s*=\s*shift\%(\s*||\s*\(.\{-}\)\)\?;')
+            if !empty(shift_line)
+                if shift_line[1] == '$self' && empty(params)
+                    if sub_type == 'sub'
+                        let sub_type = ''
+                    endif
+                    let sub_type .= ' method'
+                elseif shift_line[1] == '$class' && empty(params)
+                    if sub_type == 'sub'
+                        let sub_type = ''
+                    endif
+                    let sub_type .= ' static method'
+                elseif shift_line[1] != '$orig'
+                    let arg = shift_line[1]
+                    " also catch default arguments
+                    if shift_line[2] != ''
+                        let arg .= ' = ' . shift_line[2]
+                    endif
+                    let params += [l:arg]
+                endif
+                continue
+            endif
+
+            " handle 'my ($a, $b) = @_;' type lines
+            let rest_line = matchlist(next_line, 'my\s*(\(.*\))\s*=\s*@_;')
+            if !empty(rest_line)
+                let rest_params = split(rest_line[1], ',\s*')
+                let params += rest_params
+                continue
+            endif
+
+            " handle 'my @args = @_;' type lines
+            let array_line = matchlist(next_line, 'my\s*\(@\w\+\)\s*=\s*@_;')
+            if !empty(array_line)
+                let params += [array_line[1]]
+                continue
+            endif
+
+            " handle 'my %args = @_;' type lines
+            let hash_line = matchlist(next_line, 'my\s*%\w\+\s*=\s*@_;')
+            if !empty(hash_line)
+                let params += ['paramhash']
+                continue
+            endif
+
+            " handle unknown uses of shift
+            if next_line =~ '\%(\<shift\>\%(\s*@\)\@!\)'
+                let params += ['$unknown']
+                continue
+            endif
+
+            " handle unknown uses of @_
+            if next_line =~ '@_\>'
+                let params += ['@unknown']
+                continue
+            endif
+        endwhile
+
+        let params = filter(params[0:-2], 'strpart(v:val, 0, 1) != "@"') +
+        \            [params[-1]]
+
+        return Base_foldtext(sub_type . ' ' . matches[2] .
+        \                    '(' . join(params, ', ') . ')')
+    endif
+
+    return Base_foldtext(line)
+endfunction
+autocmd FileType perl set foldtext=Perl_foldtext
+" }}}
+" stuff for oz2designs {{{
+map \\ :set syntax=
+" }}}
+
+nmap <Right> :bn<CR>
+nmap <Left>  :bp<CR>
+nmap <Up> :bf<CR>
+nmap <Down>  :bl<CR>
+nmap gb A {<CR>}<Esc>k
+nmap <CR> A<CR><Esc>
+nmap <F1> <Esc>
+inoremap <F1> <Esc>
+
+nmap H ^
+vmap H ^
+nmap L $
+vmap L $
+filetype plugin on
+set grepprg=grep\ -nH\ $*
+au BufNewFile,BufRead *.thtml setfiletype php
+autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm     | normal j$
+set vb t_vb=
+set showcmd
+set iskeyword+=:
+set bg=light
+
+function! PerlDoc()
+  normal yy
+  let l:this = @
+  if match(l:this, '^ *\(use\|require\) ') >= 0
+    exe ':new'
+" exe ':resize'
+    let l:this = substitute(l:this, '^ *\(use\|require\) *', "", "")
+    let l:this = substitute(l:this, ";.*", "", "")
+    let l:this = substitute(l:this, " .*", "", "")
+    exe ':0r!perldoc ' . l:this
+    exe ':0'
+    return
+  endif
+  normal yiw
+  exe ':new'
+  exe ':resize'
+  exe ':0r!perldoc -f ' . @
+  exe ':0'
+endfunction
+map ,h :call PerlDoc()<C-M>:set nomod<C-M>
+map ,, :%s/dfoin/__PACKAGE__/g
