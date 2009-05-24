@@ -48,8 +48,9 @@ export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 alias nao="TERM=rxvt telnet nethack.alt.org"
 alias termcast="telnet termcast.org"
-alias i='sudo aptitude install'
-alias s='sudo aptitude search'
+alias i='sudo port install'
+alias s='sudo port search'
+alias v='sudo port variants'
 alias ci='sudo cpan -i'
 alias ll='ls -lhA'
 alias less='less -R'
