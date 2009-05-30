@@ -61,10 +61,10 @@ alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
 alias httpd="sudo httpd"
-alias perldoc="perldoc -t"
 alias eh="yes ''"
 alias ar='sudo /etc/init.d/httpd restart'
 alias hr='sudo /etc/init.d/httpd restart'
+alias sshfs='sshfs -o workaround=rename'
 
 alias -g G='|ack'
 alias -g H='|head'
