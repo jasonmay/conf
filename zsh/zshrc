@@ -62,6 +62,8 @@ alias ar='sudo /etc/init.d/apache2 restart'
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 
+alias -g a='ack -la --'
+
 function mud() {
     rlwrap telnet "$1" 6715
 }
