@@ -60,6 +60,7 @@ alias httpd="sudo httpd"
 alias eh="yes ''"
 alias ar='sudo /etc/init.d/apache2 restart'
 alias sshfs='sshfs -o workaround=rename'
+alias -g a='ack -la --'
 
 alias -g G='|ack'
 alias -g H='|head'
