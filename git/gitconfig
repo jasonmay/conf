@@ -1,0 +1,32 @@
+[user]
+	name = Jason May
+	email = jason.a.may@gmail.com
+[core]
+	editor = vim
+[color]
+  ui = auto
+[color "branch"]
+	current = green
+	local = white
+	remote = cyan
+[color "diff"]
+	meta = yellow
+	frag = magenta
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[color "interactive"]
+  header = white bold
+  prompt = green bold
+  help = cyan
+[alias]
+	co = checkout
+	d = dcommit
+	b = branch
+	re = rebase
+	st = status
+	mpush = push origin master
+	mpull = pull origin master
