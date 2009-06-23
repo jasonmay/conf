@@ -61,6 +61,8 @@ alias eh="yes ''"
 alias ar='sudo /etc/init.d/apache2 restart'
 alias sshfs='sshfs -o workaround=rename'
 alias -g a='ack -la --'
+alias asdf='screen -dr main'
+alias adsf='screen -dr main'
 
 alias -g G='|ack'
 alias -g H='|head'
