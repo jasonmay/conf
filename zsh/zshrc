@@ -63,6 +63,8 @@ alias ar='sudo /etc/init.d/httpd restart'
 alias hr='sudo /etc/init.d/httpd restart'
 alias sshfs='sshfs -o workaround=rename'
 alias -g a='ack -la --'
+alias asdf='ssh j.asonmay.net'
+alias adsf='ssh j.asonmay.net'
 
 alias -g G='|ack'
 alias -g H='|head'
