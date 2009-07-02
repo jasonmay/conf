@@ -1,4 +1,6 @@
 javascript liberator.beep = function() { return false; }
 
+set guioptions+=m
+
 map <Left> gT
 map <Right> gt
