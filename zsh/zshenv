@@ -1,4 +1,4 @@
-PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:/var/lib/gems/1.8/bin:$PATH"
 typeset -U path # rid duplicates
 
 typeset -U manpath # rid duplicates
