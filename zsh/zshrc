@@ -64,6 +64,7 @@ alias sshfs='sshfs -o workaround=rename'
 alias -g a='ack -la --'
 alias asdf='ssh jasonmay@asonmay.net'
 alias adsf='ssh jasonmay@asonmay.net'
+alias pt='perltidy -npro -l=0 -bt=2 -csc -csci=25 -sot -nbbb'
 
 alias -g G='|ack'
 alias -g H='|head'
