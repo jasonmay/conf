@@ -2,6 +2,8 @@ function precmd() {
     [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
 }
 
+. ~/.zshcomplete
+
 HISTFILE=$HOME/.history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -39,8 +41,6 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
-
-#
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
 alias ack='ack --color'
@@ -48,8 +48,9 @@ export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 alias nao="TERM=rxvt telnet nethack.alt.org"
 alias termcast="telnet termcast.org"
-alias i='sudo aptitude install'
-alias s='sudo aptitude search'
+alias i='sudo port install'
+alias s='sudo port search'
+alias v='sudo port variants'
 alias ci='sudo cpan -i'
 alias ll='ls -lhA'
 alias less='less -R'
@@ -57,21 +58,31 @@ alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
 alias httpd="sudo httpd"
-alias eh="yes ''"
+alias asdf="ssh j.asonmay.net"
+alias adsf="ssh j.asonmay.net"
 alias ar='sudo /etc/init.d/apache2 restart'
+alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
+alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 alias sshfs='sshfs -o workaround=rename'
 alias -g a='ack -la --'
-
-alias -g G='|ack'
-alias -g H='|head'
-alias -g T='|tail'
-alias -g W='|wc'
 
 function mud() {
     rlwrap telnet "$1" 6715
 }
 
+function pubkey() {
+    ssh "$1" "cat - >> .ssh/authorized_keys" < .ssh/id_dsa.pub
+}
+
 # doy rules
 function mem_usage {
-        ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
+    ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
+}
+
+function cpan_checkliset {
+    echo "Did you make sure all the POD looks ok?"
+    echo "run 'syntax-perl'"
+    echo "Did you update Changes?"
+    echo "Did you clear what was completed in TODO?"
+    echo "Run your tests!"
 }
