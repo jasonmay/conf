@@ -39,6 +39,7 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
+umask 002
 
 #
 alias ls='ls --color=auto --hide=_darcs'
@@ -61,6 +62,8 @@ alias eh="yes ''"
 alias ar='sudo /etc/init.d/apache2 restart'
 alias sshfs='sshfs -o workaround=rename'
 alias -g a='ack -la --'
+alias asdf='ssh jasonmay@asonmay.net'
+alias adsf='ssh jasonmay@asonmay.net'
 
 alias -g G='|ack'
 alias -g H='|head'
