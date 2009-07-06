@@ -59,7 +59,7 @@ autocmd BufReadPost *
 \  if line("'\"") > 0 && line("'\"") <= line("$") |
 \    exe "normal g`\"" |
 \  endif
-autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/perl.pm | call Modulify('::') | normal G3k
+autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm | call Modulify('::') | normal G3k
 
 autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl | normal G
 autocmd BufNewFile *.t silent 0read ~/.vim/skeletons/test.t | normal G
