@@ -4,12 +4,10 @@ function precmd() {
 
 . ~/.zshcomplete
 
-HISTFILE=$HOME/.history
 HISTSIZE=100000
 SAVEHIST=100000
 
 setopt extended_history
-setopt share_history
 setopt hist_ignore_space
 
 autoload copy-earlier-word
