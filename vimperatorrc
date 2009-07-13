@@ -4,3 +4,6 @@ set guioptions+=m
 
 map <Left> gT
 map <Right> gt
+
+noremap j 4j
+noremap k 4k
