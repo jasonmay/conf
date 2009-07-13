@@ -84,6 +84,7 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 autocmd BufNewFile,BufRead *.reg set syntax=perl
 autocmd BufNewFile,BufRead *.run set syntax=perl
 autocmd BufNewFile,BufRead silverback.conf set syntax=apache
+autocmd BufWritePost *.pl,*.pm !perl -wcI/data/silverback %
 
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 iabbrev lamdba lambda
