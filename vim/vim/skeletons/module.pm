@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-package ;
+package Foo;
 use strict;
 use warnings;
 
