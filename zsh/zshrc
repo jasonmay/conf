@@ -3,6 +3,7 @@ function precmd() {
 }
 
 . ~/.zshcomplete
+
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -55,15 +56,12 @@ alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
 alias httpd="sudo httpd"
-alias sshfs='sshfs -o workaround=rename'
-alias -g a='ack -la --'
-alias asdf="ssh j.asonmay.net"
-alias adsf="ssh j.asonmay.net"
 alias ar='sudo /etc/init.d/apache2 restart'
+alias sshfs='sshfs -o workaround=rename'
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
-
-alias -g a='ack -la --'
+alias asdf="ssh j.asonmay.net"
+alias adsf="ssh j.asonmay.net"
 alias -g a='ack -la --'
 
 function mud() {
