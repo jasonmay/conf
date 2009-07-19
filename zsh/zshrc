@@ -40,7 +40,7 @@ bindkey -M vicmd v edit-command-line
 
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
-alias ack='ack --color'
+alias ack='ACKRC==(cat ~/.ackrc .ackrc) ack'
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 alias nao="TERM=rxvt telnet nethack.alt.org"
@@ -64,6 +64,7 @@ alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 
 alias -g a='ack -la --'
+alias -g a='ack -la --'
 
 function mud() {
     rlwrap telnet "$1" 6715
@@ -78,10 +79,6 @@ function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
 }
 
-function cpan_checkliset {
-    echo "Did you make sure all the POD looks ok?"
-    echo "run 'syntax-perl'"
-    echo "Did you update Changes?"
-    echo "Did you clear what was completed in TODO?"
-    echo "Run your tests!"
+function exclude {
+    echo $* >> .git/info/exclude
 }
