@@ -7,3 +7,5 @@ map <Right> gt
 
 noremap j 4j
 noremap k 4k
+
+map U :viewsource<CR>
