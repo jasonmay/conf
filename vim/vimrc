@@ -84,7 +84,7 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 autocmd BufNewFile,BufRead *.reg set syntax=perl
 autocmd BufNewFile,BufRead *.run set syntax=perl
 autocmd BufNewFile,BufRead silverback.conf set syntax=apache
-autocmd BufWritePost *.pl,*.pm !perl -wcI/data/silverback %
+autocmd BufWritePost *.pl,*.pm !perl -wcI/data/silverback/lib %
 
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 iabbrev lamdba lambda
@@ -152,10 +152,11 @@ function s:nopaste(visual)
     else
         call setpos('.', pos)
     endif
-    echo @n
+    let $NOPASTE_SERVICES = nopaste_services
 endfunction
-nmap <silent> \p :call <SID>nopaste(0)<CR>
-vmap <silent> \p :<C-U>call <SID>nopaste(1)<CR>
+nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
+xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
+
 function s:spell()
     if !exists("s:spell_check") || s:spell_check == 0
         echo "Spell check on"
@@ -194,7 +195,6 @@ let g:Foldtext_cpp_enable = 1
 let g:Foldtext_perl_enable = 1
 au BufNewFile,BufReadPost *.asl set ft=ruby
 au BufNewFile,BufReadPost *.t set ft=perl
-
 
 function! PerlDoc()
   normal yy

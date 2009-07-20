@@ -64,6 +64,8 @@ alias asdf='ssh jasonmay@asonmay.net'
 alias adsf='ssh jasonmay@asonmay.net'
 alias pt='perltidy -npro -l=0 -bt=2 -csc -csci=25 -sot -nbbb'
 alias dev1='TERM=rxvt ssh dev1'
+alias p='perl -I/data/silverback/lib'
+alias pp='perl -I/data/branch.prod/silverback/lib'
 
 alias -g G='|ack'
 alias -g H='|head'
