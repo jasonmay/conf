@@ -42,7 +42,7 @@ umask 002
 #
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
-alias ack='ack --color'
+alias ack='ACKRC==(cat ~/.ackrc .ackrc) ack'
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 alias nao="TERM=rxvt telnet nethack.alt.org"
