@@ -77,12 +77,11 @@ function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
 }
 
-<<<<<<< HEAD:zsh/zshrc
 function exclude {
     echo $* >> .git/info/exclude
-=======
+}
+
 function pubkey {
     [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
     ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
->>>>>>> 27c58423606d1d82d806ebf4ad6e4aeabee97deb:zsh/zshrc
 }
