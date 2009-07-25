@@ -41,7 +41,7 @@ bindkey -M vicmd v edit-command-line
 
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
-alias ack='ACKRC==(cat ~/.ackrc .ackrc) ack'
+alias ack='[ -x =ack ] && ACKRC==([ -e ~/.ackrc ] && cat ~/.ackrc; [ -e .ackrc ] && cat .ackrc) ack'
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 alias nao="TERM=rxvt telnet nethack.alt.org"
@@ -77,6 +77,12 @@ function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
 }
 
+<<<<<<< HEAD:zsh/zshrc
 function exclude {
     echo $* >> .git/info/exclude
+=======
+function pubkey {
+    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
+>>>>>>> 27c58423606d1d82d806ebf4ad6e4aeabee97deb:zsh/zshrc
 }
