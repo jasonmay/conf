@@ -1,0 +1,29 @@
+diff --git a/vim/vimrc b/vim/vimrc
+index 9151c36..4b0ca7b 100644
+--- a/vim/vimrc
++++ b/vim/vimrc
+@@ -89,6 +89,8 @@ autocmd BufWritePost *.pl,*.pm !perl -wcI/data/silverback/lib %
+ inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
+ iabbrev lamdba lambda
+ iabbrev dvice device
++iabbrev quanity quantity
++iabbrev quanitty quantity
+ imap \tbl local $Test::Builder::Level = $Test::Builder::Level + 1;
+ nmap <Space> i <Esc>r
+ 
+@@ -195,7 +197,6 @@ let g:Foldtext_cpp_enable = 1
+ let g:Foldtext_perl_enable = 1
+ au BufNewFile,BufReadPost *.asl set ft=ruby
+ au BufNewFile,BufReadPost *.t set ft=perl
+-
+ function! PerlDoc()
+   normal yy
+   let l:this = @
+@@ -240,4 +241,6 @@ nmap <CR> o<Esc>
+ nmap <F1> <Esc>
+ inoremap <F1> <Esc>
+ imap <C-J> <Esc>
+-
++imap \j join(q{,} => )<Esc>i
++imap \b :buffer! 
++vnoremap p pgvy
