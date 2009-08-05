@@ -4,3 +4,12 @@ set guioptions+=m
 
 map <Left> gT
 map <Right> gt
+
+map s gH
+
+noremap j 4j
+noremap k 4k
+
+map U :viewsource<CR>
+
+set editor='urxvt -geometry 200x40 -e screen vim -f -c "set syntax=html"'

@@ -60,11 +60,7 @@ alias ar='sudo /etc/init.d/apache2 restart'
 alias sshfs='sshfs -o workaround=rename'
 alias asdf="ssh j.asonmay.net"
 alias adsf="ssh j.asonmay.net"
-
-alias -g G='|ack'
-alias -g H='|head'
-alias -g T='|tail'
-alias -g W='|wc'
+alias -g a='ack -la --'
 
 function mud() {
     rlwrap telnet "$1" 6715
