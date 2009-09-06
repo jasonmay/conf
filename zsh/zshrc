@@ -2,6 +2,8 @@ function precmd() {
     [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
 }
 
+. ~/.zshcomplete
+
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -37,8 +39,6 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
-
-#
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
 alias ack='[ -x =ack ] && ACKRC==([ -e ~/.ackrc ] && cat ~/.ackrc; [ -e .ackrc ] && cat .ackrc) ack'
@@ -56,24 +56,29 @@ alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
 alias httpd="sudo httpd"
-alias eh="yes ''"
 alias ar='sudo /etc/init.d/apache2 restart'
 alias sshfs='sshfs -o workaround=rename'
+alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
+alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 alias asdf="ssh j.asonmay.net"
 alias adsf="ssh j.asonmay.net"
-
-alias -g G='|ack'
-alias -g H='|head'
-alias -g T='|tail'
-alias -g W='|wc'
+alias -g a='ack -la --'
 
 function mud() {
     rlwrap telnet "$1" 6715
 }
 
+function pubkey() {
+    ssh "$1" "cat - >> .ssh/authorized_keys" < .ssh/id_dsa.pub
+}
+
 # doy rules
 function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
+}
+
+function exclude {
+    echo $* >> .git/info/exclude
 }
 
 function pubkey {
