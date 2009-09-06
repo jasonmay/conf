@@ -68,10 +68,6 @@ function mud() {
     rlwrap telnet "$1" 6715
 }
 
-function pubkey() {
-    ssh "$1" "cat - >> .ssh/authorized_keys" < .ssh/id_dsa.pub
-}
-
 # doy rules
 function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
