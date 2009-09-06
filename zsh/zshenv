@@ -1,6 +1,7 @@
-PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:/opt/local/bin:$PATH"
 typeset -U path # rid duplicates
 
+MANPATH="/opt/local/man:$MANPATH"
 typeset -U manpath # rid duplicates
 
 export EDITOR="vim"
