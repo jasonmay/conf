@@ -91,8 +91,13 @@ iabbrev lamdba lambda
 iabbrev dvice device
 iabbrev quanity quantity
 iabbrev quanitty quantity
+
+iabbrev campagin_id campaign_id
+iabbrev campagins campaigns
+iabbrev campagin_codes campaign_codes
+
 imap \tbl local $Test::Builder::Level = $Test::Builder::Level + 1;
-nmap <Space> i <Esc>r
+"nmap <Space> i <Esc>r
 
 nmap Y y$
 
@@ -105,11 +110,10 @@ nmap \ss :syntax sync fromstart<CR>
 nmap \sm :set syn=mason<CR>:syntax sync fromstart<CR>
 nmap \sp :set syn=perl<CR>:syntax sync fromstart<CR>
 
-nmap ds :%s/\s\+$//<CR>
+nmap ds mA:%s/\s\+$//<CR>'A
 
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
-
 nmap \da  :execute 'w  <bar> !darcs add %'<CR>
 nmap \dA  :execute 'wa <bar> !darcs amend-record'<CR>
 nmap \dr  :execute 'wa <bar> !darcs record'<CR>
@@ -242,5 +246,7 @@ nmap <F1> <Esc>
 inoremap <F1> <Esc>
 imap <C-J> <Esc>
 imap \j join(q{,} => )<Esc>i
-imap \b :buffer! 
+imap \b :buffer!
 vnoremap p pgvy
+
+highlight Comment ctermfg=green
