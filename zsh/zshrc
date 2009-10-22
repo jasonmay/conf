@@ -1,3 +1,4 @@
+export MY_HOSTNAME=`hostname -s`
 function precmd() {
     [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
 }
@@ -41,30 +42,75 @@ bindkey -M vicmd v edit-command-line
 #
 alias ls='ls --color=auto --hide=_darcs'
 alias grep='grep --color=auto'
-alias ack='[ -x =ack ] && ACKRC==([ -e ~/.ackrc ] && cat ~/.ackrc; [ -e .ackrc ] && cat .ackrc) ack'
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
+
 alias nao="TERM=rxvt telnet nethack.alt.org"
-alias termcast="telnet termcast.org"
-alias i='sudo aptitude install'
-alias s='sudo aptitude search'
+
+case "$MY_HOSTNAME" in
+    jinx)
+    alias i='sudo port install'
+    alias s='sudo port search'
+    alias v='sudo port variants'
+    alias httpd="sudo httpd"
+    ;;
+
+    culex|asonmay|roburritos)
+    alias i='sudo port install'
+    alias s='sudo port search'
+    alias v='sudo port variants'
+    alias ar='sudo /etc/init.d/apache2 restart'
+    ;;
+
+    dev1)
+    alias i='sudo port install'
+    alias s='sudo port search'
+    alias v='sudo port variants'
+    alias ar='sudo /etc/init.d/httpd restart'
+    ;;
+
+    jobs01)
+    alias ar='sudo /sbin/service httpd restart'
+    ;;
+esac
+
 alias ci='sudo cpan -i'
+
 alias ll='ls -lhA'
-alias less='less -R'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
-alias httpd="sudo httpd"
-alias eh="yes ''"
-alias ar='sudo /etc/init.d/apache2 restart'
-alias sshfs='sshfs -o workaround=rename'
-alias asdf="ssh j.asonmay.net"
-alias adsf="ssh j.asonmay.net"
+alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 
-alias -g G='|ack'
-alias -g H='|head'
-alias -g T='|tail'
-alias -g W='|wc'
+alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
+
+case "$MY_HOSTNAME" in
+    asonmay)
+    ;;
+
+    *)
+    alias asdf="ssh j.asonmay.net"
+    alias adsf="ssh j.asonmay.net"
+    ;;
+esac
+
+case "$MY_HOSTNAME" in
+    culex)
+    alias culex='ssh 127.0.0.1'
+    ;;
+
+    jinx)
+    alias culex='ssh jasonmay@192.168.1.101'
+    ;;
+
+    *)
+    alias culex='ssh jasonmay@68.63.156.66'
+    ;;
+esac
+
+alias workdev='TERM=rxvt ssh jmay@silverbacknetwork.com'
+alias prod='TERM=rxvt ssh jmay@65.61.13.199'
+alias home='ssh jasonmay@68.63.156.66'
 
 function mud() {
     rlwrap telnet "$1" 6715
