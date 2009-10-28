@@ -30,3 +30,5 @@
 	st = status
 	mpush = push origin master
 	mpull = pull origin master
+[merge]
+	tool = vimdiff
