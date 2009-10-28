@@ -84,6 +84,8 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 iabbrev lamdba lambda
 iabbrev dvice device
+iabbrev quanity quantity
+iabbrev quanitty quantity
 imap \tbl local $Test::Builder::Level = $Test::Builder::Level + 1;
 nmap <Space> i <Esc>r
 
@@ -172,8 +174,6 @@ let g:Foldtext_cpp_enable = 1
 let g:Foldtext_perl_enable = 1
 au BufNewFile,BufReadPost *.asl set ft=ruby
 au BufNewFile,BufReadPost *.t set ft=perl
-
-
 function! PerlDoc()
   normal yy
   let l:this = @
@@ -218,4 +218,6 @@ nmap <CR> o<Esc>
 nmap <F1> <Esc>
 inoremap <F1> <Esc>
 imap <C-J> <Esc>
-
+imap \j join(q{,} => )<Esc>i
+imap \b :buffer! 
+vnoremap p pgvy
