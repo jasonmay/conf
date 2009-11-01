@@ -11,10 +11,10 @@ URxvt*scrollTtyOutput:false
 URxvt*scrollTtyKeypress:true
 URxvt*scrollBar_right:true
 URxvt*scrollBar:false
-URxvt.font: xft:Terminus:pixelsize=8
-URxvt.boldFont: xft:Terminus:pixelsize=8
+URxvt.font: xft:Terminus
+URxvt.boldFont: xft:Terminus
 URxvt*perl-ext-common:default,matcher
 URxvt*matcher.button:3
 URxvt*keysym.C-Return: perl:matcher
-URxvt.urlLauncher:firefox-3.5
+URxvt.urlLauncher:firefox
 URxvt*14755_52:false

@@ -1,4 +1,4 @@
-PATH="$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH"
+PATH="$HOME/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 typeset -U path # rid duplicates
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"

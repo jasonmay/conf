@@ -1,7 +1,12 @@
+. ~/.zsh_snippets/colors
+
 export MY_HOSTNAME=`hostname -s`
 function precmd() {
     [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
+    [ -x "$(which shell-prompt)" ] && RPROMPT=`shell-prompt right`
 }
+
+PS2="[${HIGRAY}][${HINORM}] \u@\h ]"
 
 HISTSIZE=100000
 SAVEHIST=100000
@@ -55,7 +60,13 @@ case "$MY_HOSTNAME" in
     alias httpd="sudo httpd"
     ;;
 
-    culex|asonmay|roburritos)
+    culex)
+    alias i='sudo pacman -S'
+    alias s='sudo pacman -Ss'
+    alias h='vim ~/.xmonad/xmonad.hs'
+    ;;
+
+    asonmay|roburritos)
     alias i='sudo port install'
     alias s='sudo port search'
     alias v='sudo port variants'
@@ -89,8 +100,8 @@ case "$MY_HOSTNAME" in
     ;;
 
     *)
-    alias asdf="ssh j.asonmay.net"
-    alias adsf="ssh j.asonmay.net"
+    alias asdf="TERM=rxvt ssh j.asonmay.net"
+    alias adsf="TERM=rxvt ssh j.asonmay.net"
     ;;
 esac
 
@@ -125,3 +136,4 @@ function pubkey {
     [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
     ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
 }
+
