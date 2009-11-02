@@ -67,9 +67,9 @@ case "$MY_HOSTNAME" in
     ;;
 
     asonmay|roburritos)
-    alias i='sudo port install'
-    alias s='sudo port search'
-    alias v='sudo port variants'
+    alias i='sudo aptitude install'
+    alias s='sudo aptitude search'
+    alias v='sudo aptitude variants'
     alias ar='sudo /etc/init.d/apache2 restart'
     ;;
 
@@ -100,28 +100,34 @@ case "$MY_HOSTNAME" in
     ;;
 
     *)
-    alias asdf="TERM=rxvt ssh j.asonmay.net"
-    alias adsf="TERM=rxvt ssh j.asonmay.net"
+    alias asdf="TERM=rxvt ssh jasonmay@j.asonmay.net"
+    alias adsf="TERM=rxvt ssh jasonmay@j.asonmay.net"
     ;;
 esac
 
 case "$MY_HOSTNAME" in
     culex)
-    alias culex='ssh 127.0.0.1'
+    alias culex='TERM=rxvt ssh 127.0.0.1'
     ;;
 
     jinx)
-    alias culex='ssh jasonmay@192.168.1.101'
+    alias culex='TERM=rxvt ssh jasonmay@192.168.1.101'
     ;;
 
     *)
-    alias culex='ssh jasonmay@68.63.156.66'
+    alias culex='TERM=rxvt ssh jasonmay@68.63.156.66'
+    ;;
+esac
+
+case "$MY_HOSTNAME" in
+    roburritos)
+    alias dev1='TERM=rxvt ssh dev1'
     ;;
 esac
 
 alias workdev='TERM=rxvt ssh jmay@silverbacknetwork.com'
 alias prod='TERM=rxvt ssh jmay@65.61.13.199'
-alias home='ssh jasonmay@68.63.156.66'
+alias home='TERM=rxvt ssh jasonmay@68.63.156.66'
 
 function mud() {
     rlwrap telnet "$1" 6715
