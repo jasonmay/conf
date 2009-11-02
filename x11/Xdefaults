@@ -18,3 +18,21 @@ URxvt*matcher.button:3
 URxvt*keysym.C-Return: perl:matcher
 URxvt.urlLauncher:firefox
 URxvt*14755_52:false
+
+URxvt.color0: #000000
+URxvt.color1: #ca311c
+URxvt.color2: #60bc33
+URxvt.color3: #bebc3a
+URxvt.color4: #1432c8
+URxvt.color5: #c150be
+URxvt.color6: #61bdbe
+URxvt.color7: #c7c7c7
+URxvt.color8: #686868
+URxvt.color9: #df6f6b
+URxvt.color10: #70f467
+URxvt.color11: #fef966
+URxvt.color12: #6d75ea
+URxvt.color13: #ed73fc
+URxvt.color14: #73fafd
+URxvt.color15: #ffffff
+
