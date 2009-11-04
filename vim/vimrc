@@ -43,9 +43,11 @@ set autoindent
 set smartindent
 set foldmethod=marker
 set bg=light
+set backupdir=/tmp
+set directory=/tmp
 
-highlight Pmenu      ctermfg=grey  ctermbg=darkblue
-highlight PmenuSel   ctermfg=red   ctermbg=darkblue
+highlight Pmenu      ctermfg=grey  ctermbg=black
+highlight PmenuSel   ctermfg=red   ctermbg=black
 highlight PmenuSbar  ctermbg=cyan
 highlight PmenuThumb ctermfg=red
 
@@ -69,15 +71,8 @@ autocmd BufNewFile *.c  silent 0read ~/.vim/skeletons/c.c | normal 4j$
 
 autocmd BufReadPost *.smc set bin | set noeol
 au BufWritePost *.{sh,pl} silent exe "!chmod +x %"
-autocmd BufWritePost ~/devel/conf/* call DarcsUpdate()
 
-autocmd BufWritePost ~/.vim/* call DarcsUpdate()
 
-autocmd BufWritePost ~/.vimrc call DarcsUpdate()
-autocmd BufWritePost ~/.zshrc call DarcsUpdate()
-autocmd BufWritePost ~/.screenrc call DarcsUpdate()
-autocmd BufWritePost ~/.re.pl/repl.rc call DarcsUpdate()
-autocmd BufWritePost ~/.zshcomplete call DarcsUpdate()
 autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType perl setlocal errorformat=%f:%l:%m
 autocmd FileType perl setlocal keywordprg=perldoc\ -f
@@ -149,13 +144,6 @@ function s:spell()
 endfunction
 map <F11> :call <SID>spell()<CR>
 imap <F11> <C-o>:call <SID>spell()<CR>
-fun DarcsUpdate()
-    try
-        silent !cd /home/sartak/devel/conf/ && darcs record && darcs push
-    finally
-        redraw!
-    endtry
-endfun
 
 fun Modulify(replace)
     exec "/Foo"
