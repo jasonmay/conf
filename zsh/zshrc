@@ -128,6 +128,7 @@ esac
 alias workdev='TERM=rxvt ssh jmay@silverbacknetwork.com'
 alias prod='TERM=rxvt ssh jmay@65.61.13.199'
 alias home='TERM=rxvt ssh jasonmay@68.63.156.66'
+alias ]='gnome-open'
 
 function mud() {
     rlwrap telnet "$1" 6715
