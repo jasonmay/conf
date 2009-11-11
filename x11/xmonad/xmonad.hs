@@ -27,6 +27,8 @@ main = do
                                  ,("M1-b", runOrRaise "firefox" (className =? "Firefox"))
                                  ,("M1-t", runOrRaise "thunderbird" (className =? "Thunderbird-bin"))
                                  ,("M1-p", runOrRaise "pidgin" (className =? "Pidgin"))
+                                 ,("M1-d", runOrRaise "urxvt -name dev" (className =? "dev"))
+                                 ,("M1-i", runOrRaise "urxvt -name irc" (className =? "irc"))
                                  ,("M1-l", spawn "xscreensaver-command -lock")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)
