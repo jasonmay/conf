@@ -36,3 +36,5 @@ URxvt.color13: #ed73fc
 URxvt.color14: #73fafd
 URxvt.color15: #ffffff
 
+URxvt.termName: rxvt
+URxvt.transparent: true

@@ -15,9 +15,9 @@ import Data.List
 
 main = do
     xmonad $ defaultConfig {
-                 terminal           = "urxvtc",
+                 terminal           = "urxvt",
                  modMask            = mod4Mask,
-                 normalBorderColor  = "#060606",
+                 normalBorderColor  = "#161616",
                  focusedBorderColor = "#aaaaaa",
                  workspaces         = ["term", "browser", "3", "4",
                                        "5", "6", "7", "8", "9"],
