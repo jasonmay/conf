@@ -26,6 +26,7 @@ main = do
              } `additionalKeysP` [("M1-n", spawn "urxvt")
                                  ,("M1-b", runOrRaise "firefox" (className =? "Firefox"))
                                  ,("M1-t", runOrRaise "thunderbird" (className =? "Thunderbird-bin"))
+                                 ,("M1-p", runOrRaise "pidgin" (className =? "Pidgin"))
                                  ,("M1-l", spawn "xscreensaver-command -lock")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)
