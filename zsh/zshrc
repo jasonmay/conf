@@ -50,7 +50,7 @@ alias grep='grep --color=auto'
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
-alias nao="TERM=rxvt telnet nethack.alt.org"
+alias nao="telnet nethack.alt.org"
 
 case "$MY_HOSTNAME" in
     jinx)
@@ -100,34 +100,34 @@ case "$MY_HOSTNAME" in
     ;;
 
     *)
-    alias asdf="TERM=rxvt ssh jasonmay@j.asonmay.net"
-    alias adsf="TERM=rxvt ssh jasonmay@j.asonmay.net"
+    alias asdf="ssh jasonmay@j.asonmay.net"
+    alias adsf="ssh jasonmay@j.asonmay.net"
     ;;
 esac
 
 case "$MY_HOSTNAME" in
     culex)
-    alias culex='TERM=rxvt ssh 127.0.0.1'
+    alias culex='ssh 127.0.0.1'
     ;;
 
     jinx)
-    alias culex='TERM=rxvt ssh jasonmay@192.168.1.101'
+    alias culex='ssh jasonmay@192.168.1.101'
     ;;
 
     *)
-    alias culex='TERM=rxvt ssh jasonmay@68.63.156.66'
+    alias culex='ssh jasonmay@68.63.156.66'
     ;;
 esac
 
 case "$MY_HOSTNAME" in
     roburritos)
-    alias dev1='TERM=rxvt ssh dev1'
+    alias dev1='ssh dev1'
     ;;
 esac
 
-alias workdev='TERM=rxvt ssh jmay@silverbacknetwork.com'
-alias prod='TERM=rxvt ssh jmay@65.61.13.199'
-alias home='TERM=rxvt ssh jasonmay@68.63.156.66'
+alias workdev='ssh jmay@silverbacknetwork.com'
+alias prod='ssh jmay@65.61.13.199'
+alias home='ssh jasonmay@68.63.156.66'
 alias ]='gnome-open'
 
 function mud() {
