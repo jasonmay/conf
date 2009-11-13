@@ -182,7 +182,13 @@ nmap <F1> <Esc>
 inoremap <F1> <Esc>
 imap <C-J> <Esc>
 vmap <Leader>c :s/^/#/<CR>:nohl<CR>
-map <Leader>ar :!sudo /etc/init.d/httpd restart<CR>
+if hostname() == 'jobs01'
+    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
+elseif hostname() == 'dev1'
+    map <Leader>ar :!sudo /etc/init.d/httpd restart<CR>
+else
+    map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
+endif
 
 if hostname() == 'roburritos' || hostname() == 'dev1'
     highlight Comment ctermfg=green
