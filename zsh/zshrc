@@ -1,4 +1,5 @@
 . ~/.zsh_snippets/colors
+. ~/.zshcomplete
 
 export MY_HOSTNAME=`hostname -s`
 function precmd() {
