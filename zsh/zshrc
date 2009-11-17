@@ -130,6 +130,9 @@ alias workdev='ssh jmay@silverbacknetwork.com'
 alias prod='ssh jmay@65.61.13.199'
 alias home='ssh jasonmay@68.63.156.66'
 alias ]='gnome-open'
+moose() {
+    perl -Moose=$1 -E"$2; package main; $3"
+}
 
 function mud() {
     rlwrap telnet "$1" 6715
