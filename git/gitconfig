@@ -30,5 +30,6 @@
 	st = status
 	mpush = push origin master
 	mpull = pull origin master
+	unstage = reset HEAD
 [merge]
 	tool = vimdiff
