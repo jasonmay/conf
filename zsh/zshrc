@@ -131,9 +131,7 @@ alias workdev='ssh jmay@silverbacknetwork.com'
 alias prod='ssh jmay@65.61.13.199'
 alias home='ssh jasonmay@68.63.156.66'
 alias ]='gnome-open'
-moose() {
-    perl -Moose=$1 -E"$2; package main; $3"
-}
+alias moose='perl -Moose -e "sub my_has { has \$_[0] => (is => q[rw], isa => \$_[1]) }; 1;" -e'
 
 function mud() {
     rlwrap telnet "$1" 6715
