@@ -30,6 +30,7 @@ main = do
                                  ,("M1-f", runOrRaise "filezilla" (className =? "Filezilla"))
                                  ,("M1-d", runOrRaise "urxvt -name dev" (resource =? "dev"))
                                  ,("M1-i", runOrRaise "urxvt -name irc" (resource =? "irc"))
+                                 ,("M1-s", runOrRaise "urxvt -name sql" (resource =? "sql"))
                                  ,("M1-l", spawn "xscreensaver-command -lock")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)

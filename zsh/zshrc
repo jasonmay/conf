@@ -1,5 +1,6 @@
 . ~/.zsh_snippets/colors
 . ~/.zshcomplete
+[ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
 export MY_HOSTNAME=`hostname -s`
 function precmd() {
