@@ -1,5 +1,4 @@
-PATH="$HOME/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
-typeset -U path # rid duplicates
+PATH="$HOME/bin:/opt/local/lib/postgresql84/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
 typeset -U manpath # rid duplicates
