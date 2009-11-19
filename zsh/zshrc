@@ -46,9 +46,30 @@ bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
 
-#
-alias ls='ls --color=auto --hide=_darcs'
+#alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias less='less -R'
+
+case "$MY_HOSTNAME" in
+    jinx)
+    alias ls='gls --color=auto'
+    alias less='gless -R'
+    alias sort='gsort'
+    alias uniq='guniq'
+    alias mv='gmv'
+    alias cp='gcp'
+    alias cat='gcat'
+    alias basename='gbasename'
+    alias chown='gchown'
+    alias chmod='gchmod'
+    alias ci='cpan -i'
+    ;;
+
+    *)
+    alias ci='sudo cpan i'
+    ;;
+esac
+
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
@@ -87,7 +108,6 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
-alias ci='sudo cpan -i'
 
 alias ll='ls -lhA'
 alias mmi='make && sudo make install'

@@ -1,7 +1,21 @@
 PATH="$HOME/bin:/opt/local/lib/postgresql84/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
-typeset -U manpath # rid duplicates
 
 export EDITOR="vim"
 setopt noglobalrcs
+
+export MY_HOSTNAME=`hostname -s`
+
+case "$MY_HOSTNAME" in
+    jinx)
+    export MODULEBUILDRC="/Users/jasonmay/.perl5/.modulebuildrc"
+    export PERL_MM_OPT="INSTALL_BASE=/Users/jasonmay/.perl5"
+    export PERL5LIB="/Users/jasonmay/.perl5/lib/perl5:/Users/jasonmay/.perl5/lib/perl5/darwin-2level"
+    export PATH="/Users/jasonmay/.perl5/bin:$PATH"
+    ;;
+esac
+
+# rid duplicates
+typeset -U manpath
+typeset -U path
