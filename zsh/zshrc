@@ -51,10 +51,8 @@ alias grep='grep --color=auto'
 case "$MY_HOSTNAME" in
     jinx)
     alias ls='gls --color=auto'
-    alias less='gless -R'
     alias sort='gsort'
     alias uniq='guniq'
-    alias mv='gmv'
     alias cp='gcp'
     alias cat='gcat'
     alias basename='gbasename'

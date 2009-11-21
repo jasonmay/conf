@@ -2,6 +2,7 @@ PATH="$HOME/bin:/opt/local/lib/postgresql84/bin:/usr/local/bin:/usr/bin/perlbin/
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
 
+export LESS="-r -f"
 export EDITOR="vim"
 setopt noglobalrcs
 
@@ -15,6 +16,9 @@ case "$MY_HOSTNAME" in
     export PATH="/Users/jasonmay/.perl5/bin:$PATH"
     ;;
 esac
+
+#export PAGER='less -R'
+#export MANPAGER='less -R'
 
 # rid duplicates
 typeset -U manpath
