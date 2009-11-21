@@ -46,9 +46,7 @@ bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
 
-#alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias less='less -R'
 
 case "$MY_HOSTNAME" in
     jinx)
@@ -67,6 +65,8 @@ case "$MY_HOSTNAME" in
 
     *)
     alias ci='sudo cpan i'
+    alias ls='ls --color=auto'
+    alias less='less -R'
     ;;
 esac
 
