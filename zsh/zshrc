@@ -119,6 +119,8 @@ alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 
 case "$MY_HOSTNAME" in
     asonmay)
+    alias asdf="screen -dr m"
+    alias adsf="screen -dr m"
     ;;
 
     *)
