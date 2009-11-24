@@ -28,6 +28,7 @@ main = do
                                  ,("M1-t", runOrRaise "thunderbird" (className =? "Thunderbird-bin"))
                                  ,("M1-p", runOrRaise "pidgin" (className =? "Pidgin"))
                                  ,("M1-f", runOrRaise "filezilla" (className =? "Filezilla"))
+                                 ,("M1-x", runOrRaise "VirtualBox" (className =? "VirtualBox"))
                                  ,("M1-d", runOrRaise "urxvt -name dev" (resource =? "dev"))
                                  ,("M1-i", runOrRaise "urxvt -name irc" (resource =? "irc"))
                                  ,("M1-s", runOrRaise "urxvt -name sql" (resource =? "sql"))
