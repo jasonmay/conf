@@ -13,8 +13,6 @@ use List::MoreUtils ':all';
 use Scalar::Util qw(blessed weaken isweak tainted);
 use Scalar::Defer qw(lazy defer force);
 use File::Slurp qw(slurp);
-use Text::Metaphone;
-use String::Approx 'amatch';
 use String::Util ':all';
 
 # Silence complaints about redefining 'io'
@@ -62,3 +60,21 @@ $cd =~ s{^(/(?:Users|home)/[^/]+)/}{} and do {
     $Devel::REPL::Script::CURRENT_SCRIPT->apply_script($proj, 0);
 };
 
+{
+    package MyClass;
+    use Moose;
+
+    has foo => (
+        is => 'rw',
+        isa => 'Str',
+    );
+
+    sub bar {
+        my $self  = shift;
+        my $value = shift;
+
+        $self->foo("$value!!!");
+
+        return "$value???";
+    }
+}
