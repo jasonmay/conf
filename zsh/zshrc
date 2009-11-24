@@ -111,6 +111,7 @@ alias ll='ls -lhA'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
 alias sl='ls'
+alias lcd='ls;cd'
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 
 alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
