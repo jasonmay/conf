@@ -99,9 +99,6 @@ nmap <Right> :bn<CR>
 nmap <Left>  :bp<CR>
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
 
-vnoremap < <gv
-vnoremap > >gv
-
 nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>:nohl<CR>
 
 nmap n nzz
