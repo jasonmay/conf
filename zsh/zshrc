@@ -114,6 +114,8 @@ alias sl='ls'
 alias lcd='ls;cd'
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 
+alias vall='vim lib/**/*.pm'
+
 alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
 
 case "$MY_HOSTNAME" in

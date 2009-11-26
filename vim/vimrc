@@ -173,14 +173,17 @@ vmap L $
 
 nmap <Right> :bn<CR>
 nmap <Left>  :bp<CR>
-nmap <Up> :syntax sync fromstart<CR>
+nmap <Up>    :syntax sync fromstart<CR>
 nmap <Down>  :wa<CR>
-nmap gb A {<CR>}<Esc>k
-nmap <CR> o<Esc>
-nmap <F1> <Esc>
+
+nmap gb       A {<CR>}<Esc>k
+nmap <CR>     o<Esc>
+nmap <F1>     <Esc>
 inoremap <F1> <Esc>
-imap <C-J> <Esc>
-vmap <Leader>c :s/^/#/<CR>:nohl<CR>
+imap <C-J>    <Esc>
+
+nmap b        :b 
+
 if hostname() == 'jobs01'
     map <Leader>ar :!sudo /sbin/service httpd restart<CR>
 elseif hostname() == 'dev1'
@@ -231,3 +234,4 @@ au BufNewFile,BufReadPost *.pl call TextEnableCodeSnip('sql', 'qq\[', '\]', 'Str
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
 iabbrev reponse    response
+
