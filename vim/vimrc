@@ -1,4 +1,3 @@
-set autoread
 set encoding=utf8
 syntax on
 set ruler
@@ -15,6 +14,7 @@ set showmatch
 set matchtime=2
 set report=0
 set nomore
+set autoread 
 
 set completeopt=menuone
 let perl_extended_vars=1
@@ -85,8 +85,6 @@ inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 nmap Y y$
 
 nnoremap \\ \
-"nnoremap :w<CR> :w<CR><C-l>
-"nnoremap :wa<CR> :wa<CR><C-l>
 nmap \/ :nohl<CR>
 nmap \n :set invnumber<CR>
 
@@ -166,15 +164,20 @@ endfunction
 
 map ,h :call PerlDoc()<C-M>:set nomod<C-M>
 
-nmap H ^
-vmap H ^
-nmap L $
-vmap L $
+"nmap H ^
+"vmap H ^
+"nmap L $
+"vmap L $
 
-nmap <Right> :bn<CR>
-nmap <Left>  :bp<CR>
-nmap <Up>    :syntax sync fromstart<CR>
+nmap M       :nohl<CR>:syntax sync fromstart<CR>
+nmap L       :bn<CR>
+nmap H       :bp<CR>
+nmap -       A<Esc>
+
+nmap <Up>    :wa<CR>
 nmap <Down>  :wa<CR>
+nmap <Left>  :wa<CR>
+nmap <Right> :wa<CR>
 
 nmap gb       A {<CR>}<Esc>k
 nmap <CR>     o<Esc>
