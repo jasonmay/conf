@@ -59,22 +59,3 @@ $cd =~ s{^(/(?:Users|home)/[^/]+)/}{} and do {
     my $proj = "$homedir/.re.pl/$cd";
     $Devel::REPL::Script::CURRENT_SCRIPT->apply_script($proj, 0);
 };
-
-{
-    package MyClass;
-    use Moose;
-
-    has foo => (
-        is => 'rw',
-        isa => 'Str',
-    );
-
-    sub bar {
-        my $self  = shift;
-        my $value = shift;
-
-        $self->foo("$value!!!");
-
-        return "$value???";
-    }
-}
