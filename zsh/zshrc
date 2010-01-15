@@ -88,7 +88,7 @@ case "$MY_HOSTNAME" in
     alias h='vim ~/.xmonad/xmonad.hs'
     ;;
 
-    asonmay|roburritos)
+    asonmay|cheese)
     alias i='sudo aptitude install'
     alias s='sudo aptitude search'
     alias v='sudo aptitude variants'
@@ -132,7 +132,7 @@ case "$MY_HOSTNAME" in
 esac
 
 case "$MY_HOSTNAME" in
-    roburritos)
+    cheese)
     alias dev1='ssh dev1'
     ;;
 esac
