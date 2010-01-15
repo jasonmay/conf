@@ -41,6 +41,8 @@ set smartindent
 set foldmethod=marker
 set bg=light
 
+filetype plugin indent on
+
 highlight Pmenu      ctermfg=grey  ctermbg=darkblue
 highlight PmenuSel   ctermfg=red   ctermbg=darkblue
 highlight PmenuSbar  ctermbg=cyan
