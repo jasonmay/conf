@@ -46,8 +46,19 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
+function mud() {
+    rlwrap telnet "$1" 6715
+}
 
-alias grep='grep --color=auto'
+# doy rules
+function mem_usage {
+    ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
+}
+
+function pubkey {
+    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
+}
 
 case "$MY_HOSTNAME" in
     jinx)
@@ -97,6 +108,7 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
+alias grep='grep --color=auto'
 alias ll='ls -lhA'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
@@ -120,18 +132,3 @@ esac
 
 alias sl='ls'
 alias lcd='ls;cd'
-
-function mud() {
-    rlwrap telnet "$1" 6715
-}
-
-# doy rules
-function mem_usage {
-    ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
-}
-
-function pubkey {
-    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
-    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
-}
-
