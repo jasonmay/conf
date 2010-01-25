@@ -1,18 +1,26 @@
-. ~/.zsh_snippets/colors
-. ~/.zshcomplete
-[ -e ~/.zsh_secret ] && . ~/.zsh_secret
+[ -e ~/.zsh_snippets/colors ]        \
+    && source ~/.zsh_snippets/colors \
+    && autoload -U colors            \
+    && colors
+
+[ -e ~/.zshcomplete ]     && source ~/.zshcomplete
+[ -e ~/.zsh_secret ]      && source ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
 export MY_HOSTNAME=`hostname -s`
-function precmd() {
-    [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
-    [ -x "$(which shell-prompt)" ] && RPROMPT=`shell-prompt right`
+[ -x "$(which shell-prompt)" ] && function precmd() {
+    PROMPT=`shell-prompt`
+    RPROMPT=`shell-prompt right`
 }
-
-PS2="[${HIGRAY}][${HINORM}] \u@\h ]"
 
 HISTSIZE=100000
 SAVEHIST=100000
+
+case "$MY_HOSTNAME" in
+    dev1)
+    fpath=~/.zshfunc
+    ;;
+esac
 
 setopt extended_history
 setopt hist_ignore_space
@@ -50,7 +58,6 @@ function mud() {
     rlwrap telnet "$1" 6715
 }
 
-# doy rules
 function mem_usage {
     ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
 }

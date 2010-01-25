@@ -5,6 +5,7 @@ MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
 export LESS="-r -f"
 export EDITOR="vim"
 setopt noglobalrcs
+export PAGER=less
 
 export MY_HOSTNAME=`hostname -s`
 
