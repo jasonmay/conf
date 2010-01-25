@@ -72,8 +72,6 @@ esac
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
-alias nao="telnet nethack.alt.org"
-
 case "$MY_HOSTNAME" in
     jinx)
     alias i='sudo port install'
@@ -82,13 +80,7 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /opt/local/apache2/bin/apachectl restart'
     ;;
 
-    culex)
-    alias i='sudo pacman -S'
-    alias s='sudo pacman -Ss'
-    alias h='vim ~/.xmonad/xmonad.hs'
-    ;;
-
-    asonmay|cheese)
+    cheese)
     alias i='sudo aptitude install'
     alias s='sudo aptitude search'
     alias v='sudo aptitude variants'
@@ -96,9 +88,7 @@ case "$MY_HOSTNAME" in
     ;;
 
     dev1)
-    alias i='sudo port install'
-    alias s='sudo port search'
-    alias v='sudo port variants'
+    alias s='yum search'
     alias ar='sudo /etc/init.d/httpd restart'
     ;;
 
@@ -107,35 +97,14 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
-
 alias ll='ls -lhA'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
-alias sl='ls'
-alias lcd='ls;cd'
+
+# only assuming EVERY tag is a CPAN release
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 
 alias vall='vim lib/**/*.pm'
-
-alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
-
-case "$MY_HOSTNAME" in
-    asonmay)
-    alias asdf="screen -dr m"
-    alias adsf="screen -dr m"
-    ;;
-
-    *)
-    alias asdf="ssh jasonmay@j.asonmay.net"
-    alias adsf="ssh jasonmay@j.asonmay.net"
-    ;;
-esac
-
-case "$MY_HOSTNAME" in
-    cheese)
-    alias dev1='ssh dev1'
-    ;;
-esac
 
 alias workdev="ssh $WORK_DEV_IP"
 alias wdd="ssh $WORK_DEV_IP -t screen -dr dev"
@@ -143,6 +112,14 @@ alias prod="ssh $WORK_JOBS_IP"
 alias ]='gnome-open'
 alias moose='perl -Moose -E'
 
+case "$MY_HOSTNAME" in
+    cheese)
+    alias dev1='ssh dev1'
+    ;;
+esac
+
+alias sl='ls'
+alias lcd='ls;cd'
 
 function mud() {
     rlwrap telnet "$1" 6715
