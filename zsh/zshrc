@@ -7,7 +7,7 @@
 [ -e ~/.zsh_secret ]      && source ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
-export MY_HOSTNAME=`hostname -s`
+export MY_HOSTNAME=`hostname`
 [ -x "$(which shell-prompt 2>/dev/null)" ] && function precmd() {
     PROMPT=`shell-prompt`
     RPROMPT=`shell-prompt right`
