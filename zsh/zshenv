@@ -18,9 +18,6 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
-#export PAGER='less -R'
-#export MANPAGER='less -R'
-
 # rid duplicates
 typeset -U manpath
 typeset -U path
