@@ -64,7 +64,8 @@ function mem_usage {
 
 function pubkey {
     [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
-    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" \
+        < "$HOME/.ssh/id_dsa.pub"
 }
 
 case "$MY_HOSTNAME" in
@@ -116,6 +117,21 @@ case "$MY_HOSTNAME" in
 esac
 
 alias grep='grep --color=auto'
+
+
+case "$MY_HOSTNAME" in
+    dev1)
+    GREEN="%{$fg_bold[green]%}"
+    YELLOW="%{$fg_bold[yellow]%}"
+    NORM="%{$reset_color%}"
+
+    export PS1="[%n@%m ${GREEN}%~${NORM}]%# "
+    export RPS1="${YELLOW}%?${NORM}"
+    export EDITOR='vim'
+    ;;
+esac
+
+alias grep='grep --color=auto'
 alias ll='ls -lhA'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
@@ -140,4 +156,3 @@ esac
 alias sl='ls'
 alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom; do alias "$vim_typo"='vim'; done
-
