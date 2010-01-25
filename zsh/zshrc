@@ -1,6 +1,6 @@
 . ~/.zsh_snippets/colors
 . ~/.zshcomplete
-. ~/.zsh_secret
+[ -e ~/.zsh_secret ] && . ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
 export MY_HOSTNAME=`hostname -s`
