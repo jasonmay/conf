@@ -8,7 +8,7 @@
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
 export MY_HOSTNAME=`hostname -s`
-[ -x "$(which shell-prompt)" ] && function precmd() {
+[ -x "$(which shell-prompt 2>/dev/null)" ] && function precmd() {
     PROMPT=`shell-prompt`
     RPROMPT=`shell-prompt right`
 }
