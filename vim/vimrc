@@ -75,6 +75,7 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 
 autocmd BufNewFile,BufRead *.reg set syntax=perl
 autocmd BufNewFile,BufRead *.run set syntax=perl
+autocmd BufNewFile,BufRead repl.rc set syntax=perl
 
 if hostname() == 'dev1'
     autocmd BufNewFile,BufRead silverback.conf set syntax=apache
@@ -197,15 +198,8 @@ else
     map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
 endif
 
-if hostname() == 'roburritos' || hostname() == 'dev1'
+if hostname() == 'dev1'
     highlight Comment ctermfg=green
-    highlight LineNr  ctermfg=blue
-    set number
-
-    if hostname() == 'dev1'
-        au BufNewFile,BufReadPost * silent !psql -h 10.1.1.119 -q -c "insert into punch (t, d) values (now(), 'open % on dev1')"
-        autocmd BufWritePost * silent !psql -h 10.1.1.119 -q -c "insert into punch (t, d) values (now(), 'save % on dev1')"
-    endif
 endif
 
 function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort

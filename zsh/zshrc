@@ -1,18 +1,26 @@
-. ~/.zsh_snippets/colors
-. ~/.zshcomplete
-. ~/.zsh_secret
+[ -e ~/.zsh_snippets/colors ]        \
+    && source ~/.zsh_snippets/colors \
+    && autoload -U colors            \
+    && colors
+
+[ -e ~/.zshcomplete ]     && source ~/.zshcomplete
+[ -e ~/.zsh_secret ]      && source ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
-export MY_HOSTNAME=`hostname -s`
-function precmd() {
-    [ -x "$(which shell-prompt)" ] && PROMPT=`shell-prompt`
-    [ -x "$(which shell-prompt)" ] && RPROMPT=`shell-prompt right`
+export MY_HOSTNAME=`hostname`
+[ -x "$(which shell-prompt 2>/dev/null)" ] && function precmd() {
+    PROMPT=`shell-prompt`
+    RPROMPT=`shell-prompt right`
 }
-
-PS2="[${HIGRAY}][${HINORM}] \u@\h ]"
 
 HISTSIZE=100000
 SAVEHIST=100000
+
+case "$MY_HOSTNAME" in
+    dev1)
+    fpath=~/.zshfunc
+    ;;
+esac
 
 setopt extended_history
 setopt hist_ignore_space
@@ -46,8 +54,19 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
+function mud() {
+    rlwrap telnet "$1" 6715
+}
 
-alias grep='grep --color=auto'
+function mem_usage {
+    ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
+}
+
+function pubkey {
+    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" \
+        < "$HOME/.ssh/id_dsa.pub"
+}
 
 case "$MY_HOSTNAME" in
     jinx)
@@ -72,8 +91,6 @@ esac
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
-alias nao="telnet nethack.alt.org"
-
 case "$MY_HOSTNAME" in
     jinx)
     alias i='sudo port install'
@@ -82,13 +99,7 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /opt/local/apache2/bin/apachectl restart'
     ;;
 
-    culex)
-    alias i='sudo pacman -S'
-    alias s='sudo pacman -Ss'
-    alias h='vim ~/.xmonad/xmonad.hs'
-    ;;
-
-    asonmay|cheese)
+    cheese)
     alias i='sudo aptitude install'
     alias s='sudo aptitude search'
     alias v='sudo aptitude variants'
@@ -96,9 +107,7 @@ case "$MY_HOSTNAME" in
     ;;
 
     dev1)
-    alias i='sudo port install'
-    alias s='sudo port search'
-    alias v='sudo port variants'
+    alias s='yum search'
     alias ar='sudo /etc/init.d/httpd restart'
     ;;
 
@@ -107,35 +116,30 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
+alias grep='grep --color=auto'
 
+
+case "$MY_HOSTNAME" in
+    dev1)
+    GREEN="%{$fg_bold[green]%}"
+    YELLOW="%{$fg_bold[yellow]%}"
+    NORM="%{$reset_color%}"
+
+    export PS1="[%n@%m ${GREEN}%~${NORM}]%# "
+    export RPS1="${YELLOW}%?${NORM}"
+    export EDITOR='vim'
+    ;;
+esac
+
+alias grep='grep --color=auto'
 alias ll='ls -lhA'
 alias mmi='make && sudo make install'
 alias pmmi='perl Makefile.PL && mmi'
-alias sl='ls'
-alias lcd='ls;cd'
+
+# only assuming EVERY tag is a CPAN release
 alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 
 alias vall='vim lib/**/*.pm'
-
-alias syntax-perl='ls lib/**/*.pm | while read pm; do perl -Ilib -c "$pm"; done'
-
-case "$MY_HOSTNAME" in
-    asonmay)
-    alias asdf="screen -dr m"
-    alias adsf="screen -dr m"
-    ;;
-
-    *)
-    alias asdf="ssh jasonmay@j.asonmay.net"
-    alias adsf="ssh jasonmay@j.asonmay.net"
-    ;;
-esac
-
-case "$MY_HOSTNAME" in
-    cheese)
-    alias dev1='ssh dev1'
-    ;;
-esac
 
 
 alias cheese='ssh '"$WORK_DEV_IP"' -t ssh 10.1.1.81'
@@ -145,18 +149,12 @@ alias prod="ssh $WORK_JOBS_IP"
 alias ]='gnome-open'
 alias moose='perl -Moose -E'
 
+case "$MY_HOSTNAME" in
+    cheese)
+    alias dev1='ssh dev1'
+    ;;
+esac
 
-function mud() {
-    rlwrap telnet "$1" 6715
-}
-
-# doy rules
-function mem_usage {
-    ps -eo size,ucmd | sort -rn | head -n$([ -z "$1" ] && echo 20 || echo $1)
-}
-
-function pubkey {
-    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
-    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" < "$HOME/.ssh/id_dsa.pub"
-}
-
+alias sl='ls'
+alias lcd='ls;cd'
+for vim_typo in viim vmi bim cim vo, viom; do alias "$vim_typo"='vim'; done
