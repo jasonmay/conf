@@ -59,7 +59,7 @@ case "$MY_HOSTNAME" in
     alias basename='gbasename'
     alias chown='gchown'
     alias chmod='gchmod'
-    alias ci='cpan -i'
+    alias ci='cpan'
     ;;
 
     *)
@@ -137,6 +137,8 @@ case "$MY_HOSTNAME" in
     ;;
 esac
 
+
+alias cheese='ssh '"$WORK_DEV_IP"' -t ssh 10.1.1.81'
 alias workdev="ssh $WORK_DEV_IP"
 alias wdd="ssh $WORK_DEV_IP -t screen -dr dev"
 alias prod="ssh $WORK_JOBS_IP"
