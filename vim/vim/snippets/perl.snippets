@@ -114,3 +114,8 @@ snippet before
 		my $self = shift;
 		${2}
 	};
+
+snippet open
+	open my ${1:$fh}, '${2:>}', '${3:/tmp/__foo}';
+	print $fh '${4}';
+	close $1;
