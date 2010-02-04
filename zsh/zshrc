@@ -54,6 +54,12 @@ bindkey " " magic-space
 bindkey "\e[3~" delete-char
 bindkey -M vicmd v edit-command-line
 
+bindkey -M viins "^?" backward-delete-char
+bindkey -M viins "^H" backward-delete-char
+bindkey -M viins "^W" backward-delete-word
+bindkey -M viins "^U" backward-kill-line
+bindkey -M viins "^Y" yank
+
 function mud() {
     rlwrap telnet "$1" 6715
 }
