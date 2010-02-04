@@ -119,3 +119,8 @@ snippet open
 	open my ${1:$fh}, '${2:>}', '${3:/tmp/__foo}';
 	print $fh '${4}';
 	close $1;
+
+snippet openi
+	open my ${1:$fh}, '${2:<}', '${3:/tmp/__foo}';
+	chomp(my @${4:lines} = <$1>);
+	close $1;
