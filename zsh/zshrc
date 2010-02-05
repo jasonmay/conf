@@ -60,6 +60,8 @@ bindkey "\e[3~" delete-char
 bindkey "\e[Z" expand-or-complete
 
 bindkey -M vicmd v edit-command-line
+bindkey -M vicmd H beginning-of-line
+bindkey -M vicmd L end-of-line
 
 # if you go into vi mode and insert mode you
 # normally can't do this kind of stuff
