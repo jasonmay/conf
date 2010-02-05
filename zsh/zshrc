@@ -52,8 +52,9 @@ bindkey "^Y" copy-earlier-word
 bindkey "^T" transpose-chars
 bindkey " " magic-space
 bindkey "\e[3~" delete-char
-bindkey -M vicmd v edit-command-line
+bindkey "\e[Z" expand-or-complete
 
+bindkey -M vicmd v edit-command-line
 bindkey -M viins "^?" backward-delete-char
 bindkey -M viins "^H" backward-delete-char
 bindkey -M viins "^W" backward-delete-word
