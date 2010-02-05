@@ -50,7 +50,7 @@ bindkey "^E" end-of-line
 bindkey "^N" accept-and-infer-next-history
 bindkey "^P" push-line
 bindkey "^R" history-incremental-search-backward
-bindkey "^Y" copy-earlier-word
+bindkey "^Y" yank
 bindkey "^T" transpose-chars
 
 bindkey " " magic-space
