@@ -15,11 +15,8 @@ set matchtime=2
 set report=0
 set nomore
 set autoread 
-
+set ttyfast
 set completeopt=menuone
-let perl_extended_vars=1
-let perl_include_pod=1
-let perl_sync_dist=1000
 set incsearch
 set tildeop
 set backspace=indent,eol,start
@@ -40,24 +37,27 @@ set autoindent
 set smartindent
 set foldmethod=marker
 set bg=light
+set confirm
+set showbreak=>
+
+
+let perl_extended_vars=1
+let perl_include_pod=1
+let perl_string_as_statement=1
+let perl_sync_dist=1000
 
 filetype plugin indent on
 
-highlight Pmenu      ctermfg=grey  ctermbg=darkblue
-highlight PmenuSel   ctermfg=red   ctermbg=darkblue
-highlight PmenuSbar  ctermbg=cyan
-highlight PmenuThumb ctermfg=red
-
-highlight WildMenu ctermfg=grey ctermbg=darkblue
-highlight Folded     ctermbg=black ctermfg=darkgreen
 highlight Search NONE ctermfg=lightred
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 hi EOLWS ctermbg=red
+
 autocmd BufReadPost *
 \  if line("'\"") > 0 && line("'\"") <= line("$") |
 \    exe "normal g`\"" |
 \  endif
+
 autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm | call Modulify('::') | normal G3k
 
 autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl | normal G
@@ -81,7 +81,6 @@ if hostname() == 'dev1'
     autocmd BufNewFile,BufRead silverback.conf set syntax=apache
     autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
 endif
-
 
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 
@@ -227,7 +226,8 @@ function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
   \ contains=@'.group
 endfunction
 
-au BufNewFile,BufReadPost *.pl,*.pm,*.reg call TextEnableCodeSnip('sql', 'qq\[', '\]', 'String')
+au BufNewFile,BufReadPost *.pl,*.pm,*.reg
+            \ call TextEnableCodeSnip('sql', 'qq\[', '\]', 'String')
 
 
 iabbrev to_jason   to_json
