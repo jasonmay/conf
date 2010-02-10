@@ -125,7 +125,7 @@ case "$MY_HOSTNAME" in
 
     dev1)
     alias s='yum search'
-    alias ar='sudo /etc/init.d/httpd restart'
+    alias ar='sudo /sbin/service httpd restart'
     ;;
 
     jobs01)
