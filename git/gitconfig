@@ -17,9 +17,13 @@
 	mpush = push origin master
 	mpull = pull origin master
 	unstage = reset HEAD
+    review = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
+    git = !git
 [merge]
 	tool = vimdiff
 [push]
 	default = tracking
 [receive]
 	denyCurrentBranch = ignore
+[github]
+    user = jasonmay
