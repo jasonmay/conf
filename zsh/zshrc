@@ -7,7 +7,9 @@
 [ -e ~/.zsh_secret ]      && source ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
 
-[ -d ~/.zscripts ] && find ~/.zscripts -type f -name '*.zsh' -exec source {} \;
+# XXX why can't -exec work with source WTF
+[ -d ~/.zscripts ] &&  find ~/.zscripts -type f -name '*.zsh' | \
+    while read z; do source "$z"; done
 
 export MY_HOSTNAME=`hostname`
 [ -x "$(which shell-prompt 2>/dev/null)" ] && function precmd() {
