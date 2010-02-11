@@ -1,6 +1,9 @@
 #!/usr/bin/env perl
 package Foo;
-use strict;
-use warnings;
+use Moose;
+use namespace::autoclean;
+
+
+__PACKAGE__->meta->make_immutable;
 
 1;
