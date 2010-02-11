@@ -192,7 +192,7 @@ nmap b        :b
 if hostname() == 'jobs01'
     map <Leader>ar :!sudo /sbin/service httpd restart<CR>
 elseif hostname() == 'dev1'
-    map <Leader>ar :!sudo /etc/init.d/httpd restart<CR>
+    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
 else
     map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
 endif
