@@ -19,6 +19,8 @@
 	unstage = reset HEAD
     review = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
     git = !git
+
+    clong = clone
 [merge]
 	tool = vimdiff
 [push]
