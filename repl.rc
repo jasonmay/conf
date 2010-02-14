@@ -46,3 +46,9 @@ $_REPL->load_plugin($_) for @plugins;
 $_REPL->fancy_prompt(sub { "\e[m\n> " } );
 $_REPL->fancy_continuation_prompt(sub { '> ' . ('    ' x $_[0]->line_depth) });
 
+sub fib {
+    my $num = shift;
+    return 0 if $num == 1;
+    return 1 if $num == 2;
+    return fib($num - 1) + fib($num - 2);
+}
