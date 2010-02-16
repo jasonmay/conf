@@ -102,6 +102,12 @@ case "$MY_HOSTNAME" in
     alias ci='cpan'
     ;;
 
+    asonmay)
+    alias ci='cpan'
+    alias ls='ls --color=auto'
+    alias less='less -R'
+    ;;
+
     *)
     alias ci='sudo cpan i'
     alias ls='ls --color=auto'
@@ -125,6 +131,12 @@ case "$MY_HOSTNAME" in
     alias s='sudo aptitude search'
     alias v='sudo aptitude variants'
     alias ar='sudo /etc/init.d/apache2 restart'
+    ;;
+
+    asonmay)
+    alias i='sudo pacman -S'
+    alias s='sudo pacman -Ss'
+    alias ar='sudo /etc/rc.d/httpd restart'
     ;;
 
     dev1)
