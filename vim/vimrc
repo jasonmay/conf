@@ -37,7 +37,7 @@ set autoindent
 set smartindent
 set foldmethod=marker
 set bg=light
-set confirm
+"set confirm
 set showbreak=>
 
 
