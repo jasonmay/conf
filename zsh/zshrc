@@ -99,17 +99,19 @@ case "$MY_HOSTNAME" in
     alias basename='gbasename'
     alias chown='gchown'
     alias chmod='gchmod'
-    alias ci='cpan'
+    alias c='cpan'
+    alias gi='sudo gem install'
     ;;
 
-    asonmay)
-    alias ci='cpan'
+    jarsonmar)
+    alias c='cpan'
     alias ls='ls --color=auto'
     alias less='less -R'
+    alias gi='sudo gem install'
     ;;
 
     *)
-    alias ci='sudo cpan i'
+    alias c='sudo cpan -i'
     alias ls='ls --color=auto'
     alias less='less -R'
     ;;
@@ -133,7 +135,7 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /etc/init.d/apache2 restart'
     ;;
 
-    asonmay)
+    jarsonmar)
     alias i='sudo pacman -S'
     alias s='sudo pacman -Ss'
     alias ar='sudo /etc/rc.d/httpd restart'
