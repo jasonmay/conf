@@ -76,6 +76,7 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 autocmd BufNewFile,BufRead *.reg set ft=perl
 autocmd BufNewFile,BufRead *.run set ft=perl
 autocmd BufNewFile,BufRead repl.rc set ft=perl
+autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 
 if hostname() == 'dev1'
     autocmd BufNewFile,BufRead silverback.conf set syntax=apache
