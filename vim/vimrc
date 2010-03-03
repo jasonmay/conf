@@ -107,6 +107,8 @@ nmap * *zz
 nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
+nmap <C-u> <C-u>zz
+nmap <C-d> <C-d>zz
 
 function s:nopaste(visual)
     let nopaste_services = $NOPASTE_SERVICES
