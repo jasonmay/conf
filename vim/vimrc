@@ -236,3 +236,6 @@ iabbrev from_jason from_json
 iabbrev reponse    response
 
 nnoremap - <Space>
+
+autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType perl setlocal errorformat=%f:%l:%m
