@@ -124,3 +124,30 @@ snippet openi
 	open my ${1:$fh}, '${2:<}', '${3:/tmp/__foo}';
 	chomp(my @${4:lines} = <$1>);
 	close $1;
+
+# a lot of times html/js is in perl scripts
+
+snippet f
+	function(${1}) {${2}};
+
+snippet fun
+	function ${1:function_name} (${2:argument}) {
+		${3:// body...}
+	}
+
+snippet link
+	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8"`Close()`>${4}
+
+snippet table
+	<table border="${1:0}">
+		<tr><th>${2:Header}</th></tr>
+		<tr><th>${3:Data}</th></tr>
+	</table>${4}
+
+snippet form
+	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
+		${3}
+
+
+	<p><input type="submit" value="Continue &rarr;"`Close()`></p>
+	</form>
