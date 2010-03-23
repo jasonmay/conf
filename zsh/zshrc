@@ -135,6 +135,12 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /etc/init.d/apache2 restart'
     ;;
 
+    jarsonmar)
+    alias i='sudo pacman -S'
+    alias s='sudo pacman -Ss'
+    alias ar='sudo /etc/rc.d/httpd restart'
+    ;;
+
     dev1)
     alias s='yum search'
     alias ar='sudo /sbin/service httpd restart'
