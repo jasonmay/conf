@@ -10,11 +10,12 @@ export PAGER=less
 export MY_HOSTNAME=`hostname -s`
 
 case "$MY_HOSTNAME" in
-    jinx)
-    export MODULEBUILDRC="/Users/jasonmay/.perl5/.modulebuildrc"
-    export PERL_MM_OPT="INSTALL_BASE=/Users/jasonmay/.perl5"
-    export PERL5LIB="/Users/jasonmay/.perl5/lib/perl5:/Users/jasonmay/.perl5/lib/perl5/darwin-2level"
-    export PATH="/Users/jasonmay/.perl5/bin:$PATH"
+    jinx|jarsonmar)
+    export MODULEBUILDRC="$HOME/.perl5/.modulebuildrc"
+    export PERL_MM_OPT="INSTALL_BASE=$HOME/.perl5"
+    export PERL5LIB="$HOME/.perl5/lib/perl5:$HOME/.perl5/lib/perl5/darwin-2level"
+    export PATH="$HOME/.perl5/bin:$PATH"
+    export MANPATH="$HOME/.perl5/man:$MANPATH"
     ;;
 esac
 

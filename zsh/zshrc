@@ -99,11 +99,19 @@ case "$MY_HOSTNAME" in
     alias basename='gbasename'
     alias chown='gchown'
     alias chmod='gchmod'
-    alias ci='cpan'
+    alias c='cpan'
+    alias gi='sudo gem install'
+    ;;
+
+    jarsonmar)
+    alias c='cpan'
+    alias ls='ls --color=auto'
+    alias less='less -R'
+    alias gi='sudo gem install'
     ;;
 
     *)
-    alias ci='sudo cpan i'
+    alias c='sudo cpan -i'
     alias ls='ls --color=auto'
     alias less='less -R'
     ;;
