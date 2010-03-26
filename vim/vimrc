@@ -76,6 +76,7 @@ autocmd FileType perl setlocal keywordprg=perldoc\ -f
 autocmd BufNewFile,BufRead *.reg set ft=perl
 autocmd BufNewFile,BufRead *.run set ft=perl
 autocmd BufNewFile,BufRead repl.rc set ft=perl
+autocmd BufNewFile,BufRead *.scpt set ft=applescript
 autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 
 if hostname() == 'dev1'
@@ -240,3 +241,6 @@ iabbrev from_jason from_json
 iabbrev reponse    response
 
 nnoremap - <Space>
+
+autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType perl setlocal errorformat=%f:%l:%m
