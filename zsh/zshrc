@@ -184,6 +184,8 @@ alias prod="ssh $WORK_JOBS_IP"
 alias ]='gnome-open'
 alias moose='perl -Moose -E'
 
+alias ta='tmux attach -dt'
+
 case "$MY_HOSTNAME" in
     cheese)
     alias dev1='ssh dev1'
