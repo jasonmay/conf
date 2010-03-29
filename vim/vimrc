@@ -188,13 +188,14 @@ nmap -       A<Esc>
 nmap <Left>  :bn<CR>
 nmap <Right> :bp<CR>
 
-nmap gb       A {<CR>}<Esc>k
-nmap <CR>     o<Esc>
-nmap <F1>     <Esc>
-inoremap <F1> <Esc>
-imap <C-J>    <Esc>
-
-nmap b        :b 
+nmap     gb       A {<CR>}<Esc>k
+nmap     <CR>     o<Esc>
+nmap     <F1>     <Esc>
+inoremap <F1>     <Esc>
+imap     <C-J>    <Esc>
+nnoremap <C-z>    u
+nnoremap u        <C-u>
+nmap     b        :b 
 
 if hostname() == 'jobs01'
     map <Leader>ar :!sudo /sbin/service httpd restart<CR>
