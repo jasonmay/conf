@@ -185,6 +185,7 @@ alias ]='gnome-open'
 alias moose='perl -Moose -E'
 
 alias ta='tmux attach -dt'
+alias ts='tmux new -s'
 
 case "$MY_HOSTNAME" in
     cheese)
