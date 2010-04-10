@@ -193,9 +193,6 @@ nmap     <CR>     o<Esc>
 nmap     <F1>     <Esc>
 inoremap <F1>     <Esc>
 imap     <C-J>    <Esc>
-nnoremap <C-z>    u
-nnoremap u        <C-u>
-nmap     b        :b 
 
 if hostname() == 'jobs01'
     map <Leader>ar :!sudo /sbin/service httpd restart<CR>
