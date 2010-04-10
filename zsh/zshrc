@@ -125,7 +125,7 @@ case "$MY_HOSTNAME" in
     alias i='sudo port install'
     alias s='sudo port search'
     alias v='sudo port variants'
-    alias ar='sudo /opt/local/apache2/bin/apachectl restart'
+    alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
     ;;
 
     cheese)
