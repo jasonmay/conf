@@ -243,6 +243,9 @@ au BufNewFile,BufReadPost *.pl,*.pm,*.reg
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
 iabbrev reponse    response
+iabbrev shift shift
+iabbrev shift shift
+
 
 nnoremap - <Space>
 
