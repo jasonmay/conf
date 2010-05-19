@@ -1,4 +1,4 @@
-PATH="$HOME/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
+PATH="$HOME/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
 
@@ -9,7 +9,6 @@ export PAGER=less
 
 export MY_HOSTNAME=`hostname -s`
 
-export PERLBREW_ROOT=$HOME/.perl5/perlbrew
 test -e /home/jasonmay/.perl5/perlbrew/etc/bashrc && source /home/jasonmay/.perl5/perlbrew/etc/bashrc
 
 # rid duplicates
