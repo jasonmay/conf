@@ -69,6 +69,8 @@ autocmd BufNewFile Makefile.PL silent undo | silent 0read ~/.vim/skeletons/Makef
 
 autocmd BufNewFile *.c  silent 0read ~/.vim/skeletons/c.c | normal 4j$
 
+autocmd BufNewFile *.html  silent 0read ~/.vim/skeletons/page.html | normal 9j0
+
 autocmd BufReadPost *.smc set bin | set noeol
 au BufWritePost *.{sh,pl} silent exe "!chmod +x %"
 
