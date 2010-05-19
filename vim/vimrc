@@ -40,6 +40,9 @@ set bg=light
 "set confirm
 set showbreak=>
 
+au FileType ruby set tabstop=2
+au FileType ruby set shiftwidth=2
+au FileType ruby set softtabstop=2
 
 let perl_extended_vars=1
 let perl_include_pod=1
