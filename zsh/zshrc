@@ -161,8 +161,6 @@ case "$MY_HOSTNAME" in
     NORM="%{$reset_color%}"
 
     export PS1="[%n@%m ${GREEN}%~${NORM}]%# "
-    export RPS1="${YELLOW}%?${NORM}"
-    export EDITOR='vim'
     ;;
 esac
 
@@ -185,6 +183,9 @@ alias ]='gnome-open'
 alias moose='perl -Moose -E'
 alias cpan='cpanm'
 
+alias d=cd
+alias lsc=ls
+
 alias ta='tmux attach -dt'
 alias ts='tmux new -s'
 
@@ -199,3 +200,5 @@ alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom vin; do alias "$vim_typo"='vim'; done
 
 alias pi='perl -Ilib'
+
+function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }

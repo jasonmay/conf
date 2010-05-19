@@ -61,9 +61,18 @@ autocmd BufReadPost *
 \    exe "normal g`\"" |
 \  endif
 
-autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm | call Modulify('::') | normal G5k
+if filereadable($HOME . '/.workvim/skeletons/module.pm')
+    autocmd BufNewFile *.pm silent 0read ~/.workvim/skeletons/module.pm | call Modulify('::') | normal G5k
+else
+    autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm | call Modulify('::') | normal G5k
+endif
 
-autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl | normal G
+if filereadable($HOME . '/.workvim/skeletons/perl.pl')
+    autocmd BufNewFile *.pl silent 0read ~/.workvim/skeletons/perl.pl | normal G
+else
+    autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl | normal G
+endif
+
 autocmd BufNewFile *.t silent 0read ~/.vim/skeletons/test.t | normal G
 autocmd BufNewFile Makefile.PL silent undo | silent 0read ~/.vim/skeletons/Makefile.PL | normal gg
 
@@ -87,9 +96,6 @@ autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 if hostname() == 'dev1' || hostname() == 'jobs01'
     autocmd BufNewFile,BufRead silverback.conf set syntax=apache
     autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
-
-    nnoremap <C-z>    u
-    nnoremap u        <C-u>
 endif
 
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
