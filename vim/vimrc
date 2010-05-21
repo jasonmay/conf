@@ -150,12 +150,11 @@ nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
 xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
 
 fun Modulify(replace)
-    exec "/Foo"
-    silent :.s#Foo#\=expand("%")#
-    silent :.s#\.pm;#;#
-    silent :.s#lib/##e
-    silent :.s# /# #e
-    silent :.s#/#\=a:replace#ge
+    silent :%s#Foo#\=expand("%")#
+    silent :%s#\.pm##
+    silent :%s#lib/##e
+    silent :%s# /# #e
+    silent :%s#/#\=a:replace#ge
 endfun
 
 au BufNewFile,BufReadPost *.asl set ft=ruby
