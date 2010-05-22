@@ -199,7 +199,7 @@ esac
 
 alias sl='ls'
 alias lcd='ls;cd'
-for vim_typo in viim vmi bim cim vo, viom vin; do alias "$vim_typo"='vim'; done
+for vim_typo in viim vmi bim cim vo, viom vin ivm; do alias "$vim_typo"='vim'; done
 
 alias pi='perl -Ilib'
 
