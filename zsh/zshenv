@@ -12,6 +12,9 @@ export MY_HOSTNAME=`hostname -s`
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
 test -e /home/jasonmay/.perl5/perlbrew/etc/bashrc && source /home/jasonmay/.perl5/perlbrew/etc/bashrc
 
+export PERLBREW_ROOT="$HOME/.perl5/perlbrew"
+source  "$PERLBREW_ROOT/etc/bashrc"
+
 # rid duplicates
 typeset -U manpath
 typeset -U path
