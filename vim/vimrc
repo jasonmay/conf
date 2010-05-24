@@ -146,7 +146,7 @@ function s:nopaste(visual)
     endif
     let $NOPASTE_SERVICES = nopaste_services
 endfunction
-nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
+"nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
 xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
 
 fun Modulify(replace)
@@ -203,6 +203,7 @@ nmap     <CR>     o<Esc>
 nmap     <F1>     <Esc>
 inoremap <F1>     <Esc>
 imap     <C-J>    <Esc>
+nmap     <Leader>psql :!psql -1 -f %
 
 if hostname() == 'jobs01'
     map <Leader>ar :!sudo /sbin/service httpd restart<CR>
@@ -243,7 +244,6 @@ endfunction
 
 au BufNewFile,BufReadPost *.pl,*.pm,*.reg
             \ call TextEnableCodeSnip('sql', 'qq\[', '\]', 'String')
-
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
