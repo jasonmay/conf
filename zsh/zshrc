@@ -102,7 +102,7 @@ case "$MY_HOSTNAME" in
     alias gi='sudo gem install'
     ;;
 
-    jarsonmar)
+    jarsonmar|macaroni)
     alias c='cpan'
     alias ls='ls --color=auto'
     alias less='less -R'
@@ -134,7 +134,7 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /etc/init.d/apache2 restart'
     ;;
 
-    jarsonmar)
+    jarsonmar|macaroni)
     alias i='sudo pacman -S'
     alias s='sudo pacman -Ss'
     alias ar='sudo /etc/rc.d/httpd restart'
