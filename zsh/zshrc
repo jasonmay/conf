@@ -6,7 +6,6 @@
 [ -e ~/.zshcomplete ]     && source ~/.zshcomplete
 [ -e ~/.zsh_secret ]      && source ~/.zsh_secret
 [ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
-
 # XXX why can't -exec work with source WTF
 [ -d ~/.zscripts ] &&  find ~/.zscripts -type f -name '*.zsh' | \
     while read z; do source "$z"; done
