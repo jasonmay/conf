@@ -11,8 +11,8 @@ URxvt*scrollTtyOutput:false
 URxvt*scrollTtyKeypress:true
 URxvt*scrollBar_right:true
 URxvt*scrollBar:false
-URxvt.font: xft:Terminus:pixelsize=8
-URxvt.boldFont: xft:Terminus:pixelsize=8
+URxvt.font: xft:monaco:size=8:antialias=false
+URxvt.boldFont: xft:monaco:size=8:antialias=false
 URxvt*perl-ext-common:default,matcher
 URxvt*matcher.button:3
 URxvt*keysym.C-Return: perl:matcher
@@ -37,4 +37,4 @@ URxvt.color14: #73fafd
 URxvt.color15: #ffffff
 
 URxvt.termName: rxvt
-URxvt.transparent: true
+URxvt.transparent: false
