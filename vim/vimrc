@@ -36,9 +36,13 @@ set shiftround
 set autoindent
 set smartindent
 set foldmethod=marker
-set bg=light
-"set confirm
 set showbreak=>
+
+if hostname() == 'jobs01'
+    set bg=dark
+else
+    set bg=light
+endif
 
 au FileType ruby set tabstop=2
 au FileType ruby set shiftwidth=2
@@ -49,7 +53,7 @@ let perl_include_pod=1
 let perl_string_as_statement=1
 let perl_sync_dist=1000
 
-filetype plugin indent on
+filetype indent on
 
 highlight Search NONE ctermfg=lightred
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
@@ -162,24 +166,24 @@ au BufNewFile,BufReadPost *.asl set ft=ruby
 au BufNewFile,BufReadPost *.t set ft=perl
 
 function! PerlDoc()
-  normal yy
-  let l:this = @
-  if match(l:this, '^ *\(use\|require\) ') >= 1
-    exe ':5new'
-    let l:this = substitute(l:this, '^ *\(use\|require\) *', "", "")
-    let l:this = substitute(l:this, ";.*", "", "")
-    let l:this = substitute(l:this, " .*", "", "")
-    exe ':0r!perldoc -T ' . l:this . ' | uncolor.pl'
+    normal yy
+    let l:this = @
+    if match(l:this, '^ *\(use\|require\) ') >= 1
+        exe ':5new'
+        let l:this = substitute(l:this, '^ *\(use\|require\) *', "", "")
+        let l:this = substitute(l:this, ";.*", "", "")
+        let l:this = substitute(l:this, " .*", "", "")
+        exe ':0r!perldoc -T ' . l:this . ' | uncolor.pl'
+        exe ':0'
+        exe ':echo "test"'
+        exe ':set ft=man'
+        return
+    endif
+    normal yiw
+    exe ':new'
+    exe ':resize'
+    exe ':0r!perldoc -Tf ' . @
     exe ':0'
-    exe ':echo "test"'
-    exe ':set ft=man'
-    return
-  endif
-  normal yiw
-  exe ':new'
-  exe ':resize'
-  exe ':0r!perldoc -Tf ' . @
-  exe ':0'
 endfunction
 
 map ,h :call PerlDoc()<C-M>:set nomod<C-M>
