@@ -3,9 +3,9 @@ URxvt*background:black
 URxvt*foreground:lightgrey
 URxvt*shading:50
 URxvt*saveLines:4096
-URxvt*cursorColor:lightgray
-URxvt*pointerColor:yellow
-URxvt*pointerColor2:black
+URxvt*cursorColor:#888888
+URxvt*pointerColor:lightgrey
+URxvt*pointerColor2:blue
 URxvt*borderWidth:1
 URxvt*scrollTtyOutput:false
 URxvt*scrollTtyKeypress:true

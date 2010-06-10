@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Reflect
 import XMonad.Layout.WindowNavigation
@@ -14,14 +15,17 @@ import System.IO
 import Data.List
 
 main = do
+    xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig {
                  terminal           = "urxvt",
                  modMask            = mod4Mask,
                  normalBorderColor  = "#161616",
                  focusedBorderColor = "#aaaaaa",
-                 workspaces         = ["term", "browser", "3", "4",
-                                       "5", "6", "7", "8", "9"],
+                 --workspaces         = ["term", "browser", "3", "4",
+                 --                      "5", "6", "7", "8", "9"],
                  layoutHook         = avoidStruts myLayout,
+                 logHook            = myFadeInactiveLogHook >>
+                                    (myXmobarLogHook xmproc),
                  manageHook         = manageDocks <+> manageHook defaultConfig
              } `additionalKeysP` [("C-M1-n", spawn "urxvt")
                                  ,("C-M1-b", runOrRaise "firefox" (className =? "Firefox"))
@@ -32,7 +36,7 @@ main = do
                                  ,("C-M1-d", runOrRaise "urxvt -name dev" (resource =? "dev"))
                                  ,("C-M1-i", runOrRaise "urxvt -name irc" (resource =? "irc"))
                                  ,("C-M1-s", runOrRaise "urxvt -name sql" (resource =? "sql"))
-                                 ,("C-M1-l", spawn "xscreensaver-command -lock")
+                                 ,("C-M1-o", spawn "xscreensaver-command -lock")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)
                                  ,("C-M1-<Left>", prevWS)
@@ -48,9 +52,19 @@ main = do
                                  ,("C-M1-l", sendMessage $ Go R)
                                  ]
 
+myFadeInactiveLogHook =
+    fadeInactiveLogHook 0xbbbbbbbb
+
+myXmobarLogHook xmproc =
+    dynamicLogWithPP $ xmobarPP
+    { ppOutput = hPutStrLn xmproc
+    , ppTitle  = xmobarColor "green" "" . shorten 100
+    , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
+    }
+
 myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| Full)
     where
         tiled   = reflectHoriz $ Tall nmaster delta ratio
-        nmaster = 3
+        nmaster = 2
         ratio   = 0.5
         delta   = 0.0005
