@@ -180,7 +180,6 @@ alias wdd="ssh $WORK_DEV_IP -t screen -dr dev"
 alias prod="ssh $WORK_JOBS_IP"
 alias ]='gnome-open'
 alias moose='perl -Moose -E'
-alias cpan='cpanm'
 
 alias d=cd
 alias lsc=ls
