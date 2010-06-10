@@ -69,6 +69,57 @@ au FileType ruby set softtabstop=2
 
 filetype indent on
 
+" {{{
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+function s:nopaste(visual)
+    let nopaste_services = $NOPASTE_SERVICES
+    if &filetype == 'tex'
+        let $NOPASTE_SERVICES = "Mathbin ".$NOPASTE_SERVICES
+    endif
+
+    if a:visual
+        silent exe "normal gv!nopaste -x\<CR>"
+    else
+        let pos = getpos('.')
+        silent exe "normal gg!Gnopaste -x\<CR>"
+    endif
+    silent undo
+    if a:visual
+        normal gv
+    else
+        call setpos('.', pos)
+    endif
+    let $NOPASTE_SERVICES = nopaste_services
+endfunction
+if hostname() == 'dev1'
+    highlight Comment ctermfg=green
+endif
+" }}}
+
 highlight Search NONE ctermfg=lightred
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
@@ -112,64 +163,9 @@ autocmd BufNewFile,BufRead *.scpt set ft=applescript
 autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.psgi set ft=perl
 
-autocmd BufNewFile,BufRead *.tt set ft=tt2html
-
-if hostname() == 'dev1' || hostname() == 'jobs01'
-    autocmd BufNewFile,BufRead silverback.conf set syntax=apache
-    autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
-endif
-
-inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
-
-nmap Y y$
-
-nnoremap \\ \
-nmap \/ :nohl<CR>
-nmap \n :set invnumber<CR>
-
-nmap ds :%s/\s\+$//<CR>
-
-autocmd FileType help nnoremap <buffer> <CR> <C-]>
-autocmd FileType help nnoremap <buffer> <BS> <C-T>
-
-nmap <Right> :bn<CR>
-nmap <Left>  :bp<CR>
+autocmd BufNewFile,BufRead *.tt set ft==
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
 
-nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>:nohl<CR>
-
-nmap n nzz
-nmap N Nzz
-nmap * *zz
-nmap # #zz
-nmap g* g*zz
-nmap g# g#zz
-nmap <C-u> <C-u>zz
-nmap <C-d> <C-d>zz
-
-au FileType tt2 imap [% [%  %]<Left><Left><Left>
-au FileType tt2html imap [% [%  %]<Left><Left><Left>
-
-function s:nopaste(visual)
-    let nopaste_services = $NOPASTE_SERVICES
-    if &filetype == 'tex'
-        let $NOPASTE_SERVICES = "Mathbin ".$NOPASTE_SERVICES
-    endif
-
-    if a:visual
-        silent exe "normal gv!nopaste -x\<CR>"
-    else
-        let pos = getpos('.')
-        silent exe "normal gg!Gnopaste -x\<CR>"
-    endif
-    silent undo
-    if a:visual
-        normal gv
-    else
-        call setpos('.', pos)
-    endif
-    let $NOPASTE_SERVICES = nopaste_services
-endfunction
 "nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
 xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
 
@@ -228,47 +224,9 @@ nmap     <CR>     o<Esc>
 nmap     <F1>     <Esc>
 inoremap <F1>     <Esc>
 imap     <C-J>    <Esc>
-nmap     <Leader>psql :!psql -1 -f %
 
-if hostname() == 'jobs01'
-    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
-elseif hostname() == 'dev1'
-    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
-else
-    map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
-endif
-
-if hostname() == 'dev1'
-    highlight Comment ctermfg=green
-endif
-
-function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
-  let ft=toupper(a:filetype)
-  let group='textGroup'.ft
-  if exists('b:current_syntax')
-    let s:current_syntax=b:current_syntax
-    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
-    " do nothing if b:current_syntax is defined.
-    unlet b:current_syntax
-  endif
-  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
-  try
-    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
-  catch
-  endtry
-  if exists('s:current_syntax')
-    let b:current_syntax=s:current_syntax
-  else
-    unlet b:current_syntax
-  endif
-  execute 'syntax region textSnip'.ft.'
-  \ matchgroup='.a:textSnipHl.'
-  \ start="'.a:start.'" end="'.a:end.'"
-  \ contains=@'.group
-endfunction
-
-au BufNewFile,BufReadPost *.pl,*.pm,*.reg
-            \ call TextEnableCodeSnip('sql', 'qq\[', '\]', 'String')
+nnoremap - <Space>
+nmap b :buffer!<Space>
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
@@ -276,6 +234,14 @@ iabbrev reponse    response
 iabbrev shift shift
 iabbrev shift shift
 
+if hostname() == 'jobs01'
+    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
+elseif hostname() == 'dev1'
+    map  <Leader>ar :!sudo /sbin/service httpd restart<CR>
+    nmap <Leader>pg :!psql silverback -1 -f %
+else
+    map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
+endif
 
 nnoremap - <Space>
 nmap b :buffer!<Space>
