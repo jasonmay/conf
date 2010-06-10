@@ -157,13 +157,14 @@ fun Modulify(replace)
     silent :%s#/#\=a:replace#ge
 endfun
 
+au BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
 au BufNewFile,BufReadPost *.asl set ft=ruby
 au BufNewFile,BufReadPost *.t set ft=perl
 
 function! PerlDoc()
   normal yy
   let l:this = @
-  if match(l:this, '^ *\(use\|require\) ') >= 0
+  if match(l:this, '^ *\(use\|require\) ') >= 1
     exe ':5new'
     let l:this = substitute(l:this, '^ *\(use\|require\) *', "", "")
     let l:this = substitute(l:this, ";.*", "", "")
