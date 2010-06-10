@@ -136,7 +136,9 @@ case "$MY_HOSTNAME" in
 
     jarsonmar|macaroni)
     alias i='sudo pacman -S'
-    alias s='sudo pacman -Ss'
+    function s() {
+        [ -z "$1" ] || sudo pacman -Ss $1
+    }
     alias ar='sudo /etc/rc.d/httpd restart'
     ;;
 
