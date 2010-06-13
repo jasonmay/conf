@@ -12,7 +12,7 @@
 	co = checkout
 	d = dcommit
 	st = status
-    up    = pull --rebase
+    up = pull --master
 	mpush = push origin master
 	mpull = pull origin master
 	unstage = reset HEAD
