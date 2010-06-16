@@ -11,10 +11,8 @@
 [alias]
 	co = checkout
 	d = dcommit
-	b = branch
-	re = rebase
 	st = status
-    up = pull --master
+    up    = pull --rebase
 	mpush = push origin master
 	mpull = pull origin master
 	unstage = reset HEAD
