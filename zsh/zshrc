@@ -176,10 +176,10 @@ alias downgrade-to-cpan='git reset --hard $(git describe --abbrev=0)'
 alias vall='vim lib/**/*.pm'
 
 
-alias cheese='ssh '"$WORK_DEV_IP"' -t ssh 10.1.1.81'
-alias workdev="ssh $WORK_DEV_IP"
-alias wdd="ssh $WORK_DEV_IP -t screen -dr dev"
-alias prod="ssh $WORK_JOBS_IP"
+alias cheese='ssh '"$WORK_DEV_AUTH"' -t ssh 10.1.1.81'
+alias workdev="ssh $WORK_DEV_AUTH"
+alias wdd="ssh $WORK_DEV_AUTH -t screen -dr dev"
+alias prod="ssh $WORK_PROD_AUTH"
 alias ]='gnome-open'
 alias moose='perl -Moose -E'
 
