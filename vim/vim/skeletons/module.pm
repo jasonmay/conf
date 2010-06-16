@@ -26,7 +26,7 @@ __END__
 
 =head1 AUTHOR
 
-Jason May C<< <jmay@silverbacknetwork.com> >>
+Jason May C<< <jason.a.may@gmail.com> >>
 
 =head1 LICENSE
 
