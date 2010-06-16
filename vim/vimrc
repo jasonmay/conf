@@ -97,6 +97,8 @@ autocmd BufNewFile,BufRead repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.scpt set ft=applescript
 autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 
+autocmd BufNewFile,BufRead *.tt set ft=tt2html
+
 if hostname() == 'dev1' || hostname() == 'jobs01'
     autocmd BufNewFile,BufRead silverback.conf set syntax=apache
     autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
