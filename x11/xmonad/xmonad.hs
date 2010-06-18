@@ -26,9 +26,9 @@ main = do
                  layoutHook         = avoidStruts myLayout,
                  logHook            = myFadeInactiveLogHook >>
                                     (myXmobarLogHook xmproc),
-                 manageHook         = manageDocks <+> manageHook defaultConfig
+                 manageHook         = myManageHook <+> manageHook defaultConfig
              } `additionalKeysP` [("C-M1-n", spawn "urxvt")
-                                 ,("C-M1-b", runOrRaise "firefox" (className =? "Firefox"))
+                                 ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
                                  ,("C-M1-t", runOrRaise "thunderbird" (className =? "Thunderbird-bin"))
                                  ,("C-M1-p", runOrRaise "pidgin" (className =? "Pidgin"))
                                  ,("C-M1-f", runOrRaise "filezilla" (className =? "Filezilla"))
@@ -68,3 +68,10 @@ myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| 
         nmaster = 2
         ratio   = 0.5
         delta   = 0.0005
+
+myManageHook = composeAll
+    [ resource =? "Msgcompose"    --> doFloat
+    , className =? "Thunderbird" --> doShift "2:browser"
+    , className =? "Chromium"    --> doShift "2:browser"
+    , manageDocks
+    ]
