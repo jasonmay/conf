@@ -132,6 +132,9 @@ nmap g# g#zz
 nmap <C-u> <C-u>zz
 nmap <C-d> <C-d>zz
 
+au FileType tt2 imap [% [%  %]<Left><Left><Left>
+au FileType tt2html imap [% [%  %]<Left><Left><Left>
+
 function s:nopaste(visual)
     let nopaste_services = $NOPASTE_SERVICES
     if &filetype == 'tex'
