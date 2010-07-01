@@ -36,7 +36,6 @@ set shiftround
 set autoindent
 set smartindent
 set foldmethod=marker
-set showbreak=>
 
 if hostname() == 'jobs01'
     set bg=dark
