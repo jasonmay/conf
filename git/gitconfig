@@ -1,30 +1,30 @@
 [user]
-	name = Jason May
-	email = jason.a.may@gmail.com
+    name = Jason May
+    email = jason.a.may@gmail.com
 [core]
-	editor = vim
+    editor = vim
 [color]
     diff = auto
     status = auto
     branch = auto
     ui = auto
 [alias]
-	co = checkout
-	d = dcommit
-	st = status
+    co = checkout
+    d = dcommit
+    st = status
     up = pull --rebase
-	mpush = push origin master
-	mpull = pull origin master
-	unstage = reset HEAD
+    mpush = push origin master
+    mpull = pull origin master
+    unstage = reset HEAD
     review = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
     git = !git
 
     clong = clone
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [push]
-	default = tracking
+    default = current
 [receive]
-	denyCurrentBranch = ignore
+    denyCurrentBranch = ignore
 [github]
     user = jasonmay
