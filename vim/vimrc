@@ -165,11 +165,11 @@ endfunction
 xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
 
 fun Modulify(replace)
-    silent :%s#Foo#\=expand("%")#
-    silent :%s#\.pm##
-    silent :%s#lib/##e
-    silent :%s# /# #e
-    silent :%s#/#\=a:replace#ge
+    silent :2s#Foo#\=expand("%")#
+    silent :2s#\.pm##
+    silent :2s#lib/##e
+    silent :2s# /# #e
+    silent :2s#/#\=a:replace#ge
 endfun
 
 au BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
