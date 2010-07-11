@@ -201,3 +201,5 @@ for vim_typo in viim vmi bim cim vo, viom vin ivm; do alias "$vim_typo"='vim'; d
 alias pi='perl -Ilib'
 
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
+
+[ -e $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
