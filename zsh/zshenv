@@ -1,4 +1,4 @@
-PATH="$HOME/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
+PATH="$HOME/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
 
