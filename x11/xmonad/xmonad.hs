@@ -72,6 +72,9 @@ myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| 
 
 myManageHook = composeAll
     [ resource =? "Msgcompose"    --> doFloat
+    , className =? "Eog"         --> doFloat
+    , className =? "Evince"      --> doFloat
+    , className =? "Meld"        --> doFloat
     , className =? "Thunderbird" --> doShift "2:browser"
     , className =? "Chromium"    --> doShift "2:browser"
     , className =? "rdesktop"    --> doShift "7"
