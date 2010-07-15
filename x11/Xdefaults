@@ -22,8 +22,11 @@ URxvt*14755_52:false
 urxvt_demo.font: xft:monospace:size=14:antialias=true
 urxvt_demo.boldFont: xft:monospace:size=14:antialias=true
 
-urxvt_demo_EVEN_BIGGER_RAWR.font: xft:monospace:size=24:antialias=true
-urxvt_demo_EVEN_BIGGER_RAWR.boldFont: xft:monospace:size=24:antialias=true
+urxvt_lol.font: xft:monospace:size=48:antialias=true
+urxvt_lol.boldFont: xft:monospace:size=48:antialias=true
+
+urxvt_demo_huge.font: xft:monospace:size=24:antialias=true
+urxvt_demo_huge.boldFont: xft:monospace:size=24:antialias=true
 
 URxvt*color0: #000000
 URxvt*color1: #ca311c
