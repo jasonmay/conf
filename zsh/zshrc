@@ -11,7 +11,7 @@
     while read z; do source "$z"; done
 
 export MY_HOSTNAME=`hostname`
-[ -x "$(which shell-prompt 2>/dev/null)" ] && function precmd() {
+check_exec 'shell-prompt' && function precmd() {
     PROMPT=`shell-prompt`
     RPROMPT=`shell-prompt right`
 }

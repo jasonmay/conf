@@ -1,3 +1,7 @@
+function check_exec() {
+    [ ! -z $(which "$1" | grep -v 'not found') ]
+}
+
 PATH="$HOME/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
@@ -6,6 +10,10 @@ export LESS="-r -f"
 export EDITOR="vim"
 setopt noglobalrcs
 export PAGER=less
+check_exec vimpager    && export PERLDOC_PAGER=vimpager
+check_exec vimmanpager && export MANPAGER=vimmanpager
+check_exec lesspipe    && eval `lesspipe`
+check_exec lesspipe.sh && eval `lesspipe.sh`
 
 export MY_HOSTNAME=`hostname -s`
 export OOO_FORCE_DESKTOP=gnome
