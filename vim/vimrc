@@ -163,7 +163,7 @@ autocmd BufNewFile,BufRead *.scpt set ft=applescript
 autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.psgi set ft=perl
 
-autocmd BufNewFile,BufRead *.tt set ft==
+autocmd BufNewFile,BufRead *.tt set ft=tt2html
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
 
 "nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
