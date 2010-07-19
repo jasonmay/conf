@@ -34,6 +34,7 @@ main = do
                                  ,("C-M1-f", runOrRaise "filezilla" (className =? "Filezilla"))
                                  ,("C-M1-x", runOrRaise "VirtualBox" (className =? "VirtualBox"))
                                  ,("C-M1-d", spawn "urxvt -name urxvt_demo")
+                                 ,("C-M1-e", spawn "urxvt -name urxvt_float -geometry 80x24")
                                  ,("C-M1-i", runOrRaise "urxvt -name irc" (resource =? "irc"))
                                  ,("C-M1-s", runOrRaise "urxvt -name sql" (resource =? "sql"))
                                  ,("C-M1-o", spawn "xscreensaver-command -lock")
@@ -71,10 +72,11 @@ myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| 
         delta   = 0.0005
 
 myManageHook = composeAll
-    [ resource =? "Msgcompose"    --> doFloat
+    [ resource =? "Msgcompose"   --> doFloat
     , className =? "Eog"         --> doFloat
     , className =? "Evince"      --> doFloat
     , className =? "Meld"        --> doFloat
+    , resource  =? "urxvt_float" --> doFloat
     , className =? "Thunderbird" --> doShift "2:browser"
     , className =? "Chromium"    --> doShift "2:browser"
     , className =? "rdesktop"    --> doShift "7"

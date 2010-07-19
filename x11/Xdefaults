@@ -28,6 +28,9 @@ urxvt_lol.boldFont: xft:monospace:size=48:antialias=true
 urxvt_demo_huge.font: xft:monospace:size=24:antialias=true
 urxvt_demo_huge.boldFont: xft:monospace:size=24:antialias=true
 
+urxvt_float.font: xft:monospace:size=14:antialias=true
+urxvt_float.boldFont: xft:monospace:size=14:antialias=true
+
 URxvt*color0: #000000
 URxvt*color1: #ca311c
 URxvt*color2: #60bc33
