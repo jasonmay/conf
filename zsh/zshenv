@@ -10,7 +10,7 @@ export LESS="-r -f"
 export EDITOR="vim"
 setopt noglobalrcs
 export PAGER=less
-check_exec vimpager    && export PERLDOC_PAGER=vimpager
+check_exec vimpager    && export PERLDOC_PAGER=vimpager PERLDOC="-t"
 check_exec vimmanpager && export MANPAGER=vimmanpager
 check_exec lesspipe    && eval `lesspipe`
 check_exec lesspipe.sh && eval `lesspipe.sh`
