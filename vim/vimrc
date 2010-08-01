@@ -57,7 +57,7 @@ let perl_sync_dist=1000
 set foldenable
 au FileType perl set foldmethod=syntax
 au FileType perl syn region perlPOD start="^=head" end="^=cut" fold
-au FileType perl syn region perlAttrs start="^has " end="^);" contains=@perl fold
+au FileType perl syn region perlAttrs start="^has \w" end="^);" contains=@perl fold
 highlight Folded     ctermbg=black ctermfg=blue 
 
 if hostname() == 'jobs01'
@@ -167,6 +167,31 @@ autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.psgi set ft=perl
 
 autocmd BufNewFile,BufRead *.tt set ft=tt2html
+
+autocmd BufNewFile,BufRead *.json set ft=json
+
+autocmd BufNewFile,BufRead *.p6 set ft=perl6
+
+if hostname() == 'dev1' || hostname() == 'jobs01'
+    autocmd BufNewFile,BufRead silverback.conf set syntax=apache
+    autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
+endif
+
+inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
+
+nmap Y y$
+
+nnoremap \\ \
+nmap \/ :nohl<CR>
+nmap \n :set invnumber<CR>
+
+nmap ds :%s/\s\+$//<CR>
+
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
+autocmd FileType help nnoremap <buffer> <BS> <C-T>
+
+nmap <Right> :bn<CR>
+nmap <Left>  :bp<CR>
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
 
 "nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>

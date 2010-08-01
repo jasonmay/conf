@@ -2,9 +2,9 @@ function check_exec() {
     [ ! -z $(which "$1" | grep -v 'not found') ]
 }
 
-PATH="$HOME/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
+PATH="$HOME/bin:$HOME/repos/git/rakudo/parrot_install/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
-MANPATH="/usr/local/man:/opt/local/man:$MANPATH"
+MANPATH="$HOME/repos/git/rakudo/parrot_install/man:/usr/local/man:/opt/local/man:$MANPATH"
 
 export LESS="-r -f"
 export EDITOR="vim"
