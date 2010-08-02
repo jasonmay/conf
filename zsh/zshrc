@@ -202,4 +202,12 @@ alias pi='perl -Ilib'
 
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
 
+function ms() {
+    check_exec 'module-starter' && module-starter --module=$1 --author="Jason May" --email=jason.a.may@gmail.com
+    cd `echo "$1" | sed 's/::/-/g'`
+    cp ignore.txt .gitignore
+    mv ignore.txt MANIFEST.SKIP
+    git init && git add . && git commit -m 'initial commit'
+}
+
 [ -e $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
