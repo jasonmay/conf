@@ -19,6 +19,10 @@
     git = !git
 
     clong = clone
+    dif   = diff
+    dfif  = diff
+    upsh  = push
+    psuh  = push
 [merge]
     tool = vimdiff
 [push]
