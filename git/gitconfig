@@ -14,8 +14,6 @@
     d = dcommit
     st = status
     up = pull --rebase
-    mpush = push origin master
-    mpull = pull origin master
     unstage = reset HEAD
     review = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
     git = !git
