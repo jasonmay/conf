@@ -199,6 +199,7 @@ autocmd FileType help nnoremap <buffer> <BS> <C-T>
 nmap <Right> :bn<CR>
 nmap <Left>  :bp<CR>
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
+map <F5> :make<CR>
 
 "nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
 xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
