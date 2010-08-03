@@ -165,6 +165,7 @@ autocmd BufNewFile,BufRead repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.scpt set ft=applescript
 autocmd BufNewFile,BufRead *.repl.rc set ft=perl
 autocmd BufNewFile,BufRead *.psgi set ft=perl
+autocmd BufNewFile,BufRead psql.edit.* set ft=sql
 
 autocmd BufNewFile,BufRead *.tt set ft=tt2html
 
