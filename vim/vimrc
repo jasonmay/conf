@@ -170,7 +170,7 @@ au BufNewFile,BufReadPost *.asl set ft=ruby
 
 autocmd BufNewFile,BufRead psql.edit.* set ft=sql
 
-autocmd BufNewFile,BufRead *.tt set ft=tt2html
+autocmd BufNewFile,BufRead *.tt,*.tt2 set ft=tt2html
 
 autocmd BufNewFile,BufRead *.json set ft=json
 
