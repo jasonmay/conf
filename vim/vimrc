@@ -55,9 +55,9 @@ let perl_string_as_statement=1
 let perl_sync_dist=1000
 
 set foldenable
-au FileType perl set foldmethod=syntax
-au FileType perl syn region perlPOD start="^=head" end="^=cut" fold
-au FileType perl syn region perlAttrs start="^has \w" end="^);" contains=@perl fold
+"au FileType perl set foldmethod=syntax
+"au FileType perl syn region perlPOD start="^=head" end="^=cut" fold
+"au FileType perl syn region perlAttrs start="^has \w" end="^);" contains=@perl fold
 highlight Folded     ctermbg=black ctermfg=blue 
 
 if hostname() == 'jobs01'
@@ -259,7 +259,7 @@ inoremap <F1>     <Esc>
 imap     <C-J>    <Esc>
 
 nnoremap - <Space>
-nmap b :buffer!<Space>
+"nmap b :buffer!<Space>
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
@@ -277,7 +277,7 @@ else
 endif
 
 nnoremap - <Space>
-nmap b :buffer!<Space>
+"nmap b :buffer!<Space>
 
 autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType perl setlocal errorformat=%f:%l:%m
