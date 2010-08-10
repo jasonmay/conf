@@ -94,7 +94,7 @@ syn region  perlGenericBlock	matchgroup=perlGenericBlock start="{" end="}" conta
 syn match perlConditional		"\<\%(if\|elsif\|unless\|given\|when\|default\)\>"
 syn match perlConditional		"\<else\>" nextgroup=perlElseIfError skipwhite skipnl skipempty
 syn match perlRepeat			"\<\%(while\|for\%(each\)\=\|do\|until\|continue\)\>"
-syn match perlOperator			"\<\%(defined\|undef\|eq\|ne\|[gl][et]\|cmp\|not\|and\|or\|xor\|not\|bless\|ref\|do\)\>"
+syn match perlOperator			"\<\%(defined\|undef\|eq\|ne\|[gl][et]\|cmp\|not\|and\|or\|xor\|not\|bless\|ref\|do\|\)\>\|+\|-\|*\|/\|%"
 syn match perlControl			"\<\%(BEGIN\|CHECK\|INIT\|END\|UNITCHECK\)\>"
 
 syn match perlStatementStorage		"\<\%(my\|our\|local\|state\)\>"

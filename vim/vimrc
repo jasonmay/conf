@@ -60,6 +60,8 @@ set foldenable
 "au FileType perl syn region perlAttrs start="^has \w" end="^);" contains=@perl fold
 highlight Folded     ctermbg=black ctermfg=blue 
 
+au FileType perl highlight Operator ctermbg=Black ctermfg=DarkGray
+
 if hostname() == 'jobs01'
     set bg=dark
 else
