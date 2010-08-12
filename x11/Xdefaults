@@ -1,6 +1,6 @@
 URxvt*visualBell:true
 URxvt*background:black
-URxvt*foreground:lightgrey
+URxvt*foreground:#bbbbbb
 URxvt*shading:50
 URxvt*saveLines:4096
 URxvt*cursorColor:#888888
