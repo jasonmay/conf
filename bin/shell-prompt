@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use File::Basename; # TODO eliminate this dep somehow
+
+# Add this to your zshrc:
+# precmd () {
+#     PROMPT=`shell-prompt`
+# }
+
+# Add this to your bashrc:
+# PS1='$(shell-prompt)'
+
+$| = 1;
+
+chomp(my $cols = `tput cols`);
+
+sub in_git_repo {
+    my $pwd = $ENV{PWD};
+
+    while ($pwd ne dirname $pwd) {
+        return 0 if basename($pwd) eq '.git';
+        return 0 if -l $pwd;
+        return 1 if -d "$pwd/.git";
+        $pwd = dirname $pwd;
+    }
+
+    return 0;
+}
+
+# VCS info
+my $vcs = '';
+if (in_git_repo) {
+    my $status = `git status`;
+    $vcs .= '-' if $status !~ /nothing to commit/;
+    $vcs .= "$1" if $status =~ /On branch (.*)/;
+    $vcs =~ s/\*:/*/;
+}
+
+my $output = q{};
+if (@ARGV) {
+    # show vcs stuff in separate call, for RPS1/RPROMPT/etc
+    $output .= "\%{\e[1;30m\%}<\%{\e[0;33m\%}$vcs\%{\e[1;30m\%}>\%{\e[m\%}" if $vcs;
+}
+else {
+    $output .= "\%{\e[1;30m\%}[ \%{\e[0;32m\%}\%n\%{\e[m\%}\@\%{\e[0;32m\%}\%m\%{\e[1;30m\%} ->";
+
+    $output .= "\%{\e[1;30m\%} \%{\e[36m\%}\%~\%{\e[30m\%} ]";
+
+    $output .= "\%{\e[m\%} \$ ";
+}
+
+print $output;
