@@ -1,12 +1,19 @@
-" Vim syntax file
-" Language: TT2 ( Inner HTML )
-" Last Change:  16 May 2007
-" Maintainar:   Atsushi Moriki <4woods+vim@gmail.com>
+" Language:     TT2 embedded with HTML
+" Maintainer:   Andy Lester <andy@petdance.com>
+" Author:       Moriki, Atsushi <4woods+vim@gmail.com>
+" URL:          http://github.com/petdance/vim-perl
+" Last Change:  2010-07-21
+
+if exists("b:current_syntax")
+    finish
+endif
 
 runtime! syntax/html.vim
 unlet b:current_syntax
 
-so <sfile>:p:h/tt2.vim
+runtime! syntax/tt2.vim
 unlet b:current_syntax
+
 syn cluster htmlPreProc add=@tt2_top_cluster
 
+let b:current_syntax = "tt2html"
