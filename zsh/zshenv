@@ -4,10 +4,10 @@ function check_exec() {
 
 PATH="$HOME/bin:$HOME/.github/rakudo/parrot_install/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
-MANPATH="$HOME/repos/git/rakudo/parrot_install/man:/usr/local/man:/opt/local/man:$MANPATH"
+MANPATH="$HOME/.github/rakudo/parrot_install/man:/usr/local/man:/opt/local/man:$MANPATH"
 
 export LESS="-r -f"
-export EDITOR="vim"
+export EDITOR=vim
 setopt noglobalrcs
 export PAGER=less
 check_exec vimpager    && export PERLDOC_PAGER=vimpager PERLDOC="-t"
