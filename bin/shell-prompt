@@ -1,15 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use File::Basename; # TODO eliminate this dep somehow
-
-# Add this to your zshrc:
-# precmd () {
-#     PROMPT=`shell-prompt`
-# }
-
-# Add this to your bashrc:
-# PS1='$(shell-prompt)'
+use File::Basename;
 
 $| = 1;
 
