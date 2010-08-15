@@ -98,13 +98,11 @@ case "$MY_HOSTNAME" in
     alias basename='gbasename'
     alias chown='gchown'
     alias chmod='gchmod'
-    alias gi='sudo gem install'
     ;;
 
     jarsonmar|macaroni)
     alias ls='ls --color=auto'
     alias less='less -R'
-    alias gi='sudo gem install'
     ;;
 
     *)
@@ -211,3 +209,4 @@ function ms() {
 }
 
 [ -e $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
+
