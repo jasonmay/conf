@@ -1,0 +1,10 @@
+--\set QUIET 1
+\pset null '[NULL]'
+\set PROMPT1 '(%n%[%033[0;36m%]@%[%033[m%]%M%[%033[0;36m%]:%[%033[m%]%>) %`date +%H:%M:%S` %[%033[1;30m%][%[%033[0;35m%]%/%[%033[1;30m%]]%[%033[m%]%[%033[m%] \n%x%[%033[0;33m%]# %[%033[m%]'
+\set PROMPT2 ''
+\set HISTFILE ~/.psql_history- :DBNAME
+\timing
+\pset pager always
+\set AUTOCOMMIT 0
+\set ON_ERROR_ROLLBACK 1
+--\set QUIET 0
