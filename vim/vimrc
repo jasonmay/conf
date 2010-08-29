@@ -176,7 +176,7 @@ autocmd BufNewFile,BufRead *.tt,*.tt2 set ft=tt2html
 
 autocmd BufNewFile,BufRead *.json set ft=json
 
-autocmd BufNewFile,BufRead *.p6 set ft=perl6
+autocmd BufNewFile,BufRead *.p6,*.pm6 set ft=perl6
 
 autocmd BufNewFile,BufRead *.scpt set ft=applescript
 
