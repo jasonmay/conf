@@ -89,7 +89,7 @@ function pubkey {
 }
 
 case "$MY_HOSTNAME" in
-    jinx.local)
+    jinx.local|kinklink.local)
     alias ls='gls --color=auto'
     alias sort='gsort'
     alias uniq='guniq'
@@ -115,7 +115,7 @@ export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
 case "$MY_HOSTNAME" in
-    jinx.local)
+    jinx.local|kinklink.local)
     alias i='sudo port -v install'
     alias s='sudo port search'
     alias v='sudo port variants'
