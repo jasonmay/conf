@@ -1,8 +1,7 @@
 # setup:
 #
-# 2 LCD monitors
-# Left: 1600x1200 - 20" (HP LP2065)
-# Right: 1920x1080 - 23" (Samsung SyncMaster 2333)
+# 1 LCD monitor
+# 1920x1080 - 23" (Samsung SyncMaster 2333)
 #
 # Graphics: nVidia 512MB 8800GTS
 #
@@ -44,20 +43,6 @@ Section "Monitor"
     Identifier     "Configured Monitor"
 EndSection
 
-Section "Monitor"
-    Identifier     "Monitor0"
-    VendorName     "Unknown"
-    ModelName      "Samsung SyncMaster"
-    HorizSync       30.0 - 75.0
-    VertRefresh     56.0 - 61.0
-EndSection
-
-Section "Device"
-    Identifier     "Configured Video Device"
-    Driver         "nvidia"
-    Option         "NoLogo" "True"
-EndSection
-
 Section "Device"
     Identifier     "Device0"
     Driver         "nvidia"
@@ -66,20 +51,10 @@ Section "Device"
 EndSection
 
 Section "Screen"
-    Identifier     "Default Screen"
-    Device         "Configured Video Device"
-    Monitor        "Configured Monitor"
-    DefaultDepth    24
-EndSection
-
-Section "Screen"
     Identifier     "Screen0"
     Device         "Device0"
-    Monitor        "Monitor0"
+    Monitor        "Configured Monitor"
     DefaultDepth    24
-    Option         "TwinView" "1"
-    Option         "TwinViewXineramaInfoOrder" "CRT-1"
-    Option         "metamodes" "DFP: nvidia-auto-select +0+0, CRT: nvidia-auto-select +1600+120"
     SubSection     "Display"
         Depth       24
     EndSubSection
