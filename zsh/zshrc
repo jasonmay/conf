@@ -118,9 +118,15 @@ case "$MY_HOSTNAME" in
     alias v='sudo port variants'
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
 
-    alias nasadbstagingtunnel="ssh -fNg -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER"
-    alias mogiletunnel="ssh -fNg -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER"
-    alias mogstoretunnel="ssh -fNg -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER"
+    function nasadbstagingtunnel() {
+        ssh -fNg -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER
+    }
+    function mogiletunnel() {
+        ssh -fNg -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER
+    }
+    function mogstoretunnel() {
+        ssh -fNg -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER
+    }
 
     function setup_tunnels() {
         nasadbstagingtunnel
