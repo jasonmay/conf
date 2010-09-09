@@ -19,12 +19,6 @@ check_exec 'shell-prompt' && function precmd() {
 HISTSIZE=100000
 SAVEHIST=100000
 
-case "$MY_HOSTNAME" in
-    dev1)
-    fpath=~/.zshfunc
-    ;;
-esac
-
 setopt extended_history
 setopt hist_ignore_space
 
@@ -98,9 +92,12 @@ case "$MY_HOSTNAME" in
     alias basename='gbasename'
     alias chown='gchown'
     alias chmod='gchmod'
+
+    #alias mysqlstart='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server start'
+    #alias mysqlstop='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server stop'
     ;;
 
-    jarsonmar|macaroni)
+    jarsonmar)
     alias ls='ls --color=auto'
     alias less='less -R'
     ;;
@@ -129,7 +126,7 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /etc/init.d/apache2 restart'
     ;;
 
-    jarsonmar|macaroni)
+    jarsonmar)
     alias i='sudo pacman -S'
     function s() {
         [ -z "$1" ] || sudo pacman -Ss $1
@@ -137,28 +134,11 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /etc/rc.d/httpd restart'
     ;;
 
-    dev1)
-    alias s='yum search'
-    alias ar='sudo /sbin/service httpd restart'
-    ;;
-
-    jobs01)
-    alias ar='sudo /sbin/service httpd restart'
-    ;;
 esac
 
 alias grep='grep --color=auto'
 
-
-case "$MY_HOSTNAME" in
-    dev1)
-    GREEN="%{$fg_bold[green]%}"
-    YELLOW="%{$fg_bold[yellow]%}"
-    NORM="%{$reset_color%}"
-
-    export PS1="[%n@%m ${GREEN}%~${NORM}]%# "
-    ;;
-esac
+alias netstat_useful="netstat -a --inet --numeric-port"
 
 alias grep='grep --color=auto'
 alias ll='ls -lhA'
@@ -185,12 +165,6 @@ alias ta='tmux attach -dt'
 alias ts='tmux new -s'
 
 alias tto='telnet termcast.org'
-
-case "$MY_HOSTNAME" in
-    cheese)
-    alias dev1='ssh dev1'
-    ;;
-esac
 
 alias sl='ls'
 alias lcd='ls;cd'
