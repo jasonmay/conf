@@ -117,13 +117,10 @@ case "$MY_HOSTNAME" in
     alias s='sudo port search'
     alias v='sudo port variants'
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
-    ;;
 
-    cheese)
-    alias i='sudo aptitude install'
-    alias s='sudo aptitude search'
-    alias v='sudo aptitude variants'
-    alias ar='sudo /etc/init.d/apache2 restart'
+    alias nasadbstagingtunnel="ssh -fNg -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER"
+    alias mogiletunnel="ssh -fNg -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER"
+    alias mogstoretunnel="ssh -fNg -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER"
     ;;
 
     jarsonmar)
