@@ -156,6 +156,7 @@ autocmd BufNewFile *.html  silent 0read ~/.vim/skeletons/page.html | normal 9j0
 
 autocmd BufReadPost *.smc set bin | set noeol
 au BufWritePost *.{sh,pl} silent exe "!chmod +x %"
+au BufWritePost Makefile.PL silent exe "!chmod -x %"
 
 autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType perl setlocal errorformat=%f:%l:%m
