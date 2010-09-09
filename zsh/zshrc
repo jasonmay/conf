@@ -121,6 +121,12 @@ case "$MY_HOSTNAME" in
     alias nasadbstagingtunnel="ssh -fNg -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER"
     alias mogiletunnel="ssh -fNg -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER"
     alias mogstoretunnel="ssh -fNg -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER"
+
+    function setup_tunnels() {
+        nasadbstagingtunnel
+        mogiletunnel
+        mogstoretunnel
+    }
     ;;
 
     jarsonmar)
