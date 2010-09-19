@@ -114,7 +114,14 @@ export ACK_COLOR_MATCH=red
 case "$MY_HOSTNAME" in
     jinx.local|kinklink.local)
     alias i='sudo port -v install'
-    alias s='sudo port search'
+    function s() {
+        [ -z "$*" ] && return
+
+        echo "searching macports..."
+        sudo port search $*
+        echo "searching homebrew..."
+        brew search $*
+    }
     alias v='sudo port variants'
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
 
