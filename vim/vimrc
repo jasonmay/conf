@@ -287,3 +287,4 @@ autocmd FileType perl setlocal errorformat=%f:%l:%m
 set backupskip=/tmp/*,/private/tmp/*"
 
 au BufNewFile * silent !mkdir -p $(dirname %)
+set term=linux
