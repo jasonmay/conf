@@ -200,4 +200,4 @@ function ms() {
 
 [ -e $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
 
-check_exec svscan && running svscan || svscan $HOME/.services 2>&1 &
+check_exec svscan && running svscan || svscan $HOME/.services 2>/dev/null &
