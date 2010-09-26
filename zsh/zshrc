@@ -126,13 +126,13 @@ case "$MY_HOSTNAME" in
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
 
     function nasadbstagingtunnel() {
-        ssh -fNg -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER
+        ssh -fN -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER
     }
     function mogiletunnel() {
-        ssh -fNg -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER
+        ssh -fN -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER
     }
     function mogstoretunnel() {
-        ssh -fNg -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER
+        ssh -fN -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER
     }
 
     function setup_tunnels() {
