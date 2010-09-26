@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /Users/jasonmay/repos/git/io-multiplex-intermediary
+perl -Ilib bin/intermediary.pl 2>&1
