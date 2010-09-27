@@ -4,3 +4,4 @@ x11/xmonad/xmonad.errors
 x11/xmonad/xmonad.hi
 x11/xmonad/xmonad.o
 supervise
+zsh/scripts/000-secret.zsh
