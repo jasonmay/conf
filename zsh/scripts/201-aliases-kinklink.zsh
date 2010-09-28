@@ -8,6 +8,7 @@ alias cat='gcat'
 alias basename='gbasename'
 alias chown='gchown'
 alias chmod='gchmod'
+alias du='gdu'
 
 #alias mysqlstart='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server start'
 #alias mysqlstop='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server stop'
