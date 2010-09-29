@@ -38,13 +38,20 @@ set shiftround
 set autoindent
 set smartindent
 
+set foldenable
 set foldmethod=marker
 set bg=light
-"set confirm
+
+set backupskip=/tmp/*,/private/tmp/*"
+
+set term=linux
 
 au FileType ruby set tabstop=2
 au FileType ruby set shiftwidth=2
 au FileType ruby set softtabstop=2
+
+autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType perl setlocal errorformat=%f:%l:%m
 
 autocmd BufNewFile,BufRead vimperatorrc set ft=vim
 autocmd BufNewFile,BufRead .vimperatorrc set ft=vim
@@ -54,78 +61,23 @@ let perl_include_pod=1
 let perl_string_as_statement=1
 let perl_sync_dist=1000
 
-set foldenable
-"au FileType perl set foldmethod=syntax
-"au FileType perl syn region perlPOD start="^=head" end="^=cut" fold
-"au FileType perl syn region perlAttrs start="^has \w" end="^);" contains=@perl fold
 highlight Folded     ctermbg=black ctermfg=blue 
 
 au FileType perl highlight Operator ctermbg=Black ctermfg=DarkGray
-
-if hostname() == 'jobs01'
-    set bg=dark
-else
-    set bg=light
-endif
 
 au FileType ruby set tabstop=2
 au FileType ruby set shiftwidth=2
 au FileType ruby set softtabstop=2
 
+autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType perl setlocal errorformat=%f:%l:%m
+autocmd FileType perl setlocal keywordprg=perldoc\ -f
+
 filetype indent on
 
-" {{{
-function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
-  let ft=toupper(a:filetype)
-  let group='textGroup'.ft
-  if exists('b:current_syntax')
-    let s:current_syntax=b:current_syntax
-    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
-    " do nothing if b:current_syntax is defined.
-    unlet b:current_syntax
-  endif
-  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
-  try
-    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
-  catch
-  endtry
-  if exists('s:current_syntax')
-    let b:current_syntax=s:current_syntax
-  else
-    unlet b:current_syntax
-  endif
-  execute 'syntax region textSnip'.ft.'
-  \ matchgroup='.a:textSnipHl.'
-  \ start="'.a:start.'" end="'.a:end.'"
-  \ contains=@'.group
-endfunction
-
-function s:nopaste(visual)
-    let nopaste_services = $NOPASTE_SERVICES
-    if &filetype == 'tex'
-        let $NOPASTE_SERVICES = "Mathbin ".$NOPASTE_SERVICES
-    endif
-
-    if a:visual
-        silent exe "normal gv!nopaste -x\<CR>"
-    else
-        let pos = getpos('.')
-        silent exe "normal gg!Gnopaste -x\<CR>"
-    endif
-    silent undo
-    if a:visual
-        normal gv
-    else
-        call setpos('.', pos)
-    endif
-    let $NOPASTE_SERVICES = nopaste_services
-endfunction
-if hostname() == 'dev1'
-    highlight Comment ctermfg=green
-endif
-" }}}
-
 highlight Search NONE ctermfg=lightred
+
+" Automatic commands
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 hi EOLWS ctermbg=red
@@ -135,77 +87,41 @@ autocmd BufReadPost *
 \    exe "normal g`\"" |
 \  endif
 
-if filereadable($HOME . '/.workvim/skeletons/module.pm')
-    autocmd BufNewFile *.pm silent 0read ~/.workvim/skeletons/module.pm | call Modulify('::') | normal G5k
-else
-    autocmd BufNewFile *.pm silent 0read ~/.vim/skeletons/module.pm | call Modulify('::') | normal G5k
-endif
+autocmd BufNewFile *.t         silent 0read ~/.vim/skeletons/test.t | normal G
+autocmd BufNewFile Makefile.PL silent 0read ~/.vim/skeletons/Makefile.PL | normal gg
+autocmd BufNewFile *.c         silent 0read ~/.vim/skeletons/c.c | normal 4j$
+autocmd BufNewFile *.html      silent 0read ~/.vim/skeletons/page.html | normal 9j0
 
-if filereadable($HOME . '/.workvim/skeletons/perl.pl')
-    autocmd BufNewFile *.pl silent 0read ~/.workvim/skeletons/perl.pl | normal G
-else
-    autocmd BufNewFile *.pl silent 0read ~/.vim/skeletons/perl.pl | normal G
-endif
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
+autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
-autocmd BufNewFile *.t silent 0read ~/.vim/skeletons/test.t | normal G
-autocmd BufNewFile Makefile.PL silent undo | silent 0read ~/.vim/skeletons/Makefile.PL | normal gg
+autocmd BufWritePost *.{sh,pl}   silent exe "!chmod +x %"
+autocmd BufWritePost Makefile.PL silent exe "!chmod -x %"
 
-autocmd BufNewFile *.c  silent 0read ~/.vim/skeletons/c.c | normal 4j$
-
-autocmd BufNewFile *.html  silent 0read ~/.vim/skeletons/page.html | normal 9j0
-
-autocmd BufReadPost *.smc set bin | set noeol
-au BufWritePost *.{sh,pl} silent exe "!chmod +x %"
-au BufWritePost Makefile.PL silent exe "!chmod -x %"
-
-autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
-autocmd FileType perl setlocal errorformat=%f:%l:%m
-autocmd FileType perl setlocal keywordprg=perldoc\ -f
-
-autocmd BufNewFile,BufRead *.reg     set ft=perl
-autocmd BufNewFile,BufRead *.run     set ft=perl
-autocmd BufNewFile,BufRead repl.rc   set ft=perl
-autocmd BufNewFile,BufRead *.repl.rc set ft=perl
-autocmd BufNewFile,BufRead *.psgi    set ft=perl
-au BufNewFile,BufReadPost *.t        set ft=perl
-
-au BufNewFile,BufReadPost *.asl set ft=ruby
-
+autocmd BufNewFile,BufRead *.reg,*.run,repl.rc,*.repl.rc,*.psgi,*.t set ft=perl
+autocmd BufNewFile,BufRead *.asl       set ft=ruby
 autocmd BufNewFile,BufRead psql.edit.* set ft=sql
+autocmd BufNewFile,BufRead *.tt,*.tt2  set ft=tt2html
+autocmd BufNewFile,BufRead *.json      set ft=json
+autocmd BufNewFile,BufRead *.p6,*.pm6  set ft=perl6
+autocmd BufNewFile,BufRead *.scpt      set ft=applescript
 
-autocmd BufNewFile,BufRead *.tt,*.tt2 set ft=tt2html
+autocmd BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
 
-autocmd BufNewFile,BufRead *.json set ft=json
-
-autocmd BufNewFile,BufRead *.p6,*.pm6 set ft=perl6
-
-autocmd BufNewFile,BufRead *.scpt set ft=applescript
-
-if hostname() == 'dev1' || hostname() == 'jobs01'
-    autocmd BufNewFile,BufRead silverback.conf set syntax=apache
-    autocmd BufWritePost *.pl,*.pm,*.reg,*.run !perl -wcI/data/silverback/lib %
-endif
-
+" Mappings
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 
 nmap Y y$
 
-nnoremap \\ \
 nmap \/ :nohl<CR>
 nmap \n :set invnumber<CR>
 
 nmap ds :%s/\s\+$//<CR>
 
-autocmd FileType help nnoremap <buffer> <CR> <C-]>
-autocmd FileType help nnoremap <buffer> <BS> <C-T>
-
 nmap <Right> :bn<CR>
 nmap <Left>  :bp<CR>
 map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
 map <F5> :make<CR>
-
-"nmap <silent> <Leader>p :call <SID>nopaste(0)<CR>
-xmap <silent> <Leader>p :<C-U>call <SID>nopaste(1)<CR>
 
 fun Modulify(replace)
     silent :2s#Foo#\=expand("%")#
@@ -215,43 +131,13 @@ fun Modulify(replace)
     silent :2s#/#\=a:replace#ge
 endfun
 
-au BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
-
-function! PerlDoc()
-    normal yy
-    let l:this = @
-    if match(l:this, '^ *\(use\|require\) ') >= 1
-        exe ':5new'
-        let l:this = substitute(l:this, '^ *\(use\|require\) *', "", "")
-        let l:this = substitute(l:this, ";.*", "", "")
-        let l:this = substitute(l:this, " .*", "", "")
-        exe ':0r!perldoc -T ' . l:this . ' | uncolor.pl'
-        exe ':0'
-        exe ':echo "test"'
-        exe ':set ft=man'
-        return
-    endif
-    normal yiw
-    exe ':new'
-    exe ':resize'
-    exe ':0r!perldoc -Tf ' . @
-    exe ':0'
-endfunction
-
-map ,h :call PerlDoc()<C-M>:set nomod<C-M>
-
 nmap H ^
 vmap H ^
 nmap L $
 vmap L $
 
 nmap M       :nohl<CR>:syntax sync fromstart<CR>
-"nmap L       :bn<CR>
-"nmap H       :bp<CR>
-nmap -       A<Esc>
 
-"nmap <Up>    :wa<CR>
-"nmap <Down>  :wa<CR>
 nmap <Left>  :bn<CR>
 nmap <Right> :bp<CR>
 
@@ -262,7 +148,6 @@ inoremap <F1>     <Esc>
 imap     <C-J>    <Esc>
 
 nnoremap - <Space>
-"nmap b :buffer!<Space>
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
@@ -270,21 +155,4 @@ iabbrev reponse    response
 iabbrev shfit shift
 iabbrev sfhit shift
 
-if hostname() == 'jobs01'
-    map <Leader>ar :!sudo /sbin/service httpd restart<CR>
-elseif hostname() == 'dev1'
-    map  <Leader>ar :!sudo /sbin/service httpd restart<CR>
-    nmap <Leader>pg :!psql silverback -1 -f %
-else
-    map <Leader>ar :!sudo /etc/init.d/apache2 restart<CR>
-endif
-
-nnoremap - <Space>
-"nmap b :buffer!<Space>
-
-autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
-autocmd FileType perl setlocal errorformat=%f:%l:%m
-set backupskip=/tmp/*,/private/tmp/*"
-
-au BufNewFile * silent !mkdir -p $(dirname %)
-set term=linux
+map <Leader>gc :!git add -p % && git commit<CR>
