@@ -46,46 +46,39 @@ set backupskip=/tmp/*,/private/tmp/*"
 
 set term=linux
 
-au FileType ruby set tabstop=2
-au FileType ruby set shiftwidth=2
-au FileType ruby set softtabstop=2
-
-autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
-autocmd FileType perl setlocal errorformat=%f:%l:%m
-
-autocmd BufNewFile,BufRead vimperatorrc set ft=vim
-autocmd BufNewFile,BufRead .vimperatorrc set ft=vim
-
 let perl_extended_vars=1
 let perl_include_pod=1
 let perl_string_as_statement=1
 let perl_sync_dist=1000
 
-highlight Folded     ctermbg=black ctermfg=blue 
-
-au FileType perl highlight Operator ctermbg=Black ctermfg=DarkGray
-
-au FileType ruby set tabstop=2
-au FileType ruby set shiftwidth=2
-au FileType ruby set softtabstop=2
-
-autocmd FileType perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
-autocmd FileType perl setlocal errorformat=%f:%l:%m
-autocmd FileType perl setlocal keywordprg=perldoc\ -f
-
 filetype indent on
 
 highlight Search NONE ctermfg=lightred
+highlight Folded      ctermbg=black ctermfg=blue 
+
+autocmd BufNewFile,BufRead *.reg,*.run,repl.rc,*.repl.rc,*.psgi,*.t set ft=perl
+autocmd BufNewFile,BufRead *.asl       set ft=ruby
+autocmd BufNewFile,BufRead psql.edit.* set ft=sql
+autocmd BufNewFile,BufRead *.tt,*.tt2  set ft=tt2html
+autocmd BufNewFile,BufRead *.json      set ft=json
+autocmd BufNewFile,BufRead *.p6,*.pm6  set ft=perl6
+autocmd BufNewFile,BufRead *.scpt      set ft=applescript
+
+autocmd FileType           ruby set tabstop=2
+autocmd FileType           ruby set shiftwidth=2
+autocmd FileType           ruby set softtabstop=2
+
+autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
+autocmd FileType           perl setlocal errorformat=%f:%l:%m
+
+autocmd FileType           ruby set tabstop=2
+autocmd FileType           ruby set shiftwidth=2
+autocmd FileType           ruby set softtabstop=2
 
 " Automatic commands
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 hi EOLWS ctermbg=red
-
-autocmd BufReadPost *
-\  if line("'\"") > 0 && line("'\"") <= line("$") |
-\    exe "normal g`\"" |
-\  endif
 
 autocmd BufNewFile *.t         silent 0read ~/.vim/skeletons/test.t | normal G
 autocmd BufNewFile Makefile.PL silent 0read ~/.vim/skeletons/Makefile.PL | normal gg
@@ -98,61 +91,52 @@ autocmd FileType help nnoremap <buffer> <BS> <C-T>
 autocmd BufWritePost *.{sh,pl}   silent exe "!chmod +x %"
 autocmd BufWritePost Makefile.PL silent exe "!chmod -x %"
 
-autocmd BufNewFile,BufRead *.reg,*.run,repl.rc,*.repl.rc,*.psgi,*.t set ft=perl
-autocmd BufNewFile,BufRead *.asl       set ft=ruby
-autocmd BufNewFile,BufRead psql.edit.* set ft=sql
-autocmd BufNewFile,BufRead *.tt,*.tt2  set ft=tt2html
-autocmd BufNewFile,BufRead *.json      set ft=json
-autocmd BufNewFile,BufRead *.p6,*.pm6  set ft=perl6
-autocmd BufNewFile,BufRead *.scpt      set ft=applescript
+autocmd FileType           perl highlight Operator ctermbg=Black ctermfg=DarkGray
 
 autocmd BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
 
+autocmd BufReadPost *
+\  if line("'\"") > 0 && line("'\"") <= line("$") |
+\    exe "normal g`\"" |
+\  endif
+
 " Mappings
+
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 
-nmap Y y$
+nmap     Y          y$
 
-nmap \/ :nohl<CR>
-nmap \n :set invnumber<CR>
+nmap     \/         :nohl<CR>
+nmap     \n         :set invnumber<CR>
 
-nmap ds :%s/\s\+$//<CR>
+nmap     ds         :%s/\s\+$//<CR>
 
-nmap <Right> :bn<CR>
-nmap <Left>  :bp<CR>
-map <Leader>h i$html .= <<_STOP_;<CR><Esc>0i_STOP_<Esc>O
-map <F5> :make<CR>
+nmap     <Right>    :bn<CR>
+nmap     <Left>     :bp<CR>
+map      <F5>       :make<CR>
 
-fun Modulify(replace)
-    silent :2s#Foo#\=expand("%")#
-    silent :2s#\.pm##
-    silent :2s#lib/##e
-    silent :2s# /# #e
-    silent :2s#/#\=a:replace#ge
-endfun
+nmap     H          ^
+vmap     H          ^
+nmap     L          $
+vmap     L          $
 
-nmap H ^
-vmap H ^
-nmap L $
-vmap L $
+nmap     M          :nohl<CR>:syntax sync fromstart<CR>
 
-nmap M       :nohl<CR>:syntax sync fromstart<CR>
+nmap     <Left>     :bn<CR>
+nmap     <Right>    :bp<CR>
 
-nmap <Left>  :bn<CR>
-nmap <Right> :bp<CR>
+nmap     <CR>       o<Esc>
+nmap     <F1>       <Esc>
+inoremap <F1>       <Esc>
+imap     <C-J>      <Esc>
 
-nmap     gb       A {<CR>}<Esc>k
-nmap     <CR>     o<Esc>
-nmap     <F1>     <Esc>
-inoremap <F1>     <Esc>
-imap     <C-J>    <Esc>
+nnoremap -          <Space>
 
-nnoremap - <Space>
+map      <Leader>gc :!git add -p % && git commit<CR>
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
 iabbrev reponse    response
-iabbrev shfit shift
-iabbrev sfhit shift
+iabbrev shfit      shift
+iabbrev sfhit      shift
 
-map <Leader>gc :!git add -p % && git commit<CR>
