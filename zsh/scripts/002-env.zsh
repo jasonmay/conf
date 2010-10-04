@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$HOME/.brew/Cellar/ruby/1.9.1-p378/bin:$HOME/.github/rakudo/parrot_install/bin:$HOME/.brew/bin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.brew/Cellar/ruby/1.9.1-p378/bin:$HOME/.github/rakudo/parrot_install/bin:$HOME/.brew/bin:$HOME/.brew/sbin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
 
 export MANPATH="$HOME/.github/rakudo/parrot_install/man:/usr/local/man:/opt/local/man:$MANPATH"
 
