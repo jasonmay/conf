@@ -10,6 +10,7 @@ zle -N edit-command-line
 setopt nobeep               # make things in the shell not beep
 setopt auto_cd              # ".." implies "cd ..", etc.
 setopt auto_pushd           # "cd" implies pushd all the time
+setopt pushd_minus          # popd -#
 setopt multios
 setopt extended_glob        # ** does recursive globbing
 setopt nullglob             # don't error if glob returns nothing
