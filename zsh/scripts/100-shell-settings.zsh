@@ -19,6 +19,7 @@ setopt no_nomatch
 setopt interactivecomments
 setopt listpacked
 setopt complete_in_word     # Pressing tab on apit<cursor>de does what you want
+setopt no_case_glob
 
 bindkey -v
 
