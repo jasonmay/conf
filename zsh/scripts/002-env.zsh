@@ -26,6 +26,4 @@ export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
 # rid duplicates
-typeset -U manpath
-typeset -U path
-
+typeset -U manpath path cdpath fpath
