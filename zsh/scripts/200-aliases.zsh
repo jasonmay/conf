@@ -48,6 +48,8 @@ for vim_typo in viim vmi bim cim vo, viom vin ivm; do alias "$vim_typo"='vim'; d
 
 alias pi='perl -Ilib'
 
+alias -- '-'='popd'
+
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
 
 function ms() {
