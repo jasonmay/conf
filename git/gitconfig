@@ -23,6 +23,11 @@
     dfif  = diff
     upsh  = push
     psuh  = push
+
+
+    hist = log --all --graph --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
+    graph = log --abbrev-commit --graph --decorate --oneline
+    graphall = log --abbrev-commit --graph --all --decorate --oneline
 [merge]
     tool = vimdiff
 [push]
