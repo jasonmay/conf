@@ -91,7 +91,7 @@ autocmd BufNewFile *.html      silent 0read ~/.vim/skeletons/page.html | normal 
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
-autocmd BufWritePost *.{sh,pl}   silent exe "!chmod +x %"
+autocmd BufWritePost *.{rb,py,zsh,sh,pl}   silent exe "!chmod +x %"
 autocmd BufWritePost Makefile.PL silent exe "!chmod -x %"
 
 autocmd FileType           perl highlight Operator ctermbg=Black ctermfg=DarkGray
