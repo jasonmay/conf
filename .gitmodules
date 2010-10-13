@@ -1,0 +1,3 @@
+[submodule "vim/vim/bundle/perl"]
+	path = vim/vim/bundle/perl
+	url = git://github.com/petdance/vim-perl.git
