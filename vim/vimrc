@@ -139,6 +139,10 @@ map      <Leader>gc :!git add -p % && git commit<CR>
 
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
+
+iabbrev encode_jason   encode_json
+iabbrev decode_jason   decode_json
+
 iabbrev reponse    response
 iabbrev shfit      shift
 iabbrev sfhit      shift
