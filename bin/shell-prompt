@@ -39,7 +39,7 @@ if (in_git_repo) {
 
     $vcs .= '-' if scalar(keys %status);
 
-    chomp(my $branch = qx!git branch | awk '/^\*/{print \$2}'!);
+    chomp(my $branch = qx!git branch | awk '/^\\*/{print \$2}'!);
     $vcs .= $branch if $branch;
     $vcs =~ s/\*:/*/;
 }
