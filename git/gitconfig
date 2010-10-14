@@ -36,3 +36,5 @@
     denyCurrentBranch = ignore
 [github]
     user = jasonmay
+[status]
+	showUntrackedFiles = no
