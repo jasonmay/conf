@@ -112,8 +112,6 @@ nmap     Y          y$
 nmap     \/         :nohl<CR>
 nmap     \n         :set invnumber<CR>
 
-nmap     ds         :%s/\s\+$//<CR>
-
 nmap     <Right>    :bn<CR>
 nmap     <Left>     :bp<CR>
 map      <F5>       :make<CR>
