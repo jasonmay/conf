@@ -33,7 +33,7 @@ if (my $pwd = in_git_repo) {
     my %submodules = map { $_ => 1 } grep $_, @submodules;
 
     foreach my $submodule (keys %submodules) {
-        my $re = qr{^\Q$submodule\E}o;
+        my $re = qr{^\Q$submodule\E};
         foreach my $key (keys %status) {
             delete $status{$key}
                 if $key =~ $re;
