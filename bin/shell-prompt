@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use File::Basename;
+use File::pushd ();
 
 $| = 1;
 
@@ -11,18 +12,20 @@ sub in_git_repo {
     my $pwd = $ENV{PWD};
 
     while ($pwd ne dirname $pwd) {
-        return 0 if basename($pwd) eq '.git';
-        return 0 if -l $pwd;
-        return 1 if -d "$pwd/.git";
+        return undef if basename($pwd) eq '.git';
+        return undef if -l $pwd;
+        return $pwd if -d "$pwd/.git";
         $pwd = dirname $pwd;
     }
 
-    return 0;
+    return undef;
 }
 
 # VCS info
 my $vcs = '';
-if (in_git_repo) {
+if (my $pwd = in_git_repo) {
+    my $pushd_guard = File::pushd::pushd($pwd);
+    local $ENV{GIT_DIR} = "$pwd/.git";
     chomp(my @status = `git status --porcelain | awk '{print \$2}'`);
     my %status = map { $_ => 1 } grep $_, @status;
 
@@ -37,9 +40,21 @@ if (in_git_repo) {
         }
     }
 
-    $vcs .= '-' if scalar(keys %status);
+    #$vcs .= '-' if scalar(keys %status);
+    if ( scalar keys %status) {
+        $vcs .= "\%{\e[0;31m\%}"; #red
+    }
+    else {
+        $vcs .= "\%{\e[0;33m\%}"; #yellow
+    }
 
     chomp(my $branch = qx!git branch | awk '/^\\*/{print \$2}'!);
+    $branch = 'M' if $branch eq 'master';
+
+    if (length($branch) > 12) {
+        substr($branch, 0, -6) = '...';
+    }
+
     $vcs .= $branch if $branch;
     $vcs =~ s/\*:/*/;
 }
@@ -47,7 +62,7 @@ if (in_git_repo) {
 my $output = q{};
 if (@ARGV) {
     # show vcs stuff in separate call, for RPS1/RPROMPT/etc
-    $output .= "\%{\e[1;30m\%}<\%{\e[0;33m\%}$vcs\%{\e[1;30m\%}>\%{\e[m\%}" if $vcs;
+    $output .= "\%{\e[1;30m\%}<$vcs\%{\e[1;30m\%}>\%{\e[m\%}" if $vcs;
 }
 else {
     $output .= "\%{\e[1;30m\%}[ \%{\e[0;32m\%}\%n\%{\e[m\%}\@\%{\e[0;32m\%}\%m\%{\e[1;30m\%} ->";
