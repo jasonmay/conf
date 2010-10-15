@@ -5,9 +5,6 @@
 	editor = vim
     excludesfile = ~/.gitignore
 [color]
-    diff = auto
-    status = auto
-    branch = auto
     ui = auto
 [alias]
     co = checkout
