@@ -25,5 +25,9 @@ export SAVEHIST=100000
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
+export DBIC_TRACE_PROFILE=console
+
+export ANY_MOOSE=Moose
+
 # rid duplicates
 typeset -U manpath path cdpath fpath
