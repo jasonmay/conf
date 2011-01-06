@@ -97,8 +97,20 @@ snippet nac
 	use namespace::autoclean;
 snippet dd
 	use Data::Dumper; die Dumper(${1});
+snippet wd
+	use Data::Dumper; warn Dumper(${1});
+snippet wj
+	require JSON; warn JSON->new->pretty->encode(${1});
+snippet wdd
+	use Data::Dumper; $Data::Dumper::Maxdepth = ${1:1}; warn Dumper(${2});
 snippet ddd
 	use Data::Dumper; $Data::Dumper::Maxdepth = ${1:1}; die Dumper(${2});
+snippet cd
+	$c->log->debug(${1}) if $c->debug;
+snippet cdd
+	use Data::Dumper; $c->log->debug(Dumper(${1})) if $c->debug;
+snippet hri
+	${1}->result_class('DBIx::Class::ResultClass::HashRefInflator');
 snippet package
 	package ${1:`substitute(matchstr(expand("%"), '^lib/\zs.*\ze\.pm'), '/', '::', 'g')`};
 
