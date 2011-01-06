@@ -103,7 +103,6 @@ autocmd BufReadPost *
 \    exe "normal g`\"" |
 \  endif
 
-autocmd BufReadPost commit.tmp normal ggi
 " Mappings
 
 inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
