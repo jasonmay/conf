@@ -16,6 +16,7 @@ export OOO_FORCE_DESKTOP=gnome
 
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
 test -e $HOME/.perl5/perlbrew/etc/bashrc && source $HOME/.perl5/perlbrew/etc/bashrc
+test -e $HOME/.perlbrew/etc/bashrc && source $HOME/.perlbrew/etc/bashrc
 
 export MY_HOSTNAME=`hostname`
 
