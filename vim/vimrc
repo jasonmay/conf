@@ -23,14 +23,14 @@ set completeopt=menuone
 set incsearch
 set tildeop
 set backspace=indent,eol,start
-set wildmenu
+"set wildmenu
 set wildignore+=.log,.out,.o
 set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
 set isfname+=:
 set wildmode=longest,list,full
 set hidden
 set vb t_vb=
-set ttimeoutlen=5
+set ttimeoutlen=1
 
 set tabstop=4
 set shiftwidth=4
@@ -66,6 +66,7 @@ autocmd BufNewFile,BufRead *.tt,*.tt2  set ft=tt2html
 autocmd BufNewFile,BufRead *.json      set ft=json
 autocmd BufNewFile,BufRead *.p6,*.pm6  set ft=perl6
 autocmd BufNewFile,BufRead *.scpt      set ft=applescript
+autocmd BufNewFile,BufRead Xdefaults   set ft=Xdefaults
 
 autocmd FileType           ruby set tabstop=2
 autocmd FileType           ruby set shiftwidth=2
@@ -114,6 +115,10 @@ nmap     \n         :set invnumber<CR>
 
 nmap     <Right>    :bn<CR>
 nmap     <Left>     :bp<CR>
+
+imap     <Right>    <C-o>:bn<CR>
+imap     <Left>     <C-o>:bp<CR>
+
 map      <F5>       :make<CR>
 
 nmap     H          ^
