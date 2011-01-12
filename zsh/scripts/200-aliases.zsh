@@ -44,11 +44,23 @@ alias tto='telnet termcast.org'
 
 alias sl='ls'
 alias lcd='ls;cd'
-for vim_typo in viim vmi bim cim vo, viom vin ivm; do alias "$vim_typo"='vim'; done
+for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
 
 alias pi='perl -Ilib'
 
 alias -- '-'='popd'
+
+alias prove6='prove -e perl6'
+
+alias deps='cpanm --installdeps -n'
+
+alias working-cat-dbic-api='cpanm -f LSAUNDERS/Catalyst-Controller-DBIC-API-1.002001.tar.gz'
+alias working-dbic='cpanm -f RIBASUSHI/DBIx-Class-0.08120'
+alias working-mx-traits='cpanm -f JROCKWAY/MooseX-Traits-0.09'
+
+function vack() {
+    vim $(ack -l -- $*)
+}
 
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
 
