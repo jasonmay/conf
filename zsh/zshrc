@@ -1,2 +1,2 @@
-[ -d ~/.zscripts ] &&  find ~/.zscripts/ -type f -name '*.zsh' | sort | \
+[ -d ~/.zscripts ] &&  find ~/.zscripts/ \( -type f -o -type l \) -name '*.zsh' | sort | \
     while read z; do source "$z"; done
