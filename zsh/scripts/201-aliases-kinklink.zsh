@@ -1,5 +1,5 @@
 case $MY_HOSTNAME in
-    kinklink.local)
+    kinklink|kinklink.local)
 
     alias ls='gls --color=auto'
     alias sort='gsort'
@@ -10,9 +10,8 @@ case $MY_HOSTNAME in
     alias chown='gchown'
     alias chmod='gchmod'
     alias du='gdu'
-    alias v='sudo port variants'
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
-    alias i='sudo port -v install'
+    alias i='brew install'
 
 #alias mysqlstart='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server start'
 #alias mysqlstop='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server stop'
