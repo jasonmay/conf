@@ -99,6 +99,8 @@ snippet nac
 	use namespace::autoclean;
 snippet dd
 	use Data::Dumper; die Dumper(${1});
+snippet ddc
+	use Data::Dumper::Concise; die Dumper(${1});
 snippet wd
 	use Data::Dumper; warn Dumper(${1});
 snippet wj
@@ -200,3 +202,15 @@ snippet before
 		my $self = shift;
 		${2}
 	};
+
+# plack stuff
+snippet res
+	my ($env) = @_;
+	my $req = Plack::Request->new($env);
+	my $res = $req->new_response(${1:200});
+	$res->content_type('${2:text/html}');
+	$res->body('${3}');
+	$res->finalize;
+
+snippet rawres
+	return [ '${1:200}', [ 'Content-Type' => '${2:text/html}' ], [ "${3}" ] ];
