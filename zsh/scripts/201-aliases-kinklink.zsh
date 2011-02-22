@@ -13,6 +13,8 @@ case $MY_HOSTNAME in
     alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
     alias i='brew install'
 
+    alias culex='ssh 192.168.1.42'
+
 #alias mysqlstart='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server start'
 #alias mysqlstop='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server stop'
 

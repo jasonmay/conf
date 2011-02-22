@@ -140,6 +140,10 @@ nnoremap -          <Space>
 
 map      <Leader>gc :!git add -p % && git commit<CR>
 
+map      <Leader>p :set paste<CR>:r!pbpaste<CR>:set nopaste<CR>
+
+map      ;l :silent !push-to-culex.sh<CR>
+
 iabbrev to_jason   to_json
 iabbrev from_jason from_json
 
