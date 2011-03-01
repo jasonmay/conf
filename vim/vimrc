@@ -84,11 +84,6 @@ autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 hi EOLWS ctermbg=red
 
-autocmd BufNewFile *.t         silent 0read ~/.vim/skeletons/test.t | normal G
-autocmd BufNewFile Makefile.PL silent 0read ~/.vim/skeletons/Makefile.PL | normal gg
-autocmd BufNewFile *.c         silent 0read ~/.vim/skeletons/c.c | normal 4j$
-autocmd BufNewFile *.html      silent 0read ~/.vim/skeletons/page.html | normal 9j0
-
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
