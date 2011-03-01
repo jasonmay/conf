@@ -18,10 +18,6 @@ case $MY_HOSTNAME in
 #alias mysqlstart='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server start'
 #alias mysqlstop='/Users/jasonmay/.brew/Cellar/mysql/5.1.49/share/mysql/mysql.server stop'
 
-    function cpan-outdated() {
-        /Users/jasonmay/.perl5/perlbrew/bin/cpan-outdated | grep -v 'Catalyst-Controller-DBIC-API'
-    }
-
     function s() {
         [ -z "$*" ] && return
 
