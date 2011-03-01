@@ -159,7 +159,7 @@ iabbrev sfhit      shift
 
 """" FUNCTIONS
 
-function s:align_assignments()
+function! s:align_assignments()
     " Patterns needed to locate assignment operators...
     let ASSIGN_OP   = '[-+*/%|&]\?=\@<!=[=~]\@!'
     let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)\(.*\)$'
