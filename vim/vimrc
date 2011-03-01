@@ -95,6 +95,9 @@ autocmd FileType help nnoremap <buffer> <BS> <C-T>
 autocmd BufWritePost *.{rb,py,zsh,sh,pl}   silent exe "!chmod +x %"
 autocmd BufWritePost Makefile.PL silent exe "!chmod -x %"
 
+autocmd BufWritePost .vimrc source ~/.vimrc
+autocmd BufWritePost  vimrc source ~/.vimrc
+
 autocmd FileType           perl highlight Operator ctermbg=Black ctermfg=DarkGray
 
 autocmd BufNewFile,BufReadPost * silent !mkdir -p $(dirname %)
