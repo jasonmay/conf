@@ -192,4 +192,5 @@ function s:align_assignments()
         let linenum += 1
     endfor
 endfunction
-nmap <silent> <Leader>= :call <SID>align_assignments()<CR>
+"nmap <silent> <Leader>= :call <SID>align_assignments()<CR>
+nmap S :call <SID>align_assignments()<CR>
