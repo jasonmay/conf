@@ -19,6 +19,7 @@ rebuildvim :
 clean :
 	@echo removing $(BINTARGETS) $(DOTITEMS)...
 	@rm -f $(BINTARGETS) $(DOTITEMS)
+	@rm -rf ~/.vim
 
 ~/.zshrc : zsh/zshrc
 	@echo installing .zshrc...
