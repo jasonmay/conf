@@ -10,13 +10,15 @@ DOTITEMS = \
 ~/.re.pl/repl.rc \
 ~/.lesskey \
 ~/.gitignore \
-~/.vim \
 ~/.vimrc
 
-install : $(BINTARGETS)
+install : $(BINTARGETS) $(DOTITEMS) ~/.vim
 	
 rebuildvim :
 	@rebuild-vim.sh
+
+clean :
+	@rm -f $(BINTARGETS) $(DOTITEMS)
 
 ~/.zshrc : zsh/zshrc
 	$(LN) $(PWD)/zsh/zshrc ~/.zshrc
@@ -35,11 +37,11 @@ rebuildvim :
 ~/bin/% : bin/%
 	$(LN) $(PWD)/$< $@
 
+~/.vimrc : vimrc
+	$(LN) $(PWD)/vimrc ~/.vimrc
+
 ~/.vim :
 	@mkdir -p ~/.vim/{bundle,autoload}
 	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' -O ~/.vim/autoload/pathogen
 	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
 	# TODO add more bundles - snipmate, command-t, etc.
-
-~/.vimrc : vimrc
-	$(LN) vimrc ~/.vimrc
