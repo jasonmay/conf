@@ -1,5 +1,4 @@
-INTO = $(HOME)
-LN = ln -sf
+LN = @ln -sf
 
 BINSCRIPTS= $(wildcard bin/*)
 
