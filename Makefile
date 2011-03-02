@@ -52,6 +52,13 @@ clean :
 	@mkdir -p ~/.vim/{bundle,autoload}
 	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' --no-check-certificate -O ~/.vim/autoload/pathogen.vim
 	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
+	@git clone git://git.wincent.com/command-t.git ~/.vim/bundle/command-t
+	@git clone git://github.com/vim-scripts/parrot.vim.git ~/.vim/bundle/parrot
+	@git clone git://github.com/msanders/snipmate.vim.git ~/.vim/bundle/snipmate
+	@git clone git://github.com/petdance/vim-perl.git ~/.vim/bundle/perl
+	@git clone git://github.com/vim-ruby/vim-ruby.git ~/.vim/bundle/ruby
+	@git clone git://github.com/tpope/vim-ragtag.git ~/.vim/bundle/ragtag
+
 	# TODO add more bundles - snipmate, command-t, etc.
 
 .PHONY : clean install build
