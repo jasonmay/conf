@@ -1,6 +1,15 @@
-export PATH="$HOME/bin:$HOME/.github/rakudo/parrot_install/bin:$HOME/.brew/bin:$HOME/.brew/sbin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/usr/local/bin:/usr/bin/perlbin/core:/opt/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/local/lib/postgresql83/bin:$PATH"
+export PATH="/opt/local/apache2/bin:$PATH"
+export PATH="$HOME/.brew/Cellar/python/2.7.1/bin:$PATH"
+export PATH="$HOME/.brew/Cellar/python/2.7/bin:$PATH"
+export PATH="$HOME/.brew/sbin:$PATH"
+export PATH="$HOME/.brew/bin:$PATH"
+export PATH="$HOME/.github/rakudo/parrot_install/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
-export MANPATH="$HOME/.github/rakudo/parrot_install/man:/usr/local/man:/opt/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="$HOME/.github/rakudo/parrot_install/man:$MANPATH"
 
 export LESS="-r -f"
 export EDITOR=vim
