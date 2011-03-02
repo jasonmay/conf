@@ -15,9 +15,8 @@ DOTITEMS = \
 
 install : $(BINTARGETS)
 	
-rebuildvim : ~/repos/mercurial/vim
-	@cd ~/repos/mercurial/vim
-	@make distclean
+rebuildvim :
+	@rebuild-vim.sh
 
 ~/.zshrc : zsh/zshrc
 	$(LN) $(PWD)/zsh/zshrc ~/.zshrc
