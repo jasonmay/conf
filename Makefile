@@ -12,6 +12,8 @@ DOTITEMS = \
 ~/.gitignore \
 ~/.vimrc
 
+all: build
+
 install : $(BINTARGETS) $(DOTITEMS) ~/.vim
 	
 rebuildvim :
@@ -45,3 +47,5 @@ clean :
 	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' -O ~/.vim/autoload/pathogen
 	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
 	# TODO add more bundles - snipmate, command-t, etc.
+
+.PHONY : clean install build
