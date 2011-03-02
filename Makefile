@@ -48,9 +48,9 @@ clean :
 	$(LN) $(PWD)/vimrc ~/.vimrc
 
 ~/.vim :
-	@echo installin .vim...
+	@echo installing .vim...
 	@mkdir -p ~/.vim/{bundle,autoload}
-	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' -O ~/.vim/autoload/pathogen
+	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' --no-check-certificate -O ~/.vim/autoload/pathogen.vim
 	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
 	# TODO add more bundles - snipmate, command-t, etc.
 
