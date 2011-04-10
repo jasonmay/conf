@@ -24,8 +24,7 @@ export MY_HOSTNAME=`hostname -s`
 export OOO_FORCE_DESKTOP=gnome
 
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
-test -e $HOME/.perl5/perlbrew/etc/bashrc && source $HOME/.perl5/perlbrew/etc/bashrc
-test -e $HOME/.perlbrew/etc/bashrc && source $HOME/.perlbrew/etc/bashrc
+test -e $PERLBREW_ROOT/etc/bashrc && source $PERLBREW_ROOT/etc/bashrc
 
 export MY_HOSTNAME=`hostname`
 
@@ -40,7 +39,7 @@ export DBIC_TRACE_PROFILE=console
 export ANY_MOOSE=Moose
 
 export PERL_PREFER_CPAN_CLIENT=cpanm
-export PERL_CPANM_OPT='--prompt'
+export PERL_CPANM_OPT='--prompt --quiet'
 
 export INCLUDES="$HOME/.brew/include"
 
