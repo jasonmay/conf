@@ -1,6 +1,5 @@
-check_exec 'shell-prompt' && function precmd() {
-    #PROMPT=`shell-prompt`
+PROMPT='%n@%m %~ $ ';
+check_exec 'rps1.zsh' && function precmd() {
     RPROMPT=`rps1.zsh`
 }
 
-export PROMPT='%n@%m %~ $ ';
