@@ -95,18 +95,27 @@ sub cmd_layout_save
 	$filename = doFilenameFixing($filename);
 	return unless ($filename);
 
+	# Order by ref. Print ref and an id tag
+    my %layout;
+	for my $win (Irssi::windows())
+	{
+		my $id = $win->{name} ||
+                 "$win->{active}->{name}:$win->{active}->{server}->{tag}";
+
+        $layout{ $win->{'refnum'} } = $id;
+	}
+    my @refs = sort { $a <=> $b } keys %layout;
+
 	unless(open $FH, ">", $filename)
 	{
 		print "Can not open $filename";
 		return;
 	}
 
-	# Order by ref. Print ref and an id tag
-	for my $win (sort {$a->{'refnum'} <=> $b->{'refnum'}} Irssi::windows())
-	{
-		my $id = $win->{'name'} ? $win->{'name'} : $win->{'active'}->{'name'} . ":" . $win->{'active'}->{'server'}->{'tag'};
-		printf $FH "%d\t%s\n", $win->{'refnum'}, $id;
-	}
+    foreach my $line (1 .. $refs[-1]) {
+        printf $FH "%s\n", exists($layout{$line}) ? $layout{$line} : '';
+    }
+
 	close $FH;
 	print "Layout saved to $filename";
 }
@@ -122,7 +131,7 @@ sub cmd_layout_load
 	return unless canReadFile($filename);
 
 	my @layout;
-	my ($ref, $id, $FH);
+	my ($id, $FH);
 
 	# Pull the refnum and id
 	unless(open $FH, "<", $filename)
@@ -133,10 +142,11 @@ sub cmd_layout_load
 	while (my $line = <$FH>)
 	{
 		chomp $line;
-		my ($ref, $id) = split(/\t/, $line, 2);
-		next unless ($ref and $id);
+        next unless $line =~ /\S/;
+        my $id = $line;
+		next unless $id;
 
-		push @layout, {refnum => $ref, id => $id};
+		push @layout, {refnum => $., id => $id};
 	}
 	close $FH;
 
