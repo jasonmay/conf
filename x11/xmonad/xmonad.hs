@@ -29,16 +29,8 @@ main = do
                  manageHook         = myManageHook <+> manageHook defaultConfig
              } `additionalKeysP` [("C-M1-n", spawn "urxvt")
                                  ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
-                                 ,("C-M1-t", runOrRaise "thunderbird" (className =? "Thunderbird-bin"))
-                                 ,("C-M1-p", runOrRaise "pidgin" (className =? "Pidgin"))
-                                 ,("C-M1-f", runOrRaise "filezilla" (className =? "Filezilla"))
-                                 ,("C-M1-x", runOrRaise "VirtualBox" (className =? "VirtualBox"))
-                                 ,("C-M1-d", spawn "urxvt -name urxvt_demo")
                                  ,("C-M1-e", spawn "urxvt -name urxvt_float -geometry 80x24")
-                                 ,("C-M1-i", runOrRaise "urxvt -name irc" (resource =? "irc"))
-                                 ,("C-M1-s", runOrRaise "urxvt -name sql" (resource =? "sql"))
                                  ,("C-M1-o", spawn "xscreensaver-command -lock")
-                                 ,("C-M1-r", spawn "rdesktop -g 1440x900 192.168.31.156")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)
                                  ,("C-M1-<Left>", prevWS)
@@ -76,8 +68,8 @@ myManageHook = composeAll
     , className =? "Eog"         --> doFloat
     , className =? "Evince"      --> doFloat
     , className =? "Meld"        --> doFloat
+    , className =? "Xmessage"    --> doFloat
     , resource  =? "urxvt_float" --> doFloat
-    , className =? "Thunderbird" --> doShift "2:browser"
     , className =? "Chromium"    --> doShift "2:browser"
     , className =? "rdesktop"    --> doShift "7"
     , manageDocks
