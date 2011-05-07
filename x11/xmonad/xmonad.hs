@@ -58,9 +58,9 @@ myXmobarLogHook xmproc =
 
 myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| Full)
     where
-        tiled   = reflectHoriz $ Tall nmaster delta ratio
-        nmaster = 2
-        ratio   = 0.5
+        tiled   = Tall master delta ratio
+        master  = 1
+        ratio   = 0.5238
         delta   = 0.0005
 
 myManageHook = composeAll
