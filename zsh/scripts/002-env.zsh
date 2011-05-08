@@ -6,6 +6,7 @@ export PATH="$HOME/.brew/Cellar/python/2.7/bin:$PATH"
 export PATH="$HOME/.brew/sbin:$PATH"
 export PATH="$HOME/.brew/bin:$PATH"
 export PATH="$HOME/.github/rakudo/parrot_install/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
