@@ -59,14 +59,13 @@ myXmobarLogHook xmproc =
 myLayout = configurableNavigation noNavigateBorders (tiled ||| Mirror tiled ||| Full)
     where
         tiled   = Tall master delta ratio
-        master  = 1
+        master  = 2
         ratio   = 0.5238
         delta   = 0.0005
 
 myManageHook = composeAll
     [ resource =? "Msgcompose"   --> doFloat
     , className =? "Eog"         --> doFloat
-    , className =? "Evince"      --> doFloat
     , className =? "Meld"        --> doFloat
     , className =? "Xmessage"    --> doFloat
     , resource  =? "urxvt_float" --> doFloat
