@@ -18,6 +18,9 @@ fi
 [ -d "$HOME/.rvm" ] && \
     export PATH="$HOME/.rvm/bin:$PATH"
 
+[ -d "$HOME/local/bin" ] && \
+    export PATH="$HOME/local/bin:$PATH"
+
 [ -d "$HOME/bin" ] && \
     export PATH="$HOME/bin:$PATH"
 
