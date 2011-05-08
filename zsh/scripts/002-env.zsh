@@ -40,7 +40,7 @@ export DBIC_TRACE_PROFILE=console
 export ANY_MOOSE=Moose
 
 export PERL_PREFER_CPAN_CLIENT=cpanm
-export PERL_CPANM_OPT='--prompt --quiet'
+export PERL_CPANM_OPT='--prompt'
 
 export INCLUDES="$HOME/.brew/include"
 
