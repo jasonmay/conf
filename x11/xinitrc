@@ -1,0 +1,20 @@
+# terminals
+urxvt&
+urxvt&
+urxvt&
+urxvt&
+
+#screesaver stuff
+xscreensaver -no-splash &
+
+
+# keyboard stuff
+xset r rate 250 30 &
+setxkbmap -option terminate:ctrl_alt_bksp &
+
+# xmodmap
+# (has to stay right before
+# the exec, not sure why)
+xmodmap $HOME/.Xmodmap &
+
+exec xmonad
