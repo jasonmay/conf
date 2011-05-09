@@ -55,7 +55,7 @@ export DBIC_TRACE_PROFILE=console
 export ANY_MOOSE=Moose
 
 export PERL_PREFER_CPAN_CLIENT=cpanm
-export PERL_CPANM_OPT='--prompt'
+export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.perl5/minicpan/ --mirror http://mirrors.kernel.org/cpan/ --mirror http://search.cpan.org/CPAN"
 
 export INCLUDES="$HOME/.brew/include"
 
