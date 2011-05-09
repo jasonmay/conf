@@ -13,8 +13,7 @@ xset r rate 250 30 &
 setxkbmap -option terminate:ctrl_alt_bksp &
 
 # xmodmap
-# (has to stay right before
-# the exec, not sure why)
-xmodmap $HOME/.Xmodmap &
+# holy crap this is dumb
+( sleep 1; xmodmap $HOME/.Xmodmap )&
 
 exec xmonad
