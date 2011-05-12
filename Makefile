@@ -58,7 +58,7 @@ clean :
 	@git clone git://github.com/petdance/vim-perl.git ~/.vim/bundle/perl
 	@git clone git://github.com/vim-ruby/vim-ruby.git ~/.vim/bundle/ruby
 	@git clone git://github.com/tpope/vim-ragtag.git ~/.vim/bundle/ragtag
-
-	# TODO add more bundles - snipmate, command-t, etc.
+	@git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/solarized
 
 .PHONY : clean install build
+

@@ -21,8 +21,6 @@ case $MY_HOSTNAME in
     function s() {
         [ -z "$*" ] && return
 
-        echo "searching macports..."
-        sudo port search $*
         echo "searching homebrew..."
         brew search $*
     }

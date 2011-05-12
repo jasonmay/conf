@@ -1,5 +1,5 @@
 case $MY_HOSTNAME in
-    jarsonmar)
+    jarsonmar|abby)
     alias ls='ls --color=auto'
     alias less='less -R'
 
