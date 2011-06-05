@@ -21,31 +21,38 @@ main = do
                  modMask            = mod4Mask,
                  normalBorderColor  = "#161616",
                  focusedBorderColor = "#aaaaaa",
-                 --workspaces         = ["term", "browser", "3", "4",
-                 --                      "5", "6", "7", "8", "9"],
+
                  layoutHook         = avoidStruts myLayout,
                  logHook            = myFadeInactiveLogHook >>
                                     (myXmobarLogHook xmproc),
                  manageHook         = myManageHook <+> manageHook defaultConfig
-             } `additionalKeysP` [("C-M1-n", spawn "urxvt")
-                                 ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
-                                 ,("C-M1-e", spawn "urxvt -name urxvt_float -geometry 80x24")
-                                 ,("C-M1-v", spawn "urxvt -name urxvt_big")
-                                 ,("C-M1-o", spawn "xscreensaver-command -lock")
-                                 ,("M1-<Space>", spawn "gmrun")
-                                 ,("C-M1-c", restart "xmonad" True)
-                                 ,("C-M1-<Left>", prevWS)
-                                 ,("C-M1-<Right>", nextWS)
-                                 ,("C-M1-<Up>", focusUrgent)
-                                 ,("C-S-M1-<Left>", shiftToPrev)
-                                 ,("C-S-M1-<Right>", shiftToNext)
-                                 ,("M1-<Tab>", windows W.focusDown)
-                                 ,("M1-S-<Tab>", windows W.focusUp)
-                                 ,("C-M1-h", sendMessage $ Go L)
-                                 ,("C-M1-j", sendMessage $ Go D)
-                                 ,("C-M1-k", sendMessage $ Go U)
-                                 ,("C-M1-l", sendMessage $ Go R)
-                                 ]
+             } `additionalKeysP` [
+                ("C-M1-n", spawn "urxvt")
+                ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
+                ,("C-M1-e", spawn "urxvt -name urxvt_float")
+                ,("C-M1-v", spawn "urxvt -name urxvt_big")
+
+                ,("C-M1-o",     spawn "xscreensaver-command -lock")
+                ,("M1-<Space>", spawn "gmrun")
+
+                ,("C-M1-c", restart "xmonad" True)
+
+                ,("C-M1-<Left>",  prevWS)
+                ,("C-M1-<Right>", nextWS)
+
+                ,("C-M1-<Up>", focusUrgent)
+
+                ,("C-S-M1-<Left>",  shiftToPrev)
+                ,("C-S-M1-<Right>", shiftToNext)
+
+                ,("M1-<Tab>",       windows W.focusDown)
+                ,("M1-S-<Tab>",     windows W.focusUp)
+
+                ,("C-M1-h", sendMessage $ Go L)
+                ,("C-M1-j", sendMessage $ Go D)
+                ,("C-M1-k", sendMessage $ Go U)
+                ,("C-M1-l", sendMessage $ Go R)
+             ]
 
 myFadeInactiveLogHook =
     fadeInactiveLogHook 0xbbbbbbbb
