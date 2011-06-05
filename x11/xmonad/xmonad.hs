@@ -30,6 +30,7 @@ main = do
              } `additionalKeysP` [("C-M1-n", spawn "urxvt")
                                  ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
                                  ,("C-M1-e", spawn "urxvt -name urxvt_float -geometry 80x24")
+                                 ,("C-M1-v", spawn "urxvt -name urxvt_big")
                                  ,("C-M1-o", spawn "xscreensaver-command -lock")
                                  ,("M1-<Space>", spawn "gmrun")
                                  ,("C-M1-c", restart "xmonad" True)
@@ -69,6 +70,7 @@ myManageHook = composeAll
     , className =? "Meld"        --> doFloat
     , className =? "Xmessage"    --> doFloat
     , resource  =? "urxvt_float" --> doFloat
+    , resource  =? "urxvt_big" --> doFloat
     , className =? "Chromium"    --> doShift "2:browser"
     , className =? "rdesktop"    --> doShift "7"
     , manageDocks
