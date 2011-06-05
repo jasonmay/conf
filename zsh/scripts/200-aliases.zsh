@@ -72,3 +72,12 @@ function ms() {
     git init && git add . && git commit -m 'initial commit'
 }
 
+TERMCAST_SCRIPT=$(which termcast 2>/dev/null)
+function termcast() {
+    if [ "x$IN_TERMCAST" == "x" ]
+    then
+        IN_TERMCAST=1 $TERMCAST_SCRIPT $*
+    else
+        echo "You are already termcasting!" > /dev/stderr
+    fi
+}
