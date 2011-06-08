@@ -1,6 +1,9 @@
-check_exec dtach \
-    && check_exec svscan \
+
+[ -z "$(pidof svscan)" ] && rm -f $HOME/.svscansocket
+
+check_exec dtach               \
+    && check_exec svscan       \
+    && [ -z "$(pidof svscan)" ] \
     && (
-        [ -e $HOME/.svscansocket ] \
-        || dtach -nc $HOME/.svscansocket svscan $HOME/.services
+        dtach -n $HOME/.svscansocket svscan $HOME/.services
     )
