@@ -1,3 +1,3 @@
 #!/bin/sh
 cd /home/jasonmay/repos/git/app-termcast-server
-./tss.sh 2>&1
+perl -Ilib bin/termcast-server --socket connections.sock 2>&1
