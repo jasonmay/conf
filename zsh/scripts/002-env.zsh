@@ -7,6 +7,7 @@ then
     export PATH="$HOME/.brew/Cellar/python/2.7/bin:$PATH"
     export PATH="$HOME/.brew/sbin:$PATH"
     export PATH="$HOME/.brew/bin:$PATH"
+    export INCLUDES="$HOME/.brew/include"
 fi
 
 if [ -d "$HOME/.github/rakudo" ]
@@ -63,7 +64,6 @@ else
     export PERL_CPANM_OPT="--prompt --mirror http://mirrors.kernel.org/cpan/ --mirror http://search.cpan.org/CPAN"
 fi
 
-export INCLUDES="$HOME/.brew/include"
 
 # rid duplicates
 typeset -U manpath path cdpath fpath
