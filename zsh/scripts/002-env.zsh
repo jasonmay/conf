@@ -64,6 +64,5 @@ else
     export PERL_CPANM_OPT="--prompt --mirror http://mirrors.kernel.org/cpan/ --mirror http://search.cpan.org/CPAN"
 fi
 
-
 # rid duplicates
 typeset -U manpath path cdpath fpath
