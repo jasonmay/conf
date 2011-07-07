@@ -17,7 +17,7 @@ import Data.List
 main = do
     xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig {
-                 terminal           = "urxvt",
+                 terminal           = "urxvtc",
                  modMask            = mod4Mask,
                  normalBorderColor  = "#161616",
                  focusedBorderColor = "#aaaaaa",
@@ -27,7 +27,7 @@ main = do
                                     (myXmobarLogHook xmproc),
                  manageHook         = myManageHook <+> manageHook defaultConfig
              } `additionalKeysP` [
-                ("C-M1-n", spawn "urxvt")
+                ("C-M1-n", spawn "urxvtc")
                 ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
                 ,("C-M1-e", spawn "urxvt -name urxvt_float")
                 ,("C-M1-v", spawn "urxvt -name urxvt_big")
