@@ -58,6 +58,8 @@ alias working-cat-dbic-api='cpanm -f LSAUNDERS/Catalyst-Controller-DBIC-API-1.00
 alias working-dbic='cpanm -f RIBASUSHI/DBIx-Class-0.08120'
 alias working-mx-traits='cpanm -f JROCKWAY/MooseX-Traits-0.09'
 
+alias irc='ssh -t jarsonmar.org sudo dtach -a .irssi.sock'
+
 function vack() {
     vim $(ack -l -- $*)
 }
