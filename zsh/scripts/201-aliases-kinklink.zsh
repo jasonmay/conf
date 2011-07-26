@@ -10,7 +10,6 @@ case $(uname) in
     alias chown='gchown'
     alias chmod='gchmod'
     alias du='gdu'
-    alias ar='sudo /opt/local/apache2/bin/apachectl restart && echo uhh success'
     alias i='brew install'
 
     alias culex='ssh 192.168.1.42'
