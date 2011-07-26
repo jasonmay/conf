@@ -49,6 +49,9 @@ export MY_HOSTNAME=`hostname`
 export HISTSIZE=100000
 export SAVEHIST=100000
 
+# I18N::LangTags::Detect - used in RT3
+export IGNORE_WIN32_LOCALE=1
+
 export ACK_COLOR_FILENAME=clear
 export ACK_COLOR_MATCH=red
 
