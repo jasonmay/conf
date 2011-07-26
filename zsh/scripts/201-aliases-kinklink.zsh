@@ -1,5 +1,5 @@
-case $MY_HOSTNAME in
-    kinklink|kinklink.local)
+case $(uname) in
+    Darwin)
 
     alias ls='gls --color=auto'
     alias sort='gsort'
