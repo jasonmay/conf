@@ -25,21 +25,6 @@ case $(uname) in
         brew search $*
     }
 
-    function nasadbstagingtunnel() {
-        ssh -fN -L $NASA_DBLOCALPORT:127.0.0.1:$NASA_DBREMOTEPORT $DEVSERVER
-    }
-    function mogiletunnel() {
-        ssh -fN -L $NASA_MOGPORT:127.0.0.1:$NASA_MOGPORT $DEVSERVER
-    }
-    function mogstoretunnel() {
-        ssh -fN -L $NASA_MOGSTOREPORT:127.0.0.1:$NASA_MOGSTOREPORT $DEVSERVER
-    }
-
-    function setup_tunnels() {
-        nasadbstagingtunnel
-        mogiletunnel
-        mogstoretunnel
-    }
 ;;
 
 esac
