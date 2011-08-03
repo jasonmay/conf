@@ -1,0 +1,32 @@
+alias rt='PERL5LIB=/opt/rt4/lib:$PERL5LIB'
+function rtp() {
+    pkill -f rt4test
+    rm -rf var t/tmp
+    prove --timer -wl $@
+}
+
+function rtpp() {
+    RT_TEST_PARALLEL=1 rtp -j9 $@
+}
+
+
+alias rtversion="rt perl -MRT -le 'print \$RT::VERSION'"
+function mack() {
+    ack -a $@ share/html
+}
+
+function config-rt() {
+    echo 'Set($WebPort, 5000);' >> etc/RT_SiteConfig.pm
+    ./configure.ac --with-db-type=Pg \
+        --with-db-rt-user=myrtuser \
+        --with-db-rt-pass=myrtpass \
+        --with-db-dba=jasonmay \
+        --with-db-database=rt4 \
+        --enable-devel-mode \
+        --with-my-user-group \
+        --enable-layout=inplace
+}
+
+function plackup-rt() {
+    plackup -MCwd -e 'do(Cwd::abs_path."/sbin/rt-server")'
+}
