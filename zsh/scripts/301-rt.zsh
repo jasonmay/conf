@@ -5,12 +5,17 @@ function rtp() {
     prove --timer -wl $@
 }
 
+function rtp_mysql() {
+    export RT_DBA_USER="$RT_DBA_USER_MYSQL"
+    rtp $@
+}
+
 function rtpp() {
     RT_TEST_PARALLEL=1 rtp -j9 $@
 }
 
-
 alias rtversion="rt perl -MRT -le 'print \$RT::VERSION'"
+
 function mack() {
     ack -a $@ share/html
 }
@@ -21,6 +26,18 @@ function config-rt() {
         --with-db-rt-user=myrtuser \
         --with-db-rt-pass=myrtpass \
         --with-db-dba=jasonmay \
+        --with-db-database=rt4 \
+        --enable-devel-mode \
+        --with-my-user-group \
+        --enable-layout=inplace
+}
+
+function config-rt-mysql() {
+    echo 'Set($WebPort, 5000);' >> etc/RT_SiteConfig.pm
+    ./configure.ac --with-db-type=mysql \
+        --with-db-rt-user=myrtuser \
+        --with-db-rt-pass=myrtpass \
+        --with-db-dba=root \
         --with-db-database=rt4 \
         --enable-devel-mode \
         --with-my-user-group \
