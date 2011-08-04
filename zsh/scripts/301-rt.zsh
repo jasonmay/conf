@@ -45,5 +45,7 @@ function config-rt-mysql() {
 }
 
 function plackup-rt() {
+    echo -n "Remvoe ./var? ^C to say no"; read
+    rm -rf var
     plackup -MCwd -e 'do(Cwd::abs_path."/sbin/rt-server")'
 }
