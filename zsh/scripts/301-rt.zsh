@@ -14,6 +14,11 @@ function rtpp() {
     RT_TEST_PARALLEL=1 rtp -j9 $@
 }
 
+function rtpp-mysql() {
+    export RT_DBA_USER="$RT_DBA_USER_MYSQL"
+    rtpp $@
+}
+
 alias rtversion="rt perl -MRT -le 'print \$RT::VERSION'"
 
 function mack() {
