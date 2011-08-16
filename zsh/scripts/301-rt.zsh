@@ -5,7 +5,7 @@ function rtp() {
     prove --timer -wl $@
 }
 
-function rtp_mysql() {
+function rtp-mysql() {
     export RT_DBA_USER="$RT_DBA_USER_MYSQL"
     rtp $@
 }
