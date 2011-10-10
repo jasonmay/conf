@@ -60,6 +60,10 @@ alias working-mx-traits='cpanm -f JROCKWAY/MooseX-Traits-0.09'
 
 alias irc='ssh -t jarsonmar.org sudo dtach -a .irssi.sock'
 
+function vd() {
+    vim $(git st --porcelain | awk '$1 == "M" {print $2}')
+}
+
 function vack() {
     vim $(ack -l -- $*)
 }
