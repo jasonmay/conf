@@ -74,6 +74,8 @@ function config-rt-mysql() {
         --with-db-dba=root \
         --with-db-database=rt4 \
         --enable-devel-mode \
+        --disable-graphviz \
+        --disable-gpg \
         --with-my-user-group \
         --enable-layout=inplace
 }
