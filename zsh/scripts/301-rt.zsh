@@ -46,7 +46,6 @@ function mack() {
 }
 
 function config-rt() {
-    echo 'Set($WebPort, 5000);' >> etc/RT_SiteConfig.pm
     ./configure.ac --with-db-type=Pg \
         --with-db-rt-user=myrtuser \
         --with-db-rt-pass=myrtpass \
@@ -69,7 +68,6 @@ function config-rt3() {
 }
 
 function config-rt-mysql() {
-    echo 'Set($WebPort, 5000);' >> etc/RT_SiteConfig.pm
     ./configure.ac --with-db-type=mysql \
         --with-db-rt-user=myrtuser \
         --with-db-rt-pass=myrtpass \
