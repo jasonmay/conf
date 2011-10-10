@@ -1,19 +1,34 @@
 export PATH="/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
-if [ -d "$HOME/.brew" ]
-then
-    export PATH="$HOME/.brew/Cellar/python/2.7.1/bin:$PATH"
-    export PATH="$HOME/.brew/Cellar/python/2.7/bin:$PATH"
-    export PATH="$HOME/.brew/sbin:$PATH"
-    export PATH="$HOME/.brew/bin:$PATH"
-    export INCLUDES="$HOME/.brew/include"
-fi
+for brewdir in "$HOME/.brew" /usr/local
+do
+    if [ -d "$brewdir/Library/Formula" ]
+    then
+        export PATH="$brewdir/Cellar/python/2.7.1/bin:$PATH"
+        export PATH="$brewdir/Cellar/python/2.7/bin:$PATH"
+        export PATH="$brewdir/sbin:$PATH"
+        export PATH="$brewdir/bin:$PATH"
+        export INCLUDES="$brewdir/include"
+        break
+    fi
+done
 
 if [ -d "$HOME/.github/rakudo" ]
 then
     export PATH="$HOME/.github/rakudo/parrot_install/bin:$PATH"
     export MANPATH="$HOME/.github/rakudo/parrot_install/man:$MANPATH"
+fi
+
+if [ -d "$HOME/repos/git/languages/rakudo" ]
+then
+    export PATH="$HOME/repos/git/languages/rakudo/parrot_install/bin:$PATH"
+    export MANPATH="$HOME/repos/git/languages/rakudo/parrot_install/man:$MANPATH"
+fi
+
+if [ -d "$HOME/android" ]
+then
+    export PATH="$HOME/android/platform-tools:$HOME/android/tools:$PATH"
 fi
 
 [ -d "$HOME/.rvm" ] && \
@@ -25,6 +40,8 @@ fi
 [ -d "$HOME/bin" ] && \
     export PATH="$HOME/bin:$PATH"
 
+[ -d "/usr/local/lib/node" ] && \
+    export NODE_PATH="/usr/local/lib/node"
 
 [ -d "$HOME/.github/rakudo" ] && \
 
