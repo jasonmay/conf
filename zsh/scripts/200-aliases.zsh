@@ -8,7 +8,7 @@ function mem_usage {
 
 function pubkey {
     [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
-    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys" \
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys; chmod -R g-rwx,o-rwx .ssh" \
         < "$HOME/.ssh/id_dsa.pub"
 }
 
