@@ -21,6 +21,26 @@ function rtpp-mysql() {
 
 alias rtversion="rt perl -MRT -le 'print \$RT::VERSION'"
 
+function rebuild-rt-db() {
+    dropdb rt4
+    make initdb
+}
+
+function rebuild-rt3-db() {
+    dropdb rt3
+    make initdb
+}
+
+function rebuild-rt-db-mysql() {
+    mysqladmin drop rt4 -uroot -p
+    make initdb
+}
+
+function rebuild-rt3-db-mysql() {
+    mysqladmin drop rt3 -uroot -p
+    make initdb
+}
+
 function mack() {
     ack -a $@ share/html
 }
@@ -32,6 +52,17 @@ function config-rt() {
         --with-db-rt-pass=myrtpass \
         --with-db-dba=jasonmay \
         --with-db-database=rt4 \
+        --enable-devel-mode \
+        --with-my-user-group \
+        --enable-layout=inplace
+}
+
+function config-rt3() {
+    ./configure.ac --with-db-type=Pg \
+        --with-db-rt-user=myrtuser \
+        --with-db-rt-pass=myrtpass \
+        --with-db-dba=jasonmay \
+        --with-db-database=rt3 \
         --enable-devel-mode \
         --with-my-user-group \
         --enable-layout=inplace
@@ -49,8 +80,16 @@ function config-rt-mysql() {
         --enable-layout=inplace
 }
 
-function plackup-rt() {
-    echo -n "Remvoe ./var? ^C to say no"; read
-    rm -rf var
-    plackup -MCwd -e 'do(Cwd::abs_path."/sbin/rt-server")'
+function config-rt3-mysql() {
+    ./configure.ac --with-db-type=mysql \
+        --with-db-rt-user=myrtuser \
+        --with-db-rt-pass=myrtpass \
+        --with-db-dba=root \
+        --with-db-database=rt3 \
+        --enable-devel-mode \
+        --disable-graphviz \
+        --disable-gpg \
+        --with-my-user-group \
+        --enable-layout=inplace
 }
+
