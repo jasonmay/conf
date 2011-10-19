@@ -40,6 +40,9 @@ fi
 [ -d "$HOME/bin" ] && \
     export PATH="$HOME/bin:$PATH"
 
+[ -d "/usr/local/texlive/2011/bin" ] && \
+    export PATH="/usr/local/texlive/2011/bin/universal-darwin:$PATH"
+
 [ -d "/usr/local/lib/node" ] && \
     export NODE_PATH="/usr/local/lib/node"
 
