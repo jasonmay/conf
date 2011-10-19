@@ -80,12 +80,12 @@ export ANY_MOOSE=Moose
 export PERL_PREFER_CPAN_CLIENT=cpanm
 if [ -d "$HOME/.perl5/minicpan" ]
 then
-    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.perl5/minicpan/ --mirror http://cpan.pair.com --mirror http://search.cpan.org/CPAN"
+    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.perl5/minicpan/ --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
 elif [ -d "$HOME/.minicpan" ]
 then
-    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.minicpan/ --mirror http://cpan.pair.com --mirror http://search.cpan.org/CPAN"
+    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.minicpan/ --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
 else
-    export PERL_CPANM_OPT="--prompt --mirror http://cpan.pair.com --mirror http://search.cpan.org/CPAN"
+    export PERL_CPANM_OPT="--prompt --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
 fi
 
 # rid duplicates
