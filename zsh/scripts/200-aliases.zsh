@@ -89,7 +89,7 @@ function termcast() {
 }
 
 function perldoc {
-    if [ -z "$(which cpandoc 2>/dev/null)" ]; then
+    if which cpandoc >& /dev/null; then
         command perldoc "$@"
     else
         cpandoc "$@"
