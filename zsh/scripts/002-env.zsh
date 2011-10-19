@@ -43,8 +43,6 @@ fi
 [ -d "/usr/local/lib/node" ] && \
     export NODE_PATH="/usr/local/lib/node"
 
-[ -d "$HOME/.github/rakudo" ] && \
-
 export LESS="-r -f"
 export EDITOR=vim
 setopt noglobalrcs
