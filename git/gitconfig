@@ -28,8 +28,10 @@
 [merge]
     tool = vimdiff
 [push]
-    default = current
+    default = tracking
 [receive]
     denyCurrentBranch = ignore
+[branch]
+    autosetuprebase = remote
 [github]
     user = jasonmay
