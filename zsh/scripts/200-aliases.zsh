@@ -95,3 +95,12 @@ function perldoc {
         cpandoc "$@"
     fi
 }
+
+function jj() {
+    # XXX extend on this by auto-detecting merges, staged changes, etc.
+    git jump diff
+}
+
+function viack() {
+    vim -q =(ack -H --no-group "$@")
+}
