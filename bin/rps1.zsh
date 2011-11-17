@@ -7,7 +7,7 @@ BRANCH="$(git symbolic-ref HEAD 2>/dev/null)"
 BRANCH="${BRANCH#refs/heads/}"
 if [ -z "$BRANCH" ]; then BRANCH="%{\e[32m%}$(git rev-parse --short HEAD)%{\e[31m%}"; fi
 BRANCH="<$BRANCH>"
-BRANCH="${BRANCH/<master>/#}"
+BRANCH="${BRANCH/<master>/`uni.pl 22a1`}"
 if [ "x$STATUS" = "x" ]
 then
     echo $BRANCH
