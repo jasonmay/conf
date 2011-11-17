@@ -7,24 +7,36 @@
 [color]
     ui = auto
 [alias]
-    co = checkout
-    d = dcommit
-    st = status
-    up = pull --rebase
+    co      = checkout
+    st      = awesome-status
+    up      = pull --rebase
     unstage = reset HEAD
-    review = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
-    git = !git
+    review  = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
+    axe     = "!f() { git log -S\"$@\" --pretty=oneline --abbrev-commit; }; f"
+    ff      = merge -ff-only
+    git     = !git
+    ccompare = "!f() { git diff $(git merge-base HEAD $1)..HEAD; }; f"
+
+    amend = commit --amend -C HEAD
 
     clong = clone
     dif   = diff
     dfif  = diff
+    idff  = diff
+    difff  = diff
     upsh  = push
     psuh  = push
 
+    r = rebase -i @{u}
+    s = show @{u}..HEAD
+    d = diff --cached
 
     hist = log --all --graph --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
     graph = log --abbrev-commit --graph --decorate --oneline
+    graphagainst = "!f() { git log --abbrev-commit --graph --decorate --oneline $(git merge-base -a $1 HEAD)..HEAD; }; f"
     graphall = log --abbrev-commit --graph --all --decorate --oneline
+    unpicktests = "!f() { git revert -n HEAD; git reset HEAD .; git checkout HEAD t/; }; f"
+
 [merge]
     tool = vimdiff
 [push]
