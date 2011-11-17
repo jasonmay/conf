@@ -2,8 +2,8 @@
     name = Jason May
     email = jason.a.may@gmail.com
 [core]
-	editor = vim
     excludesfile = ~/.gitignore
+    editor = vim -c ':normal gg'
 [color]
     ui = auto
 [alias]
