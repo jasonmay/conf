@@ -1,0 +1,50 @@
+{
+   "openid" : "http://jarsonmar.org",
+   "country" : "US",
+   "city" : "Annville",
+   "region" : "PA",
+   "profile" : [
+      {
+         "id" : "jasonmay",
+         "name" : "slideshare"
+      },
+      {
+         "id" : "jasonmay",
+         "name" : "github"
+      },
+      {
+         "id" : "jasonmay",
+         "name" : "linkedin"
+      },
+      {
+         "id" : "jarsonmar",
+         "name" : "facebook"
+      },
+      {
+         "id" : "jasonmay",
+         "name" : "twitter"
+      }
+   ],
+   "website" : [
+      "http://jarsonmar.org"
+   ],
+   "donation" : [
+      {
+         "name" : "paypal",
+         "id" : "jason.a.may@gmail.com"
+      }
+   ],
+   "blog" : [
+      {
+         "feed" : "http://jarsonmar.blogspot.com/feeds/posts/default",
+         "url": "http://jarsonmar.blogspot.com"
+      },
+   ],
+   "email" : [
+      "jason.a.may@gmail.com",
+   ],
+   "perlmongers" : {
+      "name" : "Harrisburg.pm",
+      "url" : "http://harrisburg.pm.org/"
+   }
+}
