@@ -1,0 +1,45 @@
+use lib 'lib';
+require RT;
+
+RT::LoadConfig();
+RT::Init();
+
+require RT::Ticket;
+require RT::User;
+require RT::Group;
+require RT::Principal;
+require RT::Link;
+
+require RT::Attribute;
+
+use Scalar::Util 'blessed';
+use Carp 'confess';
+
+my @plugins = (
+    'ReadLineHistory',            # history saved across sessions
+    'Colors',                     # colorize return value and errors
+    'FancyPrompt',                # provide an irb-like prompt
+    'Refresh',                    # refresh before every eval
+    'Interrupt',                  # improve handling of ^C
+    'OutputCache',                # access previous results
+    'Nopaste',                    # paste session with #nopaste
+    'PPI',                        # PPI dumping of Perl code
+    'MultiLine::PPI',             # allow multiple lines
+
+    'Completion',
+    'CompletionDriver::Keywords', # substr, while, etc
+    'CompletionDriver::LexEnv',   # current environment
+    'CompletionDriver::Globals',  # global variables
+    'CompletionDriver::INC',      # loading new modules
+    'CompletionDriver::Methods',  # class method completion
+    'CompletionDriver::Turtles',  # turtle command completion
+);
+
+$_REPL->load_plugin($_) for @plugins;
+$_REPL->fancy_prompt(sub { "\e[m\n> " } );
+
+sub rtticket    { RT::Ticket->new($RT::SystemUser)    }
+sub rtuser      { RT::User->new($RT::SystemUser)      }
+sub rtgroup     { RT::Group->new($RT::SystemUser)     }
+sub rtprincipal { RT::Principal->new($RT::SystemUser) }
+sub rtlink      { RT::Link->new($RT::SystemUser)      }
