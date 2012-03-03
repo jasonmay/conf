@@ -40,6 +40,7 @@
 
 [merge]
     tool = vimdiff
+	stat = true
 [push]
     default = tracking
 [receive]
