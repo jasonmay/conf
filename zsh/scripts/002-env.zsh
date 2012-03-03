@@ -1,6 +1,11 @@
 export PATH="/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
+if [ -d "/usr/lib/gettext" ]
+then
+    export PATH="/usr/lib/gettext:$PATH"
+fi
+
 for brewdir in "$HOME/.brew" /usr/local
 do
     if [ -d "$brewdir/Library/Formula" ]
@@ -42,6 +47,9 @@ fi
 
 [ -d "/usr/local/texlive/2011/bin" ] && \
     export PATH="/usr/local/texlive/2011/bin/universal-darwin:$PATH"
+
+[ -d "/opt/rt4/bin" ] && \
+    export PATH="/opt/rt4/bin:$PATH"
 
 [ -d "/usr/local/lib/node" ] && \
     export NODE_PATH="/usr/local/lib/node"
