@@ -104,3 +104,9 @@ function jj() {
 function viack() {
     vim -q =(ack -H --no-group "$@")
 }
+
+function plackapp() {
+    APP_PACKAGE="$1"; shift
+
+    plackup -M"$APP_PACKAGE" -e "${APP_PACKAGE}->new->to_app" $@
+}
