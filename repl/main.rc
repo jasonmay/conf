@@ -32,7 +32,6 @@ my @plugins = (
     'Nopaste',                    # paste session with #nopaste
     'PPI',                        # PPI dumping of Perl code
     'MultiLine::PPI',             # allow multiple lines
-    #'LoadClass',                  # automatically load unloaded classes
 
     'Completion',
     'CompletionDriver::Keywords', # substr, while, etc
@@ -45,12 +44,6 @@ my @plugins = (
 
 $_REPL->load_plugin($_) for @plugins;
 $_REPL->fancy_prompt(sub { "\e[m\n> " } );
-$_REPL->fancy_prompt(sub {
-    my $self = shift;
-    "\ca" . color('blue')  . "\cb" . $self->current_package
-  . "\ca" . color('green') . "\cb" . '(0)'
-  . "\ca" . color('reset') . "\cb" . '> '
-} );
 $_REPL->fancy_continuation_prompt(sub {
     my $self = shift;
     "\ca" . color('blue')   . "\cb" . $self->current_package

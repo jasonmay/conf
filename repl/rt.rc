@@ -9,6 +9,8 @@ require RT::User;
 require RT::Group;
 require RT::Principal;
 require RT::Link;
+require RT::Class;
+require RT::Article;
 
 require RT::Attribute;
 
@@ -43,3 +45,6 @@ sub rtuser      { RT::User->new($RT::SystemUser)      }
 sub rtgroup     { RT::Group->new($RT::SystemUser)     }
 sub rtprincipal { RT::Principal->new($RT::SystemUser) }
 sub rtlink      { RT::Link->new($RT::SystemUser)      }
+sub rtclass      { RT::Class->new($RT::SystemUser)      }
+sub rtarticle      { RT::Article->new($RT::SystemUser)      }
+sub rtattribute      { RT::Attribute->new($RT::SystemUser)      }
