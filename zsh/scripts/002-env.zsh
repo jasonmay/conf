@@ -96,5 +96,7 @@ else
     export PERL_CPANM_OPT="--prompt --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
 fi
 
+export ACK_OPTIONS=--pager='less -R'
+
 # rid duplicates
 typeset -U manpath path cdpath fpath
