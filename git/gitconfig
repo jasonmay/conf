@@ -36,6 +36,7 @@
     graphagainst = "!f() { git log --abbrev-commit --graph --decorate --oneline $(git merge-base -a $1 HEAD)..HEAD; }; f"
     graphall = log --abbrev-commit --graph --all --decorate --oneline
     unpicktests = "!f() { git revert -n HEAD; git reset HEAD .; git checkout HEAD t/; }; f"
+    commits = "!f() { git log --oneline | wc -l; }; f"
 
 [merge]
     tool = vimdiff
