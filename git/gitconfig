@@ -47,3 +47,6 @@
     autosetuprebase = remote
 [github]
     user = jasonmay
+[rebase]
+	autosquash = true
+	stat = true
