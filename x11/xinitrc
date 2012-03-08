@@ -1,8 +1,8 @@
 # terminals
-urxvt&
-urxvt&
-urxvt&
-urxvt&
+# urxvt&
+# urxvt&
+# urxvt&
+# urxvt&
 
 #screesaver stuff
 xscreensaver -no-splash &
