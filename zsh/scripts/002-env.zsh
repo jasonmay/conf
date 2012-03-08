@@ -25,10 +25,10 @@ then
     export MANPATH="$HOME/.github/rakudo/parrot_install/man:$MANPATH"
 fi
 
-if [ -d "$HOME/repos/git/languages/rakudo" ]
+if [ -d "$HOME/repos/git/rakudo" ]
 then
-    export PATH="$HOME/repos/git/languages/rakudo/parrot_install/bin:$PATH"
-    export MANPATH="$HOME/repos/git/languages/rakudo/parrot_install/man:$MANPATH"
+    export PATH="$HOME/repos/git/rakudo/install/bin:$PATH"
+    export MANPATH="$HOME/repos/git/rakudo/install/man:$MANPATH"
 fi
 
 if [ -d "$HOME/android" ]
