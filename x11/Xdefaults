@@ -20,8 +20,8 @@ URxvt.urlLauncher:firefox
 URxvt*14755_52:false
 URxvt.urgentOnBell: true
 
-urxvt_big*font:xft:monaco:bold:antialias=true:size=12
-urxvt_big*boldFont:xft:monaco:bold:antialias=true:size=12
+urxvt_big*font:xft:DejaVu Sans Mono:bold:antialias=true:size=12
+urxvt_big*boldFont:xft:DejaVu Sans Mono:bold:antialias=true:size=12
 urxvt_big*geometry: 92x27
 
 URxvt*color0: #000000
