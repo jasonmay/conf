@@ -22,7 +22,7 @@ URxvt.urgentOnBell: true
 
 urxvt_big*font:xft:DejaVu Sans Mono:bold:antialias=true:size=12
 urxvt_big*boldFont:xft:DejaVu Sans Mono:bold:antialias=true:size=12
-urxvt_big*geometry: 92x27
+#urxvt_big*geometry: 92x27
 
 URxvt*color0: #000000
 URxvt*color1: #ca311c

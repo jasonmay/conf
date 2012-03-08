@@ -77,8 +77,8 @@ myManageHook = composeAll
     , className =? "Meld"        --> doFloat
     , className =? "Xmessage"    --> doFloat
     , resource  =? "urxvt_float" --> doFloat
-    , resource  =? "urxvt_big" --> doFloat
-    , className =? "Chromium"    --> doShift "2:browser"
+    --, resource  =? "urxvt_big" --> doFloat
+    , className =? "Firefox"    --> doShift "2:browser"
     , className =? "rdesktop"    --> doShift "7"
     , manageDocks
     ]
