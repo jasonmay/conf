@@ -28,9 +28,9 @@ main = do
                  manageHook         = myManageHook <+> manageHook defaultConfig
              } `additionalKeysP` [
                 ("C-M1-n", spawn "urxvtc")
-                ,("C-M1-b", runOrRaise "chromium" (className =? "Chromium"))
-                ,("C-M1-e", spawn "urxvt -name urxvt_float")
-                ,("C-M1-v", spawn "urxvt -name urxvt_big")
+                ,("C-M1-b", runOrRaise "firefox" (className =? "Firefox"))
+                ,("C-M1-e", spawn "urxvtc -name urxvt_float")
+                ,("C-M1-v", spawn "urxvtc -name urxvt_big")
 
                 ,("C-M1-o",     spawn "xscreensaver-command -lock")
                 ,("M1-<Space>", spawn "gmrun")
