@@ -47,6 +47,7 @@ clean :
 
 ~/bin/% : bin/%
 	@echo installing $@...
+	@mkdir -p ~/bin
 	$(LN) $(PWD)/$< $@
 
 ~/.vimrc : vimrc
