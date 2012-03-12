@@ -6,9 +6,11 @@ BINTARGETS = $(patsubst %,~/%, $(BINSCRIPTS))
 
 DOTITEMS = \
 ~/.zshrc \
+~/.zscripts \
 ~/.re.pl/repl.rc \
 ~/.lesskey \
 ~/.gitignore \
+~/.vim \
 ~/.vimrc
 
 install : $(BINTARGETS) $(DOTITEMS) ~/.vim
@@ -25,10 +27,14 @@ clean :
 	@echo installing .zshrc...
 	$(LN) $(PWD)/zsh/zshrc ~/.zshrc
 
-~/.re.pl/repl.rc : repl.rc
+~/.zscripts : zsh/scripts
+	@echo installing .zscripts...
+	$(LN) $(PWD)/zsh/scripts ~/.zscripts
+
+~/.re.pl/repl.rc : repl/main.rc
 	@echo instaling repl.rc...
 	@mkdir -p ~/.re.pl
-	$(LN) $(PWD)/repl.rc ~/.re.pl/repl.rc
+	$(LN) $(PWD)/repl/main.rc ~/.re.pl/repl.rc
 
 ~/.lesskey : lesskey
 	@echo installing .lesskey...
@@ -49,7 +55,7 @@ clean :
 
 ~/.vim :
 	@echo installing .vim...
-	@mkdir -p ~/.vim/{bundle,autoload}
+	@mkdir -p ~/.vim/bundle ~/.vim/autoload
 	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' --no-check-certificate -O ~/.vim/autoload/pathogen.vim
 	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
 	@git clone git://git.wincent.com/command-t.git ~/.vim/bundle/command-t
