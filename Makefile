@@ -64,6 +64,26 @@ clean :
 	@echo installing .vimrc...
 	$(LN) $(PWD)/vimrc ~/.vimrc
 
+~/.xmonad : x11/xmonad
+	@echo installing .xmonad...
+	$(LN) $(PWD)/x11/xmonad ~/.xmonad
+
+~/.xinitrc : x11/xinitrc
+	@echo installing .xinitrc...
+	$(LN) $(PWD)/x11/xinitrc ~/.xinitrc
+
+~/.Xdefaults : x11/Xdefaults
+	@echo installing .Xdefaults...
+	$(LN) $(PWD)/x11/Xdefaults ~/.Xdefaults
+
+~/.Xmodmap : x11/Xmodmap
+	@echo installing .Xmodmap...
+	$(LN) $(PWD)/x11/Xmodmap ~/.Xmodmap
+
+~/.xmobarrc : x11/xmobarrc
+	@echo installing .xmobarrc...
+	$(LN) $(PWD)/x11/xmobarrc ~/.xmobarrc
+
 ~/.vim :
 	@echo installing .vim...
 	@mkdir -p ~/.vim/bundle ~/.vim/autoload
