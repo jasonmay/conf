@@ -3,6 +3,7 @@
 # urxvt&
 # urxvt&
 # urxvt&
+urxvtd -q -o -f
 
 #screesaver stuff
 xscreensaver -no-splash &
