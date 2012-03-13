@@ -5,11 +5,17 @@ BINSCRIPTS= $(wildcard bin/*)
 BINTARGETS = $(patsubst %,~/%, $(BINSCRIPTS))
 
 DOTITEMS = \
+~/.xmonad \
+~/.xinitrc \
+~/.Xdefaults \
+~/.Xmodmap \
+~/.xmobarrc \
 ~/.zshrc \
 ~/.zscripts \
 ~/.re.pl/repl.rc \
 ~/.lesskey \
 ~/.gitignore \
+~/.gitconfig \
 ~/.vim \
 ~/.vimrc
 
@@ -44,6 +50,10 @@ clean :
 ~/.gitignore : git/gitignore
 	@echo installing .gitignore...
 	$(LN) $(PWD)/git/gitignore ~/.gitignore
+
+~/.gitconfig : git/gitconfig
+	@echo installing .gitconfig...
+	$(LN) $(PWD)/git/gitconfig ~/.gitconfig
 
 ~/bin/% : bin/%
 	@echo installing $@...
