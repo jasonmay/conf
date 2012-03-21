@@ -38,6 +38,9 @@
     unpicktests = "!f() { git revert -n HEAD; git reset HEAD .; git checkout HEAD t/; }; f"
     commits = "!f() { git log --oneline | wc -l; }; f"
 
+    amend = commit --amend -C HEAD
+    reword = commit --amend
+
 [merge]
     tool = vimdiff
 	stat = true
