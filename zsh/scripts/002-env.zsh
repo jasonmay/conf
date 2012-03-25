@@ -98,5 +98,7 @@ fi
 
 export ACK_OPTIONS=--pager='less -R'
 
+export LC_CTYPE="utf-8"
+
 # rid duplicates
 typeset -U manpath path cdpath fpath
