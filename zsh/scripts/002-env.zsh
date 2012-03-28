@@ -1,5 +1,5 @@
 export PATH="/usr/local/bin:$PATH"
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
 
 if [ -d "/usr/lib/gettext" ]
 then
