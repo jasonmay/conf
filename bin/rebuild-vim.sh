@@ -1,12 +1,10 @@
 #!/bin/bash
-cd ~/repos/mercurial/vim
-
-make distclean
-hg pull
-hg update -C
+make distclean || exit 1
+hg pull || exit 1
+hg update -C || exit 1
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-rvm system
+rvm use system
 
 ./configure --without-x --disable-gui --disable-xim --disable-darwin --enable-perlinterp --enable-rubyinterp --enable-multibyte
 make
