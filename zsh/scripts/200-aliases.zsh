@@ -23,6 +23,12 @@ alias ts='tmux new -s'
 
 alias tto='telnet termcast.org'
 
+if check_exec gls
+then
+    alias ls='gls --color=auto'
+else
+    alias ls='ls --color=auto'
+fi
 alias sl='ls'
 alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
@@ -31,6 +37,7 @@ alias -- '-'='popd'
 
 alias deps='cpanm --installdeps -n'
 
+alias culex='ssh 192.168.1.42'
 alias irc='ssh -t jarsonmar.org dtach -a .irssi.sock'
 
 function vd() {
@@ -75,3 +82,4 @@ function plackapp() {
 
     plackup -M"$APP_PACKAGE" -e "${APP_PACKAGE}->new->to_app" $@
 }
+

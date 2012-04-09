@@ -1,5 +1,5 @@
-case $MY_HOSTNAME in
-    culex)
+if check_exec pacman
+then
     alias ls='ls --color=auto'
     alias less='less -R'
 
@@ -8,6 +8,4 @@ case $MY_HOSTNAME in
         [ -z "$1" ] || sudo pacman -Ss $1
     }
     alias ar='sudo /etc/rc.d/httpd restart'
-    ;;
-
-esac
+fi
