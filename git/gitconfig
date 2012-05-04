@@ -8,7 +8,7 @@
     ui = auto
 [alias]
     co      = checkout
-    st      = awesome-status
+    st      = status
     up      = pull --rebase
     unstage = reset HEAD
     review  = "!f() { for rev in $(git rev-list --reverse \"$@\"); do git show $rev; done; }; f"
