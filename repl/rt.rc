@@ -21,7 +21,7 @@ my @plugins = (
     'ReadLineHistory',            # history saved across sessions
     'Colors',                     # colorize return value and errors
     'FancyPrompt',                # provide an irb-like prompt
-    'Refresh',                    # refresh before every eval
+    'ClassRefresh',                    # refresh before every eval
     'Interrupt',                  # improve handling of ^C
     'OutputCache',                # access previous results
     'Nopaste',                    # paste session with #nopaste
@@ -48,3 +48,5 @@ sub rtlink      { RT::Link->new($RT::SystemUser)      }
 sub rtclass      { RT::Class->new($RT::SystemUser)      }
 sub rtarticle      { RT::Article->new($RT::SystemUser)      }
 sub rtattribute      { RT::Attribute->new($RT::SystemUser)      }
+
+use v5.14;
