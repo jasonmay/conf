@@ -32,6 +32,7 @@ fi
 alias sl='ls'
 alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
+for rails_typo in ralis rials; do alias "$rails_typo"='rails'; done
 
 alias -- '-'='popd'
 
