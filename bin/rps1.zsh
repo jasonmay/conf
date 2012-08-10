@@ -2,7 +2,7 @@
 
 BRANCH="$(git symbolic-ref HEAD 2>/dev/null)"
 BRANCH="${BRANCH#refs/heads/}"
-[[ "$BRANCH" == "master" ]] && BRANCH="%{$(uni.pl 22a1)%G%}";
+#[[ "$BRANCH" == "master" ]] && BRANCH="%{$(uni.pl 22a1)%G%}";
 if [ -z "$BRANCH" ]
 then
     BRANCH="$(git tag --contains HEAD 2>/dev/null | ( while read i; do echo $(git show $i~ --format='%at'| head -n1 | awk '{print $1}') $i 2>/dev/null; done ) | sort -n | awk '{print $2}' | head -n1)"
