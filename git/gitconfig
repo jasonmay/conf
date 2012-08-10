@@ -30,9 +30,11 @@
     r = rebase -i @{u}
     s = status --short
     d = diff --cached
+    f = flow feature
 
     hist = log --all --graph --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
-    graph = log --abbrev-commit --graph --decorate --oneline
+    graph = log --oneline --abbrev-commit --graph --decorate --date=relative
+    timelog = log --oneline  --pretty=format:'%C(yellow)[%ci]%Creset %C(magenta)%h%C(reset) %C(red)%an:%C(reset) %s'
     graphagainst = "!f() { git log --abbrev-commit --graph --decorate --oneline $(git merge-base -a $1 HEAD)..HEAD; }; f"
     graphall = log --abbrev-commit --graph --all --decorate --oneline
     unpicktests = "!f() { git revert -n HEAD; git reset HEAD .; git checkout HEAD t/; }; f"
@@ -55,3 +57,5 @@
 [rebase]
 	autosquash = true
 	stat = true
+[rerere]
+	enabled = 1
