@@ -1,5 +1,6 @@
 TMUX_SESSIONS="
 $WORK_SESSIONS
+vimrc .vim/bundle/jasonmay
 "
 
 (
