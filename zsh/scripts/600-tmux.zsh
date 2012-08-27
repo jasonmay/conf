@@ -4,7 +4,7 @@ $WORK_SESSIONS
 
 (
     which tmux >/dev/null 2>&1 || exit
-    tmux list-sessions 2>&1 | grep -q tss && exit
+    [ -z $TMUX ] || exit
 
     tmux_session() {
         session=$1
