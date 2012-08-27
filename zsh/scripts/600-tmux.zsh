@@ -24,5 +24,5 @@ $WORK_SESSIONS
         tmux_session $session $spath
     done
     tmux kill-session -t foo # kill throwaway session
-    tmux set-option -g default-path "$HOME"
+    tmux set-option -g default-path "$HOME" > /dev/null
 )
