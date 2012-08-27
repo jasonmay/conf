@@ -30,7 +30,11 @@
     r = rebase -i @{u}
     s = status --short
     d = diff --cached
+
     f = flow feature
+    fo = flow feature checkout
+    fs = flow feature start
+    ff = flow feature finish
 
     hist = log --all --graph --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
     graph = log --oneline --abbrev-commit --graph --decorate --date=relative
