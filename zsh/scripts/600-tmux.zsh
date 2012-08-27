@@ -10,10 +10,11 @@ $WORK_SESSIONS
         session=$1
         spath=$2
 
-        tmux set-option -g -s default-path "$HOME/${spath}"
-        tmux new-session -s ${session} -d
+        tmux list-sessions 2>&1 | grep -q $session && return
+        tmux set-option -g default-path "$HOME/${spath}"
+        tmux new-session ${session} -d
         tmux send-keys -t ${session} "cd $HOME/${spath};clear" "ENTER"
-        tmux set-option -s -t ${session} default-path "$HOME/${spath}"
+        tmux set-option -t ${session} default-path "$HOME/${spath}"
     }
 
     tmux new-session -s foo -d # prevent 'connection refused' error
