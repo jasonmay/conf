@@ -62,10 +62,10 @@ function termcast() {
 }
 
 function perldoc {
-    if which cpandoc >& /dev/null; then
-        command perldoc "$@"
-    else
+    if which cpandoc > /dev/null 2>&1; then
         cpandoc "$@"
+    else
+        command perldoc "$@"
     fi
 }
 
