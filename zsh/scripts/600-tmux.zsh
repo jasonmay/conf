@@ -13,7 +13,7 @@ vimrc .vim/bundle/jasonmay
 
         tmux list-sessions 2>&1 | grep -q $session && return
         tmux set-option -g default-path "$HOME/${spath}"
-        tmux new-session ${session} -d
+        tmux new-session -s ${session} -d
         tmux send-keys -t ${session} "cd $HOME/${spath};clear" "ENTER"
         tmux set-option -t ${session} default-path "$HOME/${spath}"
     }
