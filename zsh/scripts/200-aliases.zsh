@@ -70,7 +70,7 @@ function perldoc {
 }
 
 function jj() {
-    # XXX extend on this by auto-detecting merges, staged changes, etc.
+    git jump merge
     git jump diff
 }
 
