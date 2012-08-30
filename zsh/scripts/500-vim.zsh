@@ -12,7 +12,11 @@ function vim {
                 print -s "vim $line"
             fi
         done < $zsh_hist_fname
+
         fc -AI
         rm -f $zsh_hist_fname
+
+        # remove all the 'v' entries in the history
+        fc -R =(history | awk '{if ($2 != "v") { gsub("^[0-9 ]*", ""); print $0 } }')
     fi
 }
