@@ -6,7 +6,6 @@ use DateTime;
 use List::Util qw(first max maxstr min minstr reduce shuffle sum);
 use List::MoreUtils ':all';
 use Scalar::Util qw(blessed weaken isweak tainted);
-use Scalar::Defer qw(lazy defer force);
 use File::Slurp qw(slurp);
 use String::Util ':all';
 use Term::ANSIColor;
