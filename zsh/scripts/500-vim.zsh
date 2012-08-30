@@ -8,7 +8,9 @@ function vim {
                 line=${line/\'/\'\\\\\'\'}
                 line="'$line'"
             fi
-            print -s "vim $line"
+            if [[ $line != "GoToFile" ]]; then
+                print -s "vim $line"
+            fi
         done < $zsh_hist_fname
         fc -AI
         rm -f $zsh_hist_fname
