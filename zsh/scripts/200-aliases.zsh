@@ -15,6 +15,8 @@ alias netstat_useful="netstat -a --inet --numeric-port"
 alias grep='grep --color=auto'
 alias pmmi='perl Makefile.PL && mmi'
 
+alias l="$EDITOR $HOME/.main.list"
+
 alias d=cd
 alias lsc=ls
 
