@@ -8,6 +8,7 @@
     ui = auto
 [alias]
     co      = checkout
+    ch      = checkout HEAD
     st      = status
     up      = pull --rebase
     git     = !git
