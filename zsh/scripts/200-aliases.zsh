@@ -43,6 +43,8 @@ alias deps='cpanm --installdeps -n'
 alias culex='ssh 192.168.1.42'
 alias irc='ssh -t jarsonmar.org dtach -a .irssi.sock'
 
+alias develop='git checkout develop'
+
 function vd() {
     vim $(git st --porcelain | awk '$1 == "M" {print $2}')
 }
