@@ -3,7 +3,7 @@ $WORK_SESSIONS
 vimrc .vim/bundle/jasonmay
 "
 
-(
+function create_tmux_sessions() {
     which tmux >/dev/null 2>&1 || exit
     [ -z $TMUX ] || exit
 
@@ -26,4 +26,6 @@ vimrc .vim/bundle/jasonmay
     done
     tmux kill-session -t foo # kill throwaway session
     tmux set-option -g default-path "$HOME" > /dev/null
-)
+}
+
+create_tmux_sessions
