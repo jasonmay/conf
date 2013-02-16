@@ -4,8 +4,8 @@ vimrc .vim/bundle/jasonmay
 "
 
 function create_tmux_sessions() {
-    which tmux >/dev/null 2>&1 || exit
-    [ -z $TMUX ] || exit
+    which tmux >/dev/null 2>&1 || return
+    [ -z $TMUX ] || return
 
     tmux_session() {
         session=$1
