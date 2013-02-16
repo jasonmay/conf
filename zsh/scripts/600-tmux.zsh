@@ -26,7 +26,7 @@ function create_tmux_sessions() {
         tmux_session $session $spath
     done
     tmux kill-session -t foo # kill throwaway session
-    tmux set-option -g default-path "$HOME" > /dev/null
+    tmux set-option -g default-path "." > /dev/null
 }
 
 create_tmux_sessions
