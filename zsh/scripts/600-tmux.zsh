@@ -12,10 +12,11 @@ function create_tmux_sessions() {
         spath=$2
 
         tmux list-sessions 2>&1 | grep -q $session && return
-        tmux set-option -g default-path "$HOME/${spath}"
+        tmux set-option -g default-path "$HOME/${spath}" > /dev/null
         tmux new-session -s ${session} -d
         tmux send-keys -t ${session} "cd $HOME/${spath};clear" "ENTER"
-        tmux set-option -t ${session} default-path "$HOME/${spath}"
+        tmux set-option -t ${session} default-path "$HOME/${spath}" > /dev/null
+        echo -e "\e[1;35m[tmux]\e[m Created session: \e[1;37m$session\e[m"
     }
 
     tmux new-session -s foo -d # prevent 'connection refused' error
