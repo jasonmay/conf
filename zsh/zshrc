@@ -1,2 +1,12 @@
+if [ -d "$HOME/.oh-my-zsh" ]
+then
+    ZSH=$HOME/.oh-my-zsh
+    ZSH_THEME="robbyrussell"
+    plugins=(git github git-flow)
+    source $ZSH/oh-my-zsh.sh
+fi
+
 [ -d ~/.zscripts ] &&  find ~/.zscripts/ \( -type f -o -type l \) -name '*.zsh' | sort | \
     while read z; do source "$z"; done
+
+unsetopt correct_all
