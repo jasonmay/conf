@@ -67,7 +67,7 @@ export MY_HOSTNAME=`hostname -s`
 export OOO_FORCE_DESKTOP=gnome
 
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
-[ -d "$PERLBREW_ROOT" ] || export PERLBREW_ROOT=$HOME/.perlbrew
+[ -d "$PERLBREW_ROOT" ] || export PERLBREW_ROOT=$HOME/perl5/perlbrew
 test -e $PERLBREW_ROOT/etc/bashrc && source $PERLBREW_ROOT/etc/bashrc
 
 export MY_HOSTNAME=`hostname`
