@@ -57,10 +57,8 @@ filetype plugin indent on
 
 if &term == "xterm-256color"
     set background=dark
-    let g:solarized_termcolors=256
-    colorscheme solarized
-else
-    set background=light
+    set bg=dark
+    colorscheme sumi
 end
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
