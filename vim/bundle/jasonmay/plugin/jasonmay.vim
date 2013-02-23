@@ -55,11 +55,9 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype plugin indent on
 
-if &term == "xterm-256color"
-    set background=dark
-    set bg=dark
-    colorscheme sumi
-end
+let &term="xterm-256color"
+set bg=dark
+colorscheme sumi
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
