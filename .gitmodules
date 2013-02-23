@@ -1,0 +1,18 @@
+[submodule "vim/bundle/snipmate-snippets"]
+	path = vim/bundle/snipmate-snippets
+	url = https://github.com/honza/snipmate-snippets
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "vim/bundle/listfile"]
+	path = vim/bundle/listfile
+	url = git://github.com/lucasoman/vim-listfile
+[submodule "vim/bundle/scala"]
+	path = vim/bundle/scala
+	url = git://github.com/derekwyatt/vim-scala
+[submodule "vim/bundle/sumi"]
+	path = vim/bundle/sumi
+	url = git://github.com/sartak/sumi
+[submodule "vim/bundle/snipmate.vim"]
+	path = vim/bundle/snipmate.vim
+	url = git://github.com/jasonmay/snipmate.vim
