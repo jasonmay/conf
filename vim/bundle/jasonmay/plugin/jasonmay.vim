@@ -139,6 +139,10 @@ nmap <C-p> :silent cprev<CR>
 
 imap <C-l> <space>=><space>
 
+nmap      <Leader>,t :!for s in $(seq 1 15); do echo; done;sbt test<cr>
+nmap      <Leader>,r :!for s in $(seq 1 15); do echo; done;sbt run<cr>
+nmap      <Leader>,c :!for s in $(seq 1 15); do echo; done;sbt compile<cr>
+
 iabbrev reponse    response
 iabbrev shfit      shift
 iabbrev sfhit      shift
