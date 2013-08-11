@@ -50,11 +50,6 @@ let perl_include_pod=1
 let perl_string_as_statement=1
 let perl_sync_dist=1000
 
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype plugin indent on
-
 let &term="xterm-256color"
 set bg=dark
 colorscheme sumi
