@@ -42,7 +42,7 @@ alias deps='cpanm --installdeps -n'
 
 alias culex='ssh 192.168.1.42'
 
-alias irc='ssh -t linode.jarsonmar.org dtach -A .irssi.sock irssi'
+alias irc='ssh -t jasonmay@n.jmay.me dtach -A .irssi.sock irssi'
 
 alias develop='git checkout develop'
 
