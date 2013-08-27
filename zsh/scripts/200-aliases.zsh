@@ -85,8 +85,8 @@ function jj() {
     git jump diff
 }
 
-function viack() {
-    vim -q =(ack -H --no-group "$@")
+function viag() {
+    vim -q =(ag --nogroup "$@")
 }
 
 function plackapp() {
