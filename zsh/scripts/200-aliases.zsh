@@ -48,6 +48,10 @@ alias develop='git checkout develop'
 
 alias ttt='tmux attach -t'
 
+function v() {
+    vim -c 'normal \t'
+}
+
 function vd() {
     vim $(git st --porcelain | awk '$1 == "M" {print $2}')
 }
