@@ -48,6 +48,8 @@ alias develop='git checkout develop'
 
 alias ttt='tmux attach -t'
 
+alias ag='ag --pager="less -RSFX"'
+
 function v() {
     vim -c 'normal \t'
 }
