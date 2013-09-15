@@ -5,3 +5,5 @@ x11/xmonad/xmonad.hi
 x11/xmonad/xmonad.o
 supervise
 zsh/scripts/*-secret.zsh
+/vim/hist*
+/vim/.netrwhist
