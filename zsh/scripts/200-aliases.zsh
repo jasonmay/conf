@@ -20,10 +20,13 @@ alias listfile="$EDITOR $HOME/.main.list"
 alias d=cd
 alias lsc=ls
 
+alias b='bundle exec'
+
 alias ta='tmux attach -dt'
 alias ts='tmux new -s'
 
 alias tto='telnet termcast.org'
+alias nao='telnet nethack.alt.org'
 
 if check_exec gls
 then
