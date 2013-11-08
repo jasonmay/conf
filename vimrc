@@ -7,3 +7,4 @@ filetype plugin indent on
 
 set bg=dark
 set background=dark
+set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip
