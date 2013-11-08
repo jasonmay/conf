@@ -5,6 +5,7 @@ call pathogen#incubate()
 call pathogen#helptags()
 filetype plugin indent on
 
+colorscheme sumi
 set bg=dark
 set background=dark
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip
