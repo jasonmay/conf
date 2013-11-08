@@ -9,3 +9,5 @@ colorscheme sumi
 set bg=dark
 set background=dark
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip
+
+hi link coffeeSpaceError NONE
