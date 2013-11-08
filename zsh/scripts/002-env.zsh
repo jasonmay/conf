@@ -54,6 +54,9 @@ fi
 [ -d "/usr/local/lib/node" ] && \
     export NODE_PATH="/usr/local/lib/node"
 
+[ -d "$HOME/.local/gradle" ] && \
+    export PATH="$HOME/.local/gradle/bin:$PATH"
+
 export LESS="-r -f"
 export EDITOR=vim
 setopt noglobalrcs
