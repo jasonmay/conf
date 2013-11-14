@@ -74,6 +74,7 @@ autocmd BufNewFile,BufRead *.md      set ft=markdown
 autocmd BufNewFile,BufRead initialdata set ft=perl
 
 autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
+autocmd FileType javascript,perl set ts=4 sw=4 sts=4
 
 autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType           perl setlocal errorformat=%f:%l:%m
