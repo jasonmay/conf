@@ -69,10 +69,6 @@ check_exec lesspipe.sh && eval `lesspipe.sh`
 export MY_HOSTNAME=`hostname -s`
 export OOO_FORCE_DESKTOP=gnome
 
-export PERLBREW_ROOT=$HOME/.perl5/perlbrew
-[ -d "$PERLBREW_ROOT" ] || export PERLBREW_ROOT=$HOME/perl5/perlbrew
-test -e $PERLBREW_ROOT/etc/bashrc && source $PERLBREW_ROOT/etc/bashrc
-
 export MY_HOSTNAME=`hostname`
 
 export HISTSIZE=100000
@@ -89,15 +85,6 @@ export DBIC_TRACE_PROFILE=console
 export ANY_MOOSE=Moose
 
 export PERL_PREFER_CPAN_CLIENT=cpanm
-if [ -d "$HOME/.perl5/minicpan" ]
-then
-    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.perl5/minicpan/ --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
-elif [ -d "$HOME/.minicpan" ]
-then
-    export PERL_CPANM_OPT="--prompt --mirror file://$HOME/.minicpan/ --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
-else
-    export PERL_CPANM_OPT="--prompt --mirror http://cpan.pair.com --mirror http://cpan.metacpan.org"
-fi
 
 export ACK_OPTIONS=--pager='less -R'
 
