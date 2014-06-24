@@ -12,10 +12,7 @@ function create_tmux_sessions() {
         spath=$2
 
         tmux list-sessions 2>&1 | grep -q $session && return
-        tmux set-option -g default-path "$HOME/${spath}" > /dev/null
-        tmux new-session -s ${session} -d
-        tmux send-keys -t ${session} "cd $HOME/${spath};clear" "ENTER"
-        tmux set-option -t ${session} default-path "$HOME/${spath}" > /dev/null
+        tmux new-session -s ${session} -c "$HOME/${spath}" -d
         echo -e "\e[1;35m[tmux]\e[m Created session: \e[1;37m$session\e[m"
     }
 
@@ -26,7 +23,6 @@ function create_tmux_sessions() {
         tmux_session $session $spath
     done
     tmux kill-session -t foo # kill throwaway session
-    tmux set-option -g default-path "." > /dev/null
 }
 
 create_tmux_sessions
