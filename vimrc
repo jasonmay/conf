@@ -120,8 +120,6 @@ vmap     H          ^
 nmap     L          $
 vmap     L          $
 
-nmap     ;l  :e ~/.main.list<CR>
-
 nmap     M          :nohl<CR>:syn on<CR>:syntax sync fromstart<CR>:set background=dark<CR><C-k>
 
 nmap     <Left>     :bn<CR>
