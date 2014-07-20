@@ -13,7 +13,6 @@ DOTITEMS = \
 ~/.zshrc \
 ~/.zscripts \
 ~/.re.pl/repl.rc \
-~/.lesskey \
 ~/.gitignore \
 ~/.gitconfig \
 ~/.vim \
@@ -41,11 +40,6 @@ clean :
 	@echo instaling repl.rc...
 	@mkdir -p ~/.re.pl
 	$(LN) $(PWD)/repl/main.rc ~/.re.pl/repl.rc
-
-~/.lesskey : lesskey
-	@echo installing .lesskey...
-	$(LN) $(PWD)/lesskey ~/.lesskey
-	@lesskey $<
 
 ~/.gitignore : git/gitignore
 	@echo installing .gitignore...
