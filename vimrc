@@ -150,45 +150,6 @@ iabbrev sfhit      shift
 
 """" FUNCTIONS
 
-function! s:align_assignments()
-    " Patterns needed to locate assignment operators...
-    let ASSIGN_OP   = '[-+*/%|&]\?=\@<!=[=~]\@!'
-    let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)\(.*\)$'
-
-    " Locate block of code to be considered (same indentation, no blanks)
-    let indent_pat = '^' . matchstr(getline('.'), '^\s*') . '\S'
-    let firstline  = search('^\%('. indent_pat . '\)\@!','bnW') + 1
-    let lastline   = search('^\%('. indent_pat . '\)\@!', 'nW') - 1
-    if lastline < 0
-        let lastline = line('$')
-    endif
-
-    " Decompose lines at assignment operators...
-    let lines = []
-    for linetext in getline(firstline, lastline)
-        let fields = matchlist(linetext, ASSIGN_LINE)
-        call add(lines, fields[1:3])
-    endfor
-
-    " Determine maximal lengths of lvalue and operator...
-    let op_lines = filter(copy(lines),'!empty(v:val)')
-    let max_lval = max( map(copy(op_lines), 'strlen(v:val[0])') ) + 1
-    let max_op   = max( map(copy(op_lines), 'strlen(v:val[1])'  ) )
-
-    " Recompose lines with operators at the maximum length...
-    let linenum = firstline
-    for line in lines
-        if !empty(line)
-            let newline
-            \    = printf("%-*s%*s%s", max_lval, line[0], max_op, line[1], line[2])
-            call setline(linenum, newline)
-        endif
-        let linenum += 1
-    endfor
-endfunction
-"nmap <silent> <Leader>= :call <SID>align_assignments()<CR>
-nmap S :call <SID>align_assignments()<CR>
-
 function! <SID>StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -252,27 +213,6 @@ if $SHELL =~ 'zsh' && exists('g:_zsh_hist_fname')
         endif
     endfunction
 endif
-
-autocmd BufNewFile,BufRead *.list call s:CustomListFile()
-function! s:CustomListFile()
-
-    " support Tab and Shift-Tab
-    nmap <buffer> <S-Tab> <<a
-    imap <buffer> <S-Tab> <Esc><<a
-
-    nmap <buffer> <Tab> >>a
-    imap <buffer> <Tab> <Esc>>>a
-
-    " o and O are habit, DWIW
-    nmap <buffer> o :call ListNewItem(0)<CR>a
-    nmap <buffer> O k:call ListNewItem(0)<CR>a
-
-    " Fresh line should start with a '- '
-    nnoremap <buffer> cc cc-<Space>
-
-    " If a line has <~/.foo.list>, open that list in a new buffer
-    nmap <buffer> ;o f<yi<:exe ':e ' . @"<CR>
-endfunction
 
 function! OpenTestAlternate()
   let new_file = AlternateForCurrentFile()
