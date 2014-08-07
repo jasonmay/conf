@@ -56,6 +56,8 @@ let perl_include_pod=1
 let perl_string_as_statement=1
 let perl_sync_dist=1000
 
+let g:EclimCompletionMethod = 'omnifunc'
+
 let &term="xterm-256color"
 set bg=dark
 colorscheme sumi
@@ -128,7 +130,8 @@ nmap     <Right>    :bp<CR>
 nmap     <CR>       o<Esc>
 nmap     <F1>       <Esc>
 inoremap <F1>       <Esc>
-imap     <C-J>      <Esc>
+
+inoremap <c-j> <c-r>=TriggerSnippet()<cr>
 
 nnoremap -          <Space>
 
