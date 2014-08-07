@@ -12,7 +12,7 @@ set rulerformat=%40(%=%t%h%m%r%w%<\ (%n)\ %4.7l,%-7.(%c%V%)\ %P%)
 set showmode
 set showcmd
 set shortmess=aotTWI
-set laststatus=0
+set laststatus=2
 set display+=lastline,uhex
 set scrolloff=3
 set lazyredraw
