@@ -82,6 +82,7 @@ autocmd BufNewFile,BufRead *.md      set ft=markdown
 autocmd BufNewFile,BufRead initialdata set ft=perl
 
 autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
+autocmd FileType java set ts=3 sw=3 sts=3
 autocmd FileType javascript,perl set ts=4 sw=4 sts=4
 
 autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
@@ -147,6 +148,20 @@ nmap      <Leader>,c :!for s in $(seq 1 15); do echo; done;sbt compile<cr>
 iabbrev reponse    response
 iabbrev shfit      shift
 iabbrev sfhit      shift
+
+nnor <Leader>.t :JUnit
+nnor <Leader>.c :JavaConstructor<cr>
+nnor <Leader>.i :JavaImport<cr>
+
+nnor <Leader>.c :JavaConstructor<cr>
+
+nnor <Leader>.f :JavaFormat<cr>
+vnor <Leader>.f :JavaFormat<cr>
+nnor <Leader>.F :%JavaFormat<cr>
+
+nnor <Leader>.o :JavaImportOrganize<cr>
+nnor <Leader>.w :JavaCorrect<cr>
+nnor <Leader>.. :lopen<cr><C-w><C-p>
 
 """" FUNCTIONS
 
