@@ -35,3 +35,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized
+[submodule "vim/bundle/handlebars"]
+	path = vim/bundle/handlebars
+	url = https://github.com/nono/vim-handlebars
