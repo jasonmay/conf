@@ -149,19 +149,7 @@ iabbrev reponse    response
 iabbrev shfit      shift
 iabbrev sfhit      shift
 
-nnor <Leader>.t :JUnit
-nnor <Leader>.c :JavaConstructor<cr>
-nnor <Leader>.i :JavaImport<cr>
-
-nnor <Leader>.c :JavaConstructor<cr>
-
-nnor <Leader>.f :JavaFormat<cr>
-vnor <Leader>.f :JavaFormat<cr>
-nnor <Leader>.F :%JavaFormat<cr>
-
-nnor <Leader>.o :JavaImportOrganize<cr>
-nnor <Leader>.w :JavaCorrect<cr>
-nnor <Leader>.. :lopen<cr><C-w><C-p>
+nnor <Leader>.s :!~/proj/rsync/sync.sh<cr>
 
 """" FUNCTIONS
 
