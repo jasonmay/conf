@@ -88,6 +88,8 @@ autocmd FileType javascript,perl set ts=4 sw=4 sts=4
 autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType           perl setlocal errorformat=%f:%l:%m
 
+autocmd FileType php setlocal keywordprg=/Users/jason/pear/bin/pman
+
 " Automatic commands
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
