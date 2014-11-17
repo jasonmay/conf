@@ -1,2 +1,0 @@
-#!/bin/sh
-urxvtd 2>&1

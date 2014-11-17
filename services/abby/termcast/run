@@ -1,3 +1,0 @@
-#!/bin/sh
-cd /home/jasonmay/repos/git/app-termcast-server
-perl -Ilib bin/termcast-server --socket connections.sock 2>&1
