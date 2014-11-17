@@ -50,8 +50,11 @@ set foldmethod=marker
 
 set backupskip=/tmp/*,/private/tmp/*"
 
-if hostname() != 'ephrata.local'
-	set expandtab
+set expandtab
+
+let workrepo=substitute(system('git config jason.workrepo'), '\n', '', '')
+if workrepo=="true"
+    set noexpandtab
 endif
 
 let perl_extended_vars=1
