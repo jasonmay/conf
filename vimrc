@@ -41,7 +41,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-set expandtab
 set shiftround
 set autoindent
 set smartindent
@@ -50,6 +49,10 @@ set foldenable
 set foldmethod=marker
 
 set backupskip=/tmp/*,/private/tmp/*"
+
+if hostname() != 'ephrata.local'
+	set expandtab
+endif
 
 let perl_extended_vars=1
 let perl_include_pod=1
