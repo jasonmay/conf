@@ -49,14 +49,8 @@ clean :
 
 ~/.vim :
 	@echo installing .vim...
-	@mkdir -p ~/.vim/bundle ~/.vim/autoload
-	@wget -q 'https://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim' --no-check-certificate -O ~/.vim/autoload/pathogen.vim
-	# TODO move these to submodules
-	@git clone https://github.com/jasonmay/jasonmay.vim ~/.vim/bundle/jasonmay
-	@git clone git://git.wincent.com/command-t.git ~/.vim/bundle/command-t
-	@git clone git://github.com/msanders/snipmate.vim.git ~/.vim/bundle/snipmate
-	@git clone git://github.com/petdance/vim-perl.git ~/.vim/bundle/perl
-	@git clone git://github.com/lucasoman/vim-listfile ~/.vim/bundle/listfile
+	git submodule update --init
+	$(LN) $(PWD)/vim ~/.vim
 
 .PHONY : clean install build
 
