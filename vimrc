@@ -162,6 +162,8 @@ iabbrev sfhit      shift
 
 nnor <Leader>.s :!~/proj/rsync/sync.sh<cr>
 
+nnor <Leader>,r :!./utils/service/reset.sh<cr>
+
 """" FUNCTIONS
 
 function! <SID>StripTrailingWhitespace()
