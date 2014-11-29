@@ -64,9 +64,14 @@ let perl_sync_dist=1000
 
 let g:EclimCompletionMethod = 'omnifunc'
 
-let &term="xterm-256color"
 set bg=dark
-colorscheme sumi
+
+if $TERM =~ "256color"
+    "let &term="xterm-256color"
+    colorscheme sumi
+else
+    colorscheme jellybeans
+endif
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
