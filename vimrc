@@ -284,7 +284,7 @@ function! AlternateForCurrentFile()
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
-set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip
+set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip,node_modules/**
 
 hi link coffeeSpaceError NONE
 
