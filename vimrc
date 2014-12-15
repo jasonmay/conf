@@ -62,14 +62,11 @@ let perl_sync_dist=1000
 
 let g:EclimCompletionMethod = 'omnifunc'
 
-set bg=dark
-
-if $TERM =~ "256color"
-    "let &term="xterm-256color"
+if hostname() !~ "path"
+    let &term="xterm-256color"
     colorscheme sumi
-else
-    colorscheme jellybeans
 endif
+set bg=dark
 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -87,8 +84,6 @@ autocmd BufNewFile,BufRead Xdefaults   set ft=Xdefaults
 autocmd BufNewFile,BufRead share/html/* set ft=mason
 autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
-
-autocmd BufNewFile,BufRead initialdata set ft=perl
 
 autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
@@ -285,6 +280,10 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip,node_modules/**
+let g:CommandTWildIgnore=&wildignore . ",*.min.js,*.jpg,*.png,*.gif,*.ttf,*.svg,*.doc,*.docx,admin/javascript/**,admin/js/definitions/**,admin/libraries/**,admin/templates/**,admin/uploads/**,bin/weeblyattributes/**,bin/weeblydeploy/**,bin/weeblyrevert/**,build/font/google_fonts/**,html/theme_browser/avatars/**,html/theme_browser/themes/**,html/uploads/**,html/weebly/exports/**,html/weebly/images/common/utilities.js/**,html/weebly/libraries/slideshow.js/**,html/weebly/uploads/**,html/weebly/websites/**,html/weebly/assets/**,html/weebly/templates/**,html/editor/**,html/templates/**,resources/assets/javascript/**,vendor/**"
+let g:CommandTMaxFiles = 9000
+let g:CommandTFileScanner = "watchman"
+let g:CommandTMaxCachedDirectories=10
 
 hi link coffeeSpaceError NONE
 
