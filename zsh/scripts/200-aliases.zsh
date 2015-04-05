@@ -53,8 +53,12 @@ alias ttt='tmux attach -t'
 
 alias ag='ag --pager="less -RSFX"'
 
+function agg() {
+	vim $(ag -l -g $1 | fzf)
+}
+
 function v() {
-    vim -c 'normal \t'
+	vim $(fzf)
 }
 
 function vd() {
@@ -83,11 +87,6 @@ function perldoc {
     else
         command perldoc "$@"
     fi
-}
-
-function jj() {
-    git jump merge
-    git jump diff
 }
 
 function viag() {

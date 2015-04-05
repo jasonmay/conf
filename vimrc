@@ -48,7 +48,8 @@ set foldmethod=marker
 
 set backupskip=/tmp/*,/private/tmp/*"
 
-set expandtab
+let s:tmux = 0
+set rtp+=~/.fzf
 
 let workrepo=substitute(system('git config jason.workrepo'), '\n', '', '')
 if workrepo=="true"
@@ -283,10 +284,8 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip,node_modules/**
-let g:CommandTWildIgnore=&wildignore . ",*.min.js,*.jpg,*.png,*.gif,*.ttf,*.svg,*.doc,*.docx,admin/javascript/**,admin/js/definitions/**,admin/libraries/**,admin/templates/**,admin/uploads/**,bin/weeblyattributes/**,bin/weeblydeploy/**,bin/weeblyrevert/**,build/font/google_fonts/**,html/theme_browser/avatars/**,html/theme_browser/themes/**,html/uploads/**,html/weebly/exports/**,html/weebly/images/common/utilities.js/**,html/weebly/libraries/slideshow.js/**,html/weebly/uploads/**,html/weebly/websites/**,html/weebly/assets/**,html/weebly/templates/**,html/editor/**,html/templates/**,resources/assets/javascript/**,vendor/**"
-let g:CommandTMaxFiles = 9000
-let g:CommandTFileScanner = "watchman"
-let g:CommandTMaxCachedDirectories=10
+
+nnoremap <leader>t :FZF<cr>
 
 hi link coffeeSpaceError NONE
 
