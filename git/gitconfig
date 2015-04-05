@@ -15,6 +15,7 @@
     git     = !git
 
     amend = commit --amend -C HEAD
+	last = for-each-ref --sort=-committerdate refs/heads
 
     clong = clone
     dif   = diff
@@ -39,6 +40,8 @@
     graph = log --oneline --abbrev-commit --graph --decorate --date=relative
     timelog = log --oneline  --pretty=format:'%C(yellow)[%ci]%Creset %C(magenta)%h%C(reset) %C(red)%an:%C(reset) %s'
     commits = "!f() { git log --oneline | wc -l; }; f"
+
+	next = "!f() { git checkout tablet-integration; git pull; }; f"
 
     amend = commit --amend -C HEAD
     reword = commit --amend
