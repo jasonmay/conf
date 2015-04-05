@@ -1,5 +1,5 @@
 function check_exec() {
-    [ ! -z $(which "$1" | grep -v 'not found') ]
+    type "$1" 2>&1 >/dev/null
 }
 
 function running() {
