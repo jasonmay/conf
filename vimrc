@@ -156,10 +156,6 @@ iabbrev reponse    response
 iabbrev shfit      shift
 iabbrev sfhit      shift
 
-nnor <Leader>.s :!~/proj/rsync/sync.sh<cr>
-
-nnor <Leader>,r :!./utils/service/reset.sh<cr>
-
 nnor yH y^
 nnor yL y$
 
