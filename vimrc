@@ -54,6 +54,8 @@ set rtp+=~/.fzf
 let workrepo=substitute(system('git config jason.workrepo'), '\n', '', '')
 if workrepo=="true"
     set noexpandtab
+else
+	set expandtab
 endif
 
 let perl_extended_vars=1
