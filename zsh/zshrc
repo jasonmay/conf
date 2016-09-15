@@ -9,6 +9,762 @@ fi
 [ -d ~/.zscripts ] &&  find ~/.zscripts/ \( -type f -o -type l \) -name '*.zsh' | sort | \
     while read z; do source "$z"; done
 
+if [ -e "${HOME}/.weeblyrc" ]; then source "${HOME}/.weeblyrc"; fi
+
 unsetopt correct_all
 if [ -e "${HOME}/.weeblyrc" ]; then source "${HOME}/.weeblyrc"; fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ttttt='tmux list-sessions'
+#check_exec 'hub' && eval "$(hub alias -s)"
+[ -r ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
+
+if [ -x "$HOME/.rbenv/bin/rbenv" ]; then
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	eval "$(rbenv init -)"
+fi
+function check_exec() {
+    type "$1" 2>&1 >/dev/null
+}
+
+function running() {
+    check_exec pgrep && pgrep "$1" > /dev/null
+}
+
+function mud() {
+    rlwrap telnet "$1" 6715
+}
+
+function pubkey {
+    [ -e "$HOME/.ssh/id_dsa.pub" ] || ssh-keygen -t dsa
+    ssh "$1" "mkdir -p .ssh; cat - >> .ssh/authorized_keys; chmod -R g-rwx,o-rwx .ssh" \
+        < "$HOME/.ssh/id_dsa.pub"
+}
+
+alias grep='grep --color=auto'
+
+alias netstat_useful="netstat -a --inet --numeric-port"
+
+alias grep='grep --color=auto'
+alias pmmi='perl Makefile.PL && mmi'
+
+alias listfile="$EDITOR $HOME/.main.list"
+
+alias d=cd
+alias lsc=ls
+
+alias b='bundle exec'
+
+alias ta='tmux attach -dt'
+alias ts='tmux new -s'
+
+alias tto='telnet termcast.org'
+alias nao='telnet nethack.alt.org'
+
+if check_exec gls
+then
+    alias ls='gls --color=auto'
+else
+    alias ls='ls --color=auto'
+fi
+alias sl='ls'
+alias lcd='ls;cd'
+for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
+for rails_typo in ralis rials; do alias "$rails_typo"='rails'; done
+
+alias -- '-'='popd'
+
+alias deps='cpanm --installdeps -n'
+
+alias culex='ssh 192.168.1.42'
+
+alias irc='ssh -t jasonmay@n.jmay.me dtach -A .irssi.sock irssi'
+
+alias develop='git checkout develop'
+
+alias ttt='tmux attach -t'
+
+alias ag='ag --pager="less -RSFX"'
+
+function agg() {
+	vim $(ag -l -g $1 | fzf)
+}
+
+function v() {
+	vim $(fzf)
+}
+
+function vd() {
+    vim $(git st --porcelain | awk '$1 == "M" {print $2}')
+}
+
+function vack() {
+    vim $(ack -l -- $*)
+}
+
+function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
+
+TERMCAST_SCRIPT=$(which termcast 2>/dev/null)
+function termcast() {
+    if [ "x$IN_TERMCAST" == "x" ]
+    then
+        IN_TERMCAST=1 $TERMCAST_SCRIPT $*
+    else
+        echo "You are already termcasting!" > /dev/stderr
+    fi
+}
+
+function perldoc {
+    if which cpandoc > /dev/null 2>&1; then
+        cpandoc "$@"
+    else
+        command perldoc "$@"
+    fi
+}
+
+function viag() {
+    vim -q =(ag --nogroup "$@")
+}
+
+function plackapp() {
+    APP_PACKAGE="$1"; shift
+
+    plackup -M"$APP_PACKAGE" -e "${APP_PACKAGE}->new->to_app" $@
+}
+
+if [[ $(uname) == "Darwin" ]]
+then
+    alias i='brew install'
+    function s() {
+        [ -z "$1" ] || brew search $*
+    }
+fi
+if [[ ! -o interactive ]]; then
+    return
+fi
+
+compctl -K _rbenv rbenv
+
+_rbenv() {
+  local words completions
+  read -cA words
+
+  if [ "${#words}" -eq 2 ]; then
+    completions="$(rbenv commands)"
+  else
+    completions="$(rbenv completions ${words[2,-1]})"
+  fi
+
+  reply=("${(ps:\n:)completions}")
+}
+TMUX_SESSIONS="
+$WORK_SESSIONS
+vimrc .vim/bundle/jasonmay
+"
+
+function create_tmux_sessions() {
+    which tmux >/dev/null 2>&1 || return
+    [ -z $TMUX ] || return
+
+    tmux_session() {
+        session=$1
+        spath=$2
+
+        tmux list-sessions 2>&1 | grep -q $session && return
+        tmux new-session -s ${session} -c "$HOME/${spath}" -d
+        echo -e "\e[1;35m[tmux]\e[m Created session: \e[1;37m$session\e[m"
+    }
+
+    tmux new-session -s foo -d # prevent 'connection refused' error
+    echo $TMUX_SESSIONS | while read session spath
+    do
+        [ -z $session ] && continue
+        tmux_session $session $spath
+    done
+    tmux kill-session -t foo # kill throwaway session
+}
+
+create_tmux_sessions
+alias irc='dtach -A ~/.irssi.sock irssi'
+export PATH="/usr/local/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
+
+if [ -d "/usr/lib/gettext" ]
+then
+    export PATH="/usr/lib/gettext:$PATH"
+fi
+
+for brewdir in "$HOME/.brew" /usr/local
+do
+    if [ -d "$brewdir/Library/Formula" ]
+    then
+        export PATH="$brewdir/Cellar/python/2.7.1/bin:$PATH"
+        export PATH="$brewdir/Cellar/python/2.7/bin:$PATH"
+        export PATH="$brewdir/sbin:$PATH"
+        export PATH="$brewdir/bin:$PATH"
+        export INCLUDES="$brewdir/include"
+        break
+    fi
+done
+
+if [ -d "$HOME/.github/rakudo" ]
+then
+    export PATH="$HOME/.github/rakudo/parrot_install/bin:$PATH"
+    export MANPATH="$HOME/.github/rakudo/parrot_install/man:$MANPATH"
+fi
+
+if [ -d "$HOME/repos/git/rakudo" ]
+then
+    export PATH="$HOME/repos/git/rakudo/install/bin:$PATH"
+    export MANPATH="$HOME/repos/git/rakudo/install/man:$MANPATH"
+fi
+
+if [ -d "$HOME/android" ]
+then
+    export PATH="$HOME/android/platform-tools:$HOME/android/tools:$PATH"
+fi
+
+[ -d "$HOME/.rvm" ] && \
+    export PATH="$HOME/.rvm/bin:$PATH"
+
+[ -d "$HOME/local/bin" ] && \
+    export PATH="$HOME/local/bin:$PATH"
+
+[ -d "$HOME/bin" ] && \
+    export PATH="$HOME/bin:$PATH"
+
+[ -d "/usr/local/texlive/2011/bin" ] && \
+    export PATH="/usr/local/texlive/2011/bin/universal-darwin:$PATH"
+
+[ -d "/opt/rt4/bin" ] && \
+    export PATH="/opt/rt4/bin:$PATH"
+
+[ -d "/usr/local/lib/node" ] && \
+    export NODE_PATH="/usr/local/lib/node"
+
+[ -d "$HOME/.local/gradle" ] && \
+    export PATH="$HOME/.local/gradle/bin:$PATH"
+
+export LESS="-r -f"
+export EDITOR=vim
+setopt noglobalrcs
+export PAGER="less -RSFX"
+export PERLDOC_PAGER="$PAGER"
+export MANPAGER="$PAGER"
+check_exec lesspipe    && eval `lesspipe`
+check_exec lesspipe.sh && eval `lesspipe.sh`
+
+export MY_HOSTNAME=`hostname -s`
+export OOO_FORCE_DESKTOP=gnome
+
+export MY_HOSTNAME=`hostname`
+
+export HISTSIZE=100000
+export SAVEHIST=100000
+
+# I18N::LangTags::Detect - used in RT3
+export IGNORE_WIN32_LOCALE=1
+
+export ACK_COLOR_FILENAME=clear
+export ACK_COLOR_MATCH=red
+
+export DBIC_TRACE_PROFILE=console
+
+export ANY_MOOSE=Moose
+
+export PERL_PREFER_CPAN_CLIENT=cpanm
+
+export ACK_OPTIONS=--pager='less -R'
+
+REPORTTIME=5
+
+
+# rid duplicates
+typeset -U manpath path cdpath fpath
+function vim {
+    local zsh_hist_fname
+    zsh_hist_fname=$HOME/.vim/hist$$
+    command vim --cmd "let g:_zsh_hist_fname = '$zsh_hist_fname'" "$@"
+    if [[ -r $zsh_hist_fname ]]; then
+        while read line; do
+            if echo $line | grep -q "[[:space:]']"; then
+                line=${line/\'/\'\\\\\'\'}
+                line="'$line'"
+            fi
+            if [[ $line != "GoToFile" ]]; then
+                print -s "vim $line"
+            fi
+        done < $zsh_hist_fname
+
+        fc -AI
+        rm -f $zsh_hist_fname
+
+        # remove all the 'v' entries in the history
+        fc -R =(history | awk '{if ($2 != "v") { sub("^ *[0-9]+ *", ""); print $0 } }')
+    fi
+}
+function test_tput {
+    local tmp
+    [[ -x "$(which tput 2>/dev/null)" ]] || return 1
+    tmp=$(tput setf 0)
+}
+if test_tput; then
+    GRAY=$(tput setf 8)
+    BLACK=$(tput setf 0)
+    RED=$(tput setf 4)
+    HIRED=$(tput setf 9)
+    GREEN=$(tput setf 2)
+    HIGREEN=$(tput setf 10)
+    YELLOW=$(tput setf 6)
+    HIYELLOW=$(tput setf 11)
+    BLUE=$(tput setf 1)
+    HIBLUE=$(tput setf 12)
+    MAGENTA=$(tput setf 5)
+    HIMAGENTA=$(tput setf 13)
+    CYAN=$(tput setf 3)
+    HICYAN=$(tput setf 14)
+    WHITE=$(tput setf 7)
+    HIWHITE=$(tput setf 15)
+    BOLD=$(tput bold)
+    NORM=$(tput sgr0)
+else
+    GRAY=$(printf "\033[0;30m")
+    BLACK=$(printf "\033[1;30m")
+    RED=$(printf "\033[0;31m")
+    HIRED=$(printf "\033[1;31m")
+    GREEN=$(printf "\033[0;32m")
+    HIGREEN=$(printf "\033[1;32m")
+    YELLOW=$(printf "\033[0;33m")
+    HIYELLOW=$(printf "\033[1;33m")
+    BLUE=$(printf "\033[0;34m")
+    HIBLUE=$(printf "\033[1;34m")
+    MAGENTA=$(printf "\033[0;35m")
+    HIMAGENTA=$(printf "\033[1;35m")
+    CYAN=$(printf "\033[0;36m")
+    HICYAN=$(printf "\033[1;36m")
+    WHITE=$(printf "\033[0;37m")
+    HIWHITE=$(printf "\033[1;37m")
+    BOLD=$(printf "\033[0;39m")
+    NORM=$(printf "\033[0m")
+fi
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _approximate _prefix
+zstyle ':completion:*' list-prompt '[%p] %l'
+zstyle ':completion:*' matcher-list 'r:|[_-/]=** r:|=**'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle :compinstall filename "$HOME/.zshcomplete"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+[ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
+#PROMPT='%n@%m %~ $ ';
+#check_exec 'rps1.zsh' && function precmd() {
+#    RPROMPT=`rps1.zsh`
+#}
+
+setopt extended_history
+setopt hist_ignore_space
+
+autoload copy-earlier-word
+zle -N copy-earlier-word
+
+autoload edit-command-line
+zle -N edit-command-line
+
+setopt nobeep               # make things in the shell not beep
+setopt auto_cd              # ".." implies "cd ..", etc.
+setopt auto_pushd           # "cd" implies pushd all the time
+setopt pushd_minus          # popd -#
+setopt multios
+setopt extended_glob        # ** does recursive globbing
+setopt nullglob             # don't error if glob returns nothing
+setopt list_ambiguous
+setopt no_nomatch
+setopt interactivecomments
+setopt listpacked
+setopt complete_in_word     # Pressing tab on apit<cursor>de does what you want
+setopt no_case_glob
+
+bindkey -v
+
+# emacs bindings
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^N" accept-and-infer-next-history
+bindkey "^P" push-line
+bindkey "^R" history-incremental-search-backward
+bindkey "^Y" yank
+bindkey "^T" transpose-chars
+
+bindkey " " magic-space
+bindkey "\e[3~" delete-char
+
+# shift-tab (^[[Z) normally puts it in vi mode :(
+bindkey "\e[Z" expand-or-complete
+
+bindkey -M vicmd v edit-command-line
+bindkey -M vicmd H beginning-of-line
+bindkey -M vicmd L end-of-line
+
+# if you go into vi mode and insert mode you
+# normally can't do this kind of stuff
+bindkey -M viins "^?" backward-delete-char
+bindkey -M viins "^H" backward-delete-char
+bindkey -M viins "^W" backward-delete-word
+bindkey -M viins "^U" backward-kill-line
+bindkey -M viins "^Y" yank
+if check_exec pacman
+then
+    alias ls='ls --color=auto'
+    alias less='less -R'
+
+    alias i='sudo pacman -S'
+    function s() {
+        [ -z "$1" ] || sudo pacman -Ss $1
+    }
+    alias ar='sudo /etc/rc.d/httpd restart'
+fi
+if [ -e /etc/debian_version ]
+then
+    alias i='sudo apt-get install'
+    function s() {
+        [ -z "$1" ] || sudo apt-cache search $*
+    }
+fi
+#!zsh
+#
+# Installation
+# ------------
+#
+# To achieve git-flow completion nirvana:
+#
+#  0. Update your zsh's git-completion module to the newest verion.
+#     From here. http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD
+#
+#  1. Install this file. Either:
+#
+#     a. Place it in your .zshrc:
+#
+#     b. Or, copy it somewhere (e.g. ~/.git-flow-completion.zsh) and put the following line in
+#        your .zshrc:
+#
+#            source ~/.git-flow-completion.zsh
+#
+#     c. Or, use this file as a oh-my-zsh plugin.
+#
+
+_git-flow ()
+{
+	local curcontext="$curcontext" state line
+	typeset -A opt_args
+
+	_arguments -C \
+		':command:->command' \
+		'*::options:->options'
+
+	case $state in
+		(command)
+
+			local -a subcommands
+			subcommands=(
+				'init:Initialize a new git repo with support for the branching model.'
+				'feature:Manage your feature branches.'
+				'release:Manage your release branches.'
+				'hotfix:Manage your hotfix branches.'
+				'support:Manage your support branches.'
+				'version:Shows version information.'
+			)
+			_describe -t commands 'git flow' subcommands
+		;;
+
+		(options)
+			case $line[1] in
+
+				(init)
+					_arguments \
+						-f'[Force setting of gitflow branches, even if already configured]'
+					;;
+
+					(version)
+					;;
+
+					(hotfix)
+						__git-flow-hotfix
+					;;
+
+					(release)
+						__git-flow-release
+					;;
+
+					(feature)
+						__git-flow-feature
+					;;
+			esac
+		;;
+	esac
+}
+
+__git-flow-release ()
+{
+	local curcontext="$curcontext" state line
+	typeset -A opt_args
+
+	_arguments -C \
+		':command:->command' \
+		'*::options:->options'
+
+	case $state in
+		(command)
+
+			local -a subcommands
+			subcommands=(
+				'start:Start a new release branch.'
+				'finish:Finish a release branch.'
+				'list:List all your release branches. (Alias to `git flow release`)'
+			)
+			_describe -t commands 'git flow release' subcommands
+			_arguments \
+				-v'[Verbose (more) output]'
+		;;
+
+		(options)
+			case $line[1] in
+
+				(start)
+					_arguments \
+						-F'[Fetch from origin before performing finish]'\
+						':version:__git_flow_version_list'
+				;;
+
+				(finish)
+					_arguments \
+						-F'[Fetch from origin before performing finish]' \
+						-s'[Sign the release tag cryptographically]'\
+						-u'[Use the given GPG-key for the digital signature (implies -s)]'\
+						-m'[Use the given tag message]'\
+						-p'[Push to $ORIGIN after performing finish]'\
+						':version:__git_flow_version_list'
+				;;
+
+				*)
+					_arguments \
+						-v'[Verbose (more) output]'
+				;;
+			esac
+		;;
+	esac
+}
+
+__git-flow-hotfix ()
+{
+	local curcontext="$curcontext" state line
+	typeset -A opt_args
+
+	_arguments -C \
+		':command:->command' \
+		'*::options:->options'
+
+	case $state in
+		(command)
+
+			local -a subcommands
+			subcommands=(
+				'start:Start a new hotfix branch.'
+				'finish:Finish a hotfix branch.'
+				'list:List all your hotfix branches. (Alias to `git flow hotfix`)'
+			)
+			_describe -t commands 'git flow hotfix' subcommands
+			_arguments \
+				-v'[Verbose (more) output]'
+		;;
+
+		(options)
+			case $line[1] in
+
+				(start)
+					_arguments \
+						-F'[Fetch from origin before performing finish]'\
+						':hotfix:__git_flow_version_list'\
+						':branch-name:__git_branch_names'
+				;;
+
+				(finish)
+					_arguments \
+						-F'[Fetch from origin before performing finish]' \
+						-s'[Sign the release tag cryptographically]'\
+						-u'[Use the given GPG-key for the digital signature (implies -s)]'\
+						-m'[Use the given tag message]'\
+						-p'[Push to $ORIGIN after performing finish]'\
+						':hotfix:__git_flow_hotfix_list'
+				;;
+
+				*)
+					_arguments \
+						-v'[Verbose (more) output]'
+				;;
+			esac
+		;;
+	esac
+}
+
+__git-flow-feature ()
+{
+	local curcontext="$curcontext" state line
+	typeset -A opt_args
+
+	_arguments -C \
+		':command:->command' \
+		'*::options:->options'
+
+	case $state in
+		(command)
+
+			local -a subcommands
+			subcommands=(
+				'start:Start a new feature branch.'
+				'finish:Finish a feature branch.'
+				'list:List all your feature branches. (Alias to `git flow feature`)'
+				'publish: public'
+				'track: track'
+				'diff: diff'
+				'rebase: rebase'
+				'checkout: checkout'
+				'pull: pull'
+			)
+			_describe -t commands 'git flow feature' subcommands
+			_arguments \
+				-v'[Verbose (more) output]'
+		;;
+
+		(options)
+			case $line[1] in
+
+				(start)
+					_arguments \
+						-F'[Fetch from origin before performing finish]'\
+						':feature:__git_flow_feature_list'\
+						':branch-name:__git_branch_names'
+				;;
+
+				(finish)
+					_arguments \
+						-F'[Fetch from origin before performing finish]' \
+						-r'[Rebase instead of merge]'\
+						':feature:__git_flow_feature_list'
+				;;
+
+				(publish)
+					_arguments \
+						':feature:__git_flow_feature_list'\
+				;;
+
+				(track)
+					_arguments \
+						':feature:__git_flow_feature_list'\
+				;;
+
+				(diff)
+					_arguments \
+						':branch:__git_branch_names'\
+				;;
+
+				(rebase)
+					_arguments \
+						-i'[Do an interactive rebase]' \
+						':branch:__git_branch_names'
+				;;
+
+				(checkout)
+					_arguments \
+						':branch:__git_flow_feature_list'\
+				;;
+
+				(pull)
+					_arguments \
+						':remote:__git_remotes'\
+						':branch:__git_branch_names'
+				;;
+
+				*)
+					_arguments \
+						-v'[Verbose (more) output]'
+				;;
+			esac
+		;;
+	esac
+}
+
+__git_flow_version_list ()
+{
+	local expl
+	declare -a versions
+
+	versions=(${${(f)"$(_call_program versions git flow release list 2> /dev/null | tr -d ' |*')"}})
+	__git_command_successful || return
+
+	_wanted versions expl 'version' compadd $versions
+}
+
+__git_flow_feature_list ()
+{
+	local expl
+	declare -a features
+
+	features=(${${(f)"$(_call_program features git flow feature list 2> /dev/null | tr -d ' |*')"}})
+	__git_command_successful || return
+
+	_wanted features expl 'feature' compadd $features
+}
+
+__git_remotes () {
+	local expl gitdir remotes
+
+	gitdir=$(_call_program gitdir git rev-parse --git-dir 2>/dev/null)
+	__git_command_successful || return
+
+	remotes=(${${(f)"$(_call_program remotes git config --get-regexp '"^remote\..*\.url$"')"}//#(#b)remote.(*).url */$match[1]})
+	__git_command_successful || return
+
+	# TODO: Should combine the two instead of either or.
+	if (( $#remotes > 0 )); then
+		_wanted remotes expl remote compadd $* - $remotes
+	else
+		_wanted remotes expl remote _files $* - -W "($gitdir/remotes)" -g "$gitdir/remotes/*"
+	fi
+}
+
+__git_flow_hotfix_list ()
+{
+	local expl
+	declare -a hotfixes
+
+	hotfixes=(${${(f)"$(_call_program hotfixes git flow hotfix list 2> /dev/null | tr -d ' |*')"}})
+	__git_command_successful || return
+
+	_wanted hotfixes expl 'hotfix' compadd $hotfixes
+}
+
+__git_branch_names () {
+	local expl
+	declare -a branch_names
+
+	branch_names=(${${(f)"$(_call_program branchrefs git for-each-ref --format='"%(refname)"' refs/heads 2>/dev/null)"}#refs/heads/})
+	__git_command_successful || return
+
+	_wanted branch-names expl branch-name compadd $* - $branch_names
+}
+
+__git_command_successful () {
+	if (( ${#pipestatus:#0} > 0 )); then
+		_message 'not a git repository'
+		return 1
+	fi
+	return 0
+}
+
+zstyle ':completion:*:*:git:*' user-commands flow:'description for foo'
