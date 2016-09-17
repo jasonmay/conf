@@ -313,7 +313,7 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsSnippetsDir = "~/conf/ultisnips"
 
 " my fun little trick for when I do snip stuff as bindings
 autocmd User UltiSnipsExitLastSnippet normal `u
