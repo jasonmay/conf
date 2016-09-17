@@ -12,7 +12,7 @@ fi
 if [ -e "${HOME}/.weeblyrc" ]; then source "${HOME}/.weeblyrc"; fi
 
 unsetopt correct_all
-if [ -e "${HOME}/.weeblyrc" ]; then source "${HOME}/.weeblyrc"; fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias ttttt='tmux list-sessions'
@@ -360,3 +360,6 @@ then
         [ -z "$1" ] || sudo apt-cache search $*
     }
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
