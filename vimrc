@@ -1,6 +1,6 @@
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$VUNDLE_RTP
 
 call vundle#begin()
 
@@ -295,6 +295,7 @@ function! AlternateForCurrentFile()
     end
   endif
   return new_file
+
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
@@ -316,7 +317,13 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:UltiSnipsSnippetDirectories=["/home/jasonmay/conf/ultisnips", "UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[$ULTISNIPS_DIR, "UltiSnips"]
+
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_server_use_vim_stdout = 1
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 
 " my fun little trick for when I do snip stuff as bindings
 autocmd User UltiSnipsExitLastSnippet normal `u
