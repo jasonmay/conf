@@ -1,6 +1,22 @@
 filetype off
-call pathogen#incubate()
-call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'sartak/sumi'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'nanotech/jellybeans.vim'
+
+Bundle 'ervandew/supertab'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
+
+call vundle#end()
+
 filetype plugin indent on
 
 set encoding=utf8
@@ -286,3 +302,19 @@ nnoremap <leader>t :FZF<cr>
 hi link coffeeSpaceError NONE
 
 highlight Normal ctermfg=grey ctermbg=black
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+
+" my fun little trick for when I do snip stuff as bindings
+autocmd User UltiSnipsExitLastSnippet normal `u
+nnoremap <Leader>i muggospecial_import_oh_my_god_press_tab_right_now_please
