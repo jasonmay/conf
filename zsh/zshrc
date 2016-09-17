@@ -61,7 +61,7 @@ alias ttt='tmux attach -t'
 alias ag='ag --pager="less -RSFX"'
 
 function v() {
-	vim $(fzf)
+	print -z vim $(fzf)
 }
 
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
@@ -119,7 +119,6 @@ function create_tmux_sessions() {
 }
 
 create_tmux_sessions
-alias irc='dtach -A ~/.irssi.sock irssi'
 export PATH="/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
 
