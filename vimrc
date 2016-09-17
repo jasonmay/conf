@@ -13,6 +13,7 @@ Plugin 'nanotech/jellybeans.vim'
 
 Bundle 'ervandew/supertab'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'davidhalter/jedi'
 Bundle 'SirVer/ultisnips'
 
 call vundle#end()
@@ -36,7 +37,7 @@ set matchtime=1
 set report=0
 set nomore
 set noswapfile
-set autoread 
+set autoread
 set ttyfast
 set completeopt=menuone
 set incsearch
@@ -90,7 +91,7 @@ set bg=dark
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 highlight Search NONE ctermfg=lightred
-highlight Folded      ctermbg=black ctermfg=blue 
+highlight Folded      ctermbg=black ctermfg=blue
 
 autocmd BufNewFile,BufRead *.reg,*.run,repl.rc,*.repl.rc,*.psgi,*.t set ft=perl
 autocmd BufNewFile,BufRead *.asl       set ft=ruby
@@ -315,7 +316,7 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:UltiSnipsSnippetsDir = "~/conf/ultisnips"
+let g:UltiSnipsSnippetDirectories=["/home/jasonmay/conf/ultisnips", "UltiSnips"]
 
 " my fun little trick for when I do snip stuff as bindings
 autocmd User UltiSnipsExitLastSnippet normal `u
