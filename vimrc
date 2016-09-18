@@ -75,14 +75,9 @@ else
 	set expandtab
 endif
 
-let perl_extended_vars=1
-let perl_include_pod=1
-let perl_string_as_statement=1
-let perl_sync_dist=1000
-
 let g:EclimCompletionMethod = 'omnifunc'
 
-if hostname() !~ "path"
+if hostname() !~ "path" && hostname() !~ "data"
     let &term="xterm-256color"
     colorscheme sumi
 endif
@@ -105,7 +100,7 @@ autocmd BufNewFile,BufRead share/html/* set ft=mason
 autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
 
-autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
+autocmd FileType ruby,eruby,html,haml,coffee,python set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
 autocmd FileType javascript,perl set ts=4 sw=4 sts=4
 
@@ -123,14 +118,12 @@ hi EOLWS ctermbg=red
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
-autocmd BufReadPost *
-\  if line("'\"") > 0 && line("'\"") <= line("$") |
-\    exe "normal g`\"" |
-\  endif
-
-if exists(":Rvm")
-    autocmd BufEnter * Rvm
-endif
+function! <SID>BackToLastPosition()
+  if line("'\"") > 0 && line("'\"") <= line("$")
+    exe "normal g`\""
+  endif
+endfunction
+autocmd BufReadPost * call <SID>BackToLastPosition()
 
 " Mappings
 
@@ -192,112 +185,6 @@ function! <SID>StripTrailingWhitespace()
     call cursor(l, c)
 endfunction
 nmap <silent> <Leader><space> :call <SID>StripTrailingWhitespace()<CR>
-
-if $SHELL =~ 'zsh' && exists('g:_zsh_hist_fname')
-    let s:initial_files = {}
-
-    autocmd VimEnter * call <SID>init_zsh_hist()
-    autocmd BufNewFile,BufRead * call <SID>zsh_hist_append()
-    autocmd BufDelete * call <SID>remove_initial_file(expand("<afile>"))
-
-    function! s:remove_initial_file (file)
-        if has_key(s:initial_files, a:file)
-            unlet s:initial_files[a:file]
-        endif
-    endfunction
-    function! s:get_buffer_list_text ()
-        redir => output
-        ls!
-        redir END
-        return output
-    endfunction
-    function! s:get_buffer_list ()
-        silent let output = <SID>get_buffer_list_text()
-        let buffer_list = []
-        for buffer_desc in split(output, "\n")
-            let buffer_bits = split(buffer_desc, '"')
-            call add(buffer_list, buffer_bits[1])
-        endfor
-        return buffer_list
-    endfunction
-    function! s:init_zsh_hist ()
-        for fname in <SID>get_buffer_list()
-            let s:initial_files[fname] = 1
-        endfor
-        call delete(g:_zsh_hist_fname)
-    endfunction
-    function! s:zsh_hist_append ()
-        let to_append = expand("%")
-        " XXX fuzzyfinder sets buftype too late to be caught by this... this
-        " is broken, but not sure what a better fix is
-        if &buftype == '' && to_append != "[fuf]"
-            if !has_key(s:initial_files, to_append)
-                if filereadable(g:_zsh_hist_fname)
-                    let hist = readfile(g:_zsh_hist_fname)
-                else
-                    let hist = []
-                endif
-                call add(hist, to_append)
-                call writefile(hist, g:_zsh_hist_fname)
-            endif
-        endif
-    endfunction
-endif
-
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-function! AlternateForCurrentFile()
-  let current_file = expand("%")
-  let new_file = current_file
-  let in_spec = match(current_file, '^spec/') != -1
-  let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
-  if going_to_spec
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-    let new_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let new_file = 'spec/' . new_file
-  else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-    let new_file = substitute(new_file, '^spec/', '', '')
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-  endif
-  return new_file
-
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 set wildignore+=*.o,*.obj,.git,*.class,*.jar,*.zip,node_modules/**
 
