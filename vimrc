@@ -325,6 +325,21 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 
+function! DoExitSnippetHook()
+    let markpos = getpos("'u")
+    echom join(markpos)
+    echom markpos[1]
+    if markpos[1] != "0"
+        normal `u
+        delmarks u
+    endif
+endfunction
+
 " my fun little trick for when I do snip stuff as bindings
-autocmd User UltiSnipsExitLastSnippet normal `u
+autocmd User UltiSnipsExitLastSnippet call DoExitSnippetHook()
 nnoremap <Leader>i muggospecial_import_oh_my_god_press_tab_right_now_please
+
+" Q is my second leader because nuts to ex mode
+nnoremap Qs :UltiSnipsEdit<cr>
+nnoremap Qv :e ~/.vimrc<cr>
+nnoremap QQ :bd!
