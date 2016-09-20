@@ -2,7 +2,7 @@
 "  and it's pretty terrible. this is for working around that
 let s:on_broken_machine = len($BROKEN_WORKSERVER_DIR) > 0
 
-if s:on_broken_machine
+if !s:on_broken_machine
     " vundle is all kinds of broken on a read-only home dir :/
     filetype off
 
@@ -53,9 +53,9 @@ set backspace=indent,eol,start
 "set wildmenu
 set wildignore+=.log,.out,.o
 if s:on_broken_machine
-    set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
-else
     let &viminfo="!,'1000,f1,/1000,:1000,<1000,@1000,h,n"+$BROKEN_WORKSERVER_DIR+"/.viminfo"
+else
+    set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
 endif
 set isfname+=:
 set wildmode=longest,list,full
