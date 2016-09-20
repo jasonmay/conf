@@ -301,14 +301,10 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle :compinstall filename "$HOME/.zshcomplete"
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-[ -f ~/repos/git/j/j.sh ] && source ~/repos/git/j/j.sh
-#PROMPT='%n@%m %~ $ ';
-#check_exec 'rps1.zsh' && function precmd() {
-#    RPROMPT=`rps1.zsh`
-#}
+if [[ -z "$BROKEN_WORKSERVER_DIR" || ! -d "$BROKEN_WORKSERVER_DIR" ]]; then
+    autoload -Uz compinit
+    compinit
+fi
 
 setopt extended_history
 setopt hist_ignore_space

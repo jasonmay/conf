@@ -1,22 +1,29 @@
-filetype off
+" some of the machines I use has a read-only home directory
+"  and it's pretty terrible. this is for working around that
+let s:on_broken_machine = len($BROKEN_WORKSERVER_DIR) > 0
 
-set rtp+=$VUNDLE_RTP
+if s:on_broken_machine
+    " vundle is all kinds of broken on a read-only home dir :/
+    filetype off
 
-call vundle#begin()
+    set rtp+=$VUNDLE_RTP
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'sartak/sumi'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'nanotech/jellybeans.vim'
+    call vundle#begin()
 
-Bundle 'ervandew/supertab'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'davidhalter/jedi'
-Bundle 'SirVer/ultisnips'
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'derekwyatt/vim-scala'
+    Plugin 'sartak/sumi'
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'mustache/vim-mustache-handlebars'
+    Plugin 'nanotech/jellybeans.vim'
 
-call vundle#end()
+    Bundle 'ervandew/supertab'
+    Bundle 'Valloric/YouCompleteMe'
+    Bundle 'davidhalter/jedi'
+    Bundle 'SirVer/ultisnips'
+
+    call vundle#end()
+endif
 
 filetype plugin indent on
 
@@ -45,7 +52,11 @@ set tildeop
 set backspace=indent,eol,start
 "set wildmenu
 set wildignore+=.log,.out,.o
-set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
+if s:on_broken_machine
+    set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
+else
+    let &viminfo="!,'1000,f1,/1000,:1000,<1000,@1000,h,n"+$BROKEN_WORKSERVER_DIR+"/.viminfo"
+endif
 set isfname+=:
 set wildmode=longest,list,full
 set hidden

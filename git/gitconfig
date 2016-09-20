@@ -1,6 +1,6 @@
 [user]
-    name = Jason May
-    email = jason.a.may@gmail.com
+	name = Jason May
+	email = jason.a.may@gmail.com
 [core]
     excludesfile = ~/.gitignore
     editor = vim -c ':normal gg'
