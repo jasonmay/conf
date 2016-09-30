@@ -1,3 +1,10 @@
+# I wrote this to help myself remember all my shortcuts
+# Kinda fortune-esque
+export QUICK_NOTE=
+function add_quick_note() {
+    export QUICK_NOTE="$QUICK_NOTE$@\n"
+}
+
 [ -e ~/.local.zsh ] && source ~/.local.zsh
 
 if [ -d "$HOME/.oh-my-zsh" ]
@@ -25,6 +32,7 @@ unsetopt correct_all
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+add_quick_note "ttttt: tmux list-sessions"
 alias ttttt='tmux list-sessions'
 
 if [ -x "$HOME/.rbenv/bin/rbenv" ]; then
@@ -39,16 +47,23 @@ function running() {
     check_exec pgrep && pgrep "$1" > /dev/null
 }
 
+add_quick_note "netstat_useful: alias for netstat -a --inet --numeric-port"
 alias netstat_useful="netstat -a --inet --numeric-port"
 
+add_quick_note "grep: grep --color=auto"
 alias grep='grep --color=auto'
 
+add_quick_note "if you type cd too quickly, d will work too"
 alias d=cd
+add_quick_note "if you type ls and then cd too quickly, lsc will work too"
 alias lsc=ls
 
+add_quick_note "b: bundle exec"
 alias b='bundle exec'
 
+add_quick_note "tto: telnet termcast.org"
 alias tto='telnet termcast.org'
+add_quick_note "nao: telnet nethack.alt.org"
 alias nao='telnet nethack.alt.org'
 
 if check_exec gls
@@ -62,22 +77,28 @@ alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
 for rails_typo in ralis rials; do alias "$rails_typo"='rails'; done
 
+add_quick_note 'typing "-" does popd'
 alias -- '-'='popd'
 
 alias irc='ssh -t jasonmay@n.jmay.me dtach -A .irssi.sock irssi'
 
+add_quick_note 'ttt: tmux attach -t'
 alias ttt='tmux attach -t'
 
 alias ag='ag --pager="less -RSFX"'
 
+add_quick_note "v: print -z vim *"
 function v() {
 	print -z vim $(fzf)
 }
 
+add_quick_note "abs function shows the absolute path"
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
 
 if [[ $(uname) == "Darwin" ]]
 then
+    add_quick_note "i <package> will install package"
+    add_quick_note "s <package> will search for package"
     alias i='brew install'
     function s() {
         [ -z "$1" ] || brew search $*
@@ -128,7 +149,7 @@ function create_tmux_sessions() {
     tmux kill-session -t foo # kill throwaway session
 }
 
-create_tmux_sessions
+#create_tmux_sessions
 export PATH="/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
 
@@ -372,3 +393,15 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if type -f jasonmay_after_everything > /dev/null; then 
     jasonmay_after_everything
 fi
+echo $QUICK_NOTE | /usr/bin/python -c "
+import fileinput
+import random
+lines = []
+for line in fileinput.input():
+    lines += [line]
+print(\"\033[1;33mHEY JASON REMEMBER THIS:\033[m\")
+print(\"\033[1;34mHEY JASON REMEMBER THIS:\033[m\")
+print(\"\033[1;35mHEY JASON REMEMBER THIS:\033[m        {}\".format(random.choice(lines).strip()))
+print(\"\033[1;36mHEY JASON REMEMBER THIS:\033[m\")
+print(\"\033[1;32mHEY JASON REMEMBER THIS:\033[m\")
+"
