@@ -11,6 +11,14 @@ snippet #! "Shebang header for python scripts" b
 $0
 endsnippet
 
+snippet /(^|(?<=\W))s/ "string with format" r
+"$1".format($2)
+endsnippet
+
+snippet /(^|(?<=\W))d/ "logger.debug" r
+logger.debug($1)
+endsnippet
+
 snippet ifmain "ifmain" b
 if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
 	${1:${VISUAL:main()}}

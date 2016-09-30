@@ -1,6 +1,7 @@
 " some of the machines I use has a read-only home directory
 "  and it's pretty terrible. this is for working around that
 let s:on_broken_machine = len($BROKEN_WORKSERVER_DIR) > 0
+let s:on_work_machine =  len($ON_WORK_MACHINE) > 0
 
 if !s:on_broken_machine
     " vundle is all kinds of broken on a read-only home dir :/
@@ -221,7 +222,6 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 nnoremap <Leader>d :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
@@ -243,3 +243,7 @@ nnoremap <Leader>i muggospecial_import_oh_my_god_press_tab_right_now_please
 nnoremap Qs :UltiSnipsEdit<cr>
 nnoremap Qv :e ~/.vimrc<cr>
 nnoremap QQ :bd!
+
+if s:on_work_machine
+    autocmd FileType ruby,eruby,html,haml,coffee,python set ts=4 sw=4 sts=4
+endif

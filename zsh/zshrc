@@ -390,6 +390,11 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+function gupo() {
+    branch=$(git branch | grep '*' | cut -f 2 -d ' ')
+    print -z 'git push --set-upstream origin '"$branch"
+}
+
 if type -f jasonmay_after_everything > /dev/null; then 
     jasonmay_after_everything
 fi
