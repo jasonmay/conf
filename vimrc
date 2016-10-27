@@ -22,6 +22,7 @@ if !s:on_broken_machine
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'davidhalter/jedi'
     Bundle 'SirVer/ultisnips'
+    Bundle 'nvie/vim-flake8'
 
     call vundle#end()
 endif
@@ -120,6 +121,10 @@ autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ 
 autocmd FileType           perl setlocal errorformat=%f:%l:%m
 
 autocmd FileType php setlocal keywordprg=/Users/jason/pear/bin/pman
+
+"if exists('*Flake8')
+    autocmd BufWritePost *.py call Flake8()
+"endif
 
 " Automatic commands
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
