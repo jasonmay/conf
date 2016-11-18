@@ -24,6 +24,8 @@ if !s:on_broken_machine
     Bundle 'SirVer/ultisnips'
     Bundle 'nvie/vim-flake8'
 
+    Bundle 'romainl/vim-qf'
+
     call vundle#end()
 endif
 

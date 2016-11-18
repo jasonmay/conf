@@ -11,7 +11,7 @@ if [ -d "$HOME/.oh-my-zsh" ]
 then
     ZSH=$HOME/.oh-my-zsh
     ZSH_THEME="robbyrussell"
-    plugins=(git github zsh-syntax-highlighting)
+    plugins=(git github)
     source $ZSH/oh-my-zsh.sh
 fi
 
