@@ -23,6 +23,8 @@ if !s:on_broken_machine
     Bundle 'davidhalter/jedi'
     Bundle 'SirVer/ultisnips'
     Bundle 'nvie/vim-flake8'
+    Bundle 'junegunn/fzf'
+    "Plugin 'scrooloose/syntastic'
 
     Bundle 'romainl/vim-qf'
 
@@ -31,7 +33,19 @@ endif
 
 filetype plugin indent on
 
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+
 set encoding=utf8
+"let python_highlight_all=1
 syntax on
 set ruler
 set rulerformat=%40(%=%t%h%m%r%w%<\ (%n)\ %4.7l,%-7.(%c%V%)\ %P%)
@@ -232,20 +246,6 @@ let g:ycm_server_log_level = 'debug'
 
 nnoremap <Leader>d :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
-function! DoExitSnippetHook()
-    let markpos = getpos("'u")
-    echom join(markpos)
-    echom markpos[1]
-    if markpos[1] != "0"
-        normal `u
-        delmarks u
-    endif
-endfunction
-
-" my fun little trick for when I do snip stuff as bindings
-autocmd User UltiSnipsExitLastSnippet call DoExitSnippetHook()
-nnoremap <Leader>i muggospecial_import_oh_my_god_press_tab_right_now_please
-
 " Q is my second leader because nuts to ex mode
 nnoremap Qs :UltiSnipsEdit<cr>
 nnoremap Qv :e ~/.vimrc<cr>
@@ -254,3 +254,5 @@ nnoremap QQ :bd!
 if s:on_work_machine
     autocmd FileType ruby,eruby,html,haml,coffee,python set ts=4 sw=4 sts=4
 endif
+
+"let g:syntastic_python_checkers = ['python']
