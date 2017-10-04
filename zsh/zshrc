@@ -28,8 +28,6 @@ if type -f jasonmay_after_zscripts > /dev/null; then
     jasonmay_after_zscripts
 fi
 
-if [ -e "${HOME}/.weeblyrc" ]; then source "${HOME}/.weeblyrc"; fi
-
 unsetopt correct_all
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -37,10 +35,6 @@ unsetopt correct_all
 add_quick_note "ttttt: tmux list-sessions"
 alias ttttt='tmux list-sessions'
 
-if [ -x "$HOME/.rbenv/bin/rbenv" ]; then
-	export PATH="$HOME/.rbenv/bin:$PATH"
-	eval "$(rbenv init -)"
-fi
 function check_exec() {
     type "$1" 2>&1 >/dev/null
 }
@@ -115,23 +109,8 @@ if [[ ! -o interactive ]]; then
     return
 fi
 
-compctl -K _rbenv rbenv
-
-_rbenv() {
-  local words completions
-  read -cA words
-
-  if [ "${#words}" -eq 2 ]; then
-    completions="$(rbenv commands)"
-  else
-    completions="$(rbenv completions ${words[2,-1]})"
-  fi
-
-  reply=("${(ps:\n:)completions}")
-}
 TMUX_SESSIONS="
 $WORK_SESSIONS
-vimrc .vim/bundle/jasonmay
 "
 
 function create_tmux_sessions() {
@@ -157,61 +136,8 @@ function create_tmux_sessions() {
 }
 
 #create_tmux_sessions
-export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
-
-if [ -d "/usr/lib/gettext" ]
-then
-    export PATH="/usr/lib/gettext:$PATH"
-fi
-
-for brewdir in "$HOME/.brew" /usr/local
-do
-    if [ -d "$brewdir/Library/Formula" ]
-    then
-        export PATH="$brewdir/Cellar/python/2.7.1/bin:$PATH"
-        export PATH="$brewdir/Cellar/python/2.7/bin:$PATH"
-        export PATH="$brewdir/sbin:$PATH"
-        export PATH="$brewdir/bin:$PATH"
-        export INCLUDES="$brewdir/include"
-        break
-    fi
-done
-
-if [ -d "$HOME/.github/rakudo" ]
-then
-    export PATH="$HOME/.github/rakudo/parrot_install/bin:$PATH"
-    export MANPATH="$HOME/.github/rakudo/parrot_install/man:$MANPATH"
-fi
-
-if [ -d "$HOME/repos/git/rakudo" ]
-then
-    export PATH="$HOME/repos/git/rakudo/install/bin:$PATH"
-    export MANPATH="$HOME/repos/git/rakudo/install/man:$MANPATH"
-fi
-
-if [ -d "$HOME/android" ]
-then
-    export PATH="$HOME/android/platform-tools:$HOME/android/tools:$PATH"
-fi
-
-[ -d "$HOME/.rvm" ] && \
-    export PATH="$HOME/.rvm/bin:$PATH"
-
-[ -d "$HOME/local/bin" ] && \
-    export PATH="$HOME/local/bin:$PATH"
-
-[ -d "$HOME/bin" ] && \
-    export PATH="$HOME/bin:$PATH"
-
-[ -d "/usr/local/texlive/2011/bin" ] && \
-    export PATH="/usr/local/texlive/2011/bin/universal-darwin:$PATH"
-
-[ -d "/opt/rt4/bin" ] && \
-    export PATH="/opt/rt4/bin:$PATH"
-
-[ -d "/usr/local/lib/node" ] && \
-    export NODE_PATH="/usr/local/lib/node"
 
 [ -d "$HOME/.local/gradle" ] && \
     export PATH="$HOME/.local/gradle/bin:$PATH"
@@ -232,20 +158,6 @@ export MY_HOSTNAME=`hostname`
 
 export HISTSIZE=100000
 export SAVEHIST=100000
-
-# I18N::LangTags::Detect - used in RT3
-export IGNORE_WIN32_LOCALE=1
-
-export ACK_COLOR_FILENAME=clear
-export ACK_COLOR_MATCH=red
-
-export DBIC_TRACE_PROFILE=console
-
-export ANY_MOOSE=Moose
-
-export PERL_PREFER_CPAN_CLIENT=cpanm
-
-export ACK_OPTIONS=--pager='less -R'
 
 REPORTTIME=5
 
