@@ -92,6 +92,11 @@ function v() {
 	print -z vim $(fzf)
 }
 
+function rr() {
+    VFILE=$(history | awk '{if ($2 == "vim") print $3}' | tail -n 100 | sort | uniq | while read f; do [ -f "$f" ] && echo "$f"; done | fzf)
+    print -z vim $VFILE
+}
+
 add_quick_note "abs function shows the absolute path"
 function abs() { perl -MCwd=abs_path -le "print abs_path q[$1]" }
 
