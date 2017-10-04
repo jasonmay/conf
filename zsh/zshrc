@@ -323,9 +323,10 @@ import random
 lines = []
 for line in fileinput.input():
     lines += [line]
-print(\"\033[1;33mHEY JASON REMEMBER THIS:\033[m\")
-print(\"\033[1;34mHEY JASON REMEMBER THIS:\033[m\")
-print(\"\033[1;35mHEY JASON REMEMBER THIS:\033[m        {}\".format(random.choice(lines).strip()))
-print(\"\033[1;36mHEY JASON REMEMBER THIS:\033[m\")
-print(\"\033[1;32mHEY JASON REMEMBER THIS:\033[m\")
+print(\"\033[1;33m================================================================\033[m\")
+print(\"{}\".format(random.choice(lines).strip()))
+print(\"\033[1;33m================================================================\033[m\")
 "
+
+printf "\e[?2004l"
+export TERM=xterm-256color
