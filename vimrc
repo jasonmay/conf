@@ -244,6 +244,8 @@ let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 
+let g:flake8_quickfix_height=12
+
 nnoremap <Leader>d :YcmCompleter GoToDefinitionElseDeclaration<cr>
 
 " Q is my second leader because nuts to ex mode
