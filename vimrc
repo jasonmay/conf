@@ -253,6 +253,10 @@ nnoremap Qs :UltiSnipsEdit<cr>
 nnoremap Qv :e ~/.vimrc<cr>
 nnoremap QQ :bd!
 
+if filereadable($HOME . "/.local.vim")
+    source ~/.local.vim
+endif
+
 if s:on_work_machine
     autocmd FileType ruby,eruby,html,haml,coffee,python set ts=4 sw=4 sts=4
 endif
