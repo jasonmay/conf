@@ -135,6 +135,11 @@ function create_tmux_sessions() {
     tmux kill-session -t foo # kill throwaway session
 }
 
+function ReplayCommits() {
+    target_branch="$1"
+    git rebase -i $(git merge-base $target_branch HEAD)
+}
+
 #create_tmux_sessions
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
