@@ -83,11 +83,6 @@ alias ttt='tmux attach -t'
 
 alias ag='ag --pager="less -RSFX"'
 
-add_quick_note "v: print -z vim *"
-function v() {
-	print -z vim $(fzf)
-}
-
 function rr() {
     VFILE=$(history | awk '{if ($2 == "vim") print $3}' | tail -n 100 | sort | uniq | while read f; do [ -f "$f" ] && echo "$f"; done | fzf)
     print -z vim $VFILE
@@ -347,3 +342,9 @@ function j() {
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+bindkey -s "^ ^ " '^E^Uvim $(fzf)^I'
+bindkey -s "^ ^F" '$(fzf)^I'
+bindkey "^B" backward-word
+
+/usr/bin/ssh-add -K
