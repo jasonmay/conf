@@ -24,6 +24,7 @@ if !s:on_broken_machine
     Bundle 'SirVer/ultisnips'
     Bundle 'nvie/vim-flake8'
     Bundle 'junegunn/fzf'
+    Bundle 'Glench/Vim-Jinja2-Syntax'
     "Plugin 'scrooloose/syntastic'
 
     Bundle 'romainl/vim-qf'
