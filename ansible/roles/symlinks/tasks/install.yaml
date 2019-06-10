@@ -15,6 +15,12 @@
     dest: ~/.gitignore
     state: link
 
+- name: vimrc
+  file:
+    src: "{{ role_path }}/files/.vimrc"
+    dest: ~/.vimrc
+    state: link
+
 - name: Ensure bin directory
   file:
     path: ~/bin
