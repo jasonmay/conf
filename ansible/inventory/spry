@@ -1,0 +1,6 @@
+[spry]
+localhost
+
+[spry:vars]
+jasonmay=awesome
+ansible_python_interpreter=~/.pyenv/versions/conf-ansible/bin/python

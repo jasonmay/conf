@@ -1,0 +1,4 @@
+---
+- homebrew:
+    name: vim,zsh,tree,tig
+    state: present

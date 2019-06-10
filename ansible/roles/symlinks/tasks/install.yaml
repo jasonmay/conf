@@ -1,0 +1,16 @@
+---
+- name: vars
+  debug:
+    msg: "{{ vars }}"
+
+- name: gitconfig
+  file:
+    src: "{{ role_path }}/files/.gitconfig"
+    dest: ~/.gitconfig
+    state: link
+
+- name: Ensure bin directory
+  file:
+    path: ~/bin
+    state: directory
+    mode: '0755'

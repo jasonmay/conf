@@ -1,0 +1,15 @@
+#!/usr/bin/env bash ./bin/ansible-playbook-bootstrap.sh
+---
+- gather_facts: no
+  hosts: spry
+  become: false
+  connection: local
+  tasks:
+   - name: Packages
+     include_role:
+       name: packages
+       tasks_from: install.yaml
+  - name: Symlinks
+    include_role:
+      name: symlinks
+      tasks_from: install.yaml
