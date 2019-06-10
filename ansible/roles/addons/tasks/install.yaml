@@ -10,8 +10,18 @@
   when: test_vundle_file.rc != 0
   failed_when: vundle_plugin_install.rc not in [0, 128]
 
-- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+- name: vim +PluginInstall
   shell: /usr/local/bin/vim +PluginInstall +qall
+  args:
+    creates: ~/.vimr/bundle/YouCompleteMe
 
-- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
-  shell: cd ~/.vim/bundle/YouCompleteMe/ && ./install.sh
+- name: YCM libraries
+  shell: ./install.sh
+  args:
+    chdir: ~/.vim/bundle/YouCompleteMe/
+    creates: ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex/regex_2/_regex.so
+
+- name: oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && ln -sf ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+  args:
+    creates: ~/.oh-my-zsh/oh-my-zsh.sh
