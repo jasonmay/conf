@@ -348,3 +348,5 @@ bindkey -s "^ ^F" '$(fzf)^I'
 bindkey "^B" backward-word
 
 /usr/bin/ssh-add -K
+
+export VUNDLE_RTP="${HOME}/.vim/bundle/Vundle.vim"

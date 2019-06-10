@@ -13,3 +13,7 @@
     include_role:
       name: symlinks
       tasks_from: install.yaml
+  - name: Add-ons
+    include_role:
+      name: addons
+      tasks_from: install.yaml

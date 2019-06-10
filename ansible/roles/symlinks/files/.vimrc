@@ -109,7 +109,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 if hostname() !~ "path" && hostname() !~ "data"
     let &term="xterm-256color"
-    colorscheme sumi
+    silent colorscheme sumi
 endif
 set bg=dark
 

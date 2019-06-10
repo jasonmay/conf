@@ -1,0 +1,17 @@
+---
+- name: ensure vundle
+  shell: test -f ~/.vim/bundle/Vundle.vim
+  failed_when: test_vundle_file.rc not in [0, 1]
+  register: test_vundle_file
+
+- name: install vundle
+  shell: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  register: vundle_plugin_install
+  when: test_vundle_file.rc != 0
+  failed_when: vundle_plugin_install.rc not in [0, 128]
+
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+  shell: /usr/local/bin/vim +PluginInstall +qall
+
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote.
+  shell: cd ~/.vim/bundle/YouCompleteMe/ && ./install.sh
