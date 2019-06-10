@@ -66,7 +66,7 @@ if check_exec gls
 then
     alias ls='gls --color=auto'
 else
-    alias ls='ls --color=auto'
+    alias ls='ls -G'
 fi
 alias sl='ls'
 alias lcd='ls;cd'
