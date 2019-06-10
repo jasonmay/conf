@@ -29,6 +29,12 @@
     dest: ~/.psqlrc
     state: link
 
+- name: tmux.conf
+  file:
+    src: "{{ role_path }}/files/.tmux.conf"
+    dest: ~/.tmux.conf
+    state: link
+
 - name: irssi
   file:
     src: "{{ role_path }}/files/.irssi"
