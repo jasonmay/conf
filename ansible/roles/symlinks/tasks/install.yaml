@@ -9,6 +9,12 @@
     dest: ~/.gitconfig
     state: link
 
+- name: gitignore
+  file:
+    src: "{{ role_path }}/files/.gitignore"
+    dest: ~/.gitignore
+    state: link
+
 - name: Ensure bin directory
   file:
     path: ~/bin
