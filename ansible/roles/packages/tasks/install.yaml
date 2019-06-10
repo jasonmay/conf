@@ -1,4 +1,4 @@
 ---
 - homebrew:
-    name: vim,zsh,tree,tig
+    name: vim,zsh,tree,tig,coreutils,moreutils
     state: present
