@@ -13,7 +13,7 @@
 - name: vim +PluginInstall
   shell: /usr/local/bin/vim +PluginInstall +qall
   args:
-    creates: ~/.vimr/bundle/YouCompleteMe
+    creates: ~/.vim/bundle/YouCompleteMe/README.md
 
 - name: YCM libraries
   shell: ./install.sh
