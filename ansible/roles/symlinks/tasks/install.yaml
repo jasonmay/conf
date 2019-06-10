@@ -23,6 +23,12 @@
     dest: ~/.zshrc
     state: link
 
+- name: psqlrc
+  file:
+    src: "{{ role_path }}/files/.psqlrc"
+    dest: ~/.psqlrc
+    state: link
+
 - name: irssi
   file:
     src: "{{ role_path }}/files/.irssi"
