@@ -2,3 +2,4 @@
 - homebrew:
     name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake
     state: present
+  when: skip_slow_stuff != 'yes'
