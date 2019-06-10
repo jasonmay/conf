@@ -21,6 +21,12 @@
     dest: ~/.vimrc
     state: link
 
+- name: zshrc
+  file:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: ~/.zshrc
+    state: link
+
 - name: Ensure bin directory
   file:
     path: ~/bin
