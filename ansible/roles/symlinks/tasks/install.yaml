@@ -27,6 +27,12 @@
     dest: ~/.zshrc
     state: link
 
+- name: irssi
+  file:
+    src: "{{ role_path }}/files/.irssi"
+    dest: ~/.irssi
+    state: link
+
 - name: Ensure bin directory
   file:
     path: ~/bin
