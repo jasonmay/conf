@@ -81,7 +81,9 @@ alias irc='ssh -t jasonmay@n.jmay.me dtach -A .irssi.sock irssi'
 add_quick_note 'ttt: tmux attach -t'
 alias ttt='tmux attach -t'
 
-alias ag='ag --pager="less -RSFX"'
+function ag() {
+    rg -p $@ | less -RSFX
+}
 
 function rr() {
     VFILE=$(history | awk '{if ($2 == "vim") print $3}' | tail -n 100 | sort | uniq | while read f; do [ -f "$f" ] && echo "$f"; done | fzf)

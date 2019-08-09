@@ -1,5 +1,5 @@
 ---
 - homebrew:
-    name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake
+    name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake,rg,node,jq
     state: present
   when: skip_slow_stuff != 'yes'
