@@ -41,6 +41,12 @@
     dest: ~/.irssi
     state: link
 
+- name: karabiner dir
+  file:
+    dest: ~/.config/karabiner
+    state: directory
+    mode: '0755'
+
 - name: karabiner.json
   file:
     src: "{{ role_path }}/files/karabiner.json"
