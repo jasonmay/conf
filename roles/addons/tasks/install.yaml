@@ -5,7 +5,7 @@
     creates: ~/.vim/bundle/Vundle.vim
 
 - name: vim +PluginInstall
-  shell: /usr/local/bin/vim +PluginInstall +qall
+  shell: VUNDLE_RTP=~/.vim/bundle/Vundle.vim /usr/local/bin/vim +PluginInstall +qall
   args:
     creates: ~/.vim/bundle/YouCompleteMe/README.md
 
