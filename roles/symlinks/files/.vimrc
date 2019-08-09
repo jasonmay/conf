@@ -22,7 +22,7 @@ if !s:on_broken_machine
     Bundle 'ervandew/supertab'
     Bundle 'Valloric/YouCompleteMe'
     Bundle 'davidhalter/jedi'
-    Bundle 'SirVer/ultisnips'
+    " Bundle 'SirVer/ultisnips'
     Bundle 'nvie/vim-flake8'
     Bundle 'junegunn/fzf'
     Bundle 'Glench/Vim-Jinja2-Syntax'
