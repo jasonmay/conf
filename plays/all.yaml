@@ -1,7 +1,8 @@
 #!/usr/bin/env bash ./bin/ansible-playbook-bootstrap.sh
+#
 ---
 - gather_facts: no
-  hosts: spry
+  hosts: personalmac
   become: false
   connection: local
   tasks:
