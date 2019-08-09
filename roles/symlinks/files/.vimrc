@@ -14,6 +14,7 @@ if !s:on_broken_machine
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'derekwyatt/vim-scala'
     Plugin 'sartak/sumi'
+    Plugin 'psf/black'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'mustache/vim-mustache-handlebars'
     Plugin 'nanotech/jellybeans.vim'
@@ -130,18 +131,16 @@ autocmd BufNewFile,BufRead share/html/* set ft=mason
 autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
 
-autocmd FileType ruby,eruby,html,haml,coffee,python set ts=2 sw=2 sts=2
+autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
-autocmd FileType javascript,perl set ts=4 sw=4 sts=4
+autocmd FileType javascript,perl,python set ts=4 sw=4 sts=4
 
 autocmd FileType           perl setlocal makeprg=$VIMRUNTIME/tools/efm_perl.pl\ -c\ %\ $*
 autocmd FileType           perl setlocal errorformat=%f:%l:%m
 
 autocmd FileType php setlocal keywordprg=/Users/jason/pear/bin/pman
 
-"if exists('*Flake8')
-    autocmd BufWritePost *.py call Flake8()
-"endif
+autocmd BufWritePre *.py Black
 
 " Automatic commands
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
