@@ -1,5 +1,9 @@
 ---
 - homebrew:
-    name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake,rg,node,jq
+    name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake,rg,node,jq,telnet
+    state: present
+  when: skip_slow_stuff != 'yes'
+- homebrew_cask:
+    name: docker
     state: present
   when: skip_slow_stuff != 'yes'
