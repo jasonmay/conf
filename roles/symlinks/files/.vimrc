@@ -18,6 +18,7 @@ if !s:on_broken_machine
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'mustache/vim-mustache-handlebars'
     Plugin 'nanotech/jellybeans.vim'
+    Plugin 'posva/vim-vue'
 
     Bundle 'ervandew/supertab'
     Bundle 'Valloric/YouCompleteMe'
@@ -130,8 +131,9 @@ autocmd BufNewFile,BufRead Xdefaults   set ft=Xdefaults
 autocmd BufNewFile,BufRead share/html/* set ft=mason
 autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
+autocmd BufNewFile,BufRead *.vue      set ft=vue
 
-autocmd FileType ruby,eruby,html,haml,coffee set ts=2 sw=2 sts=2
+autocmd FileType ruby,eruby,html,haml,vue set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
 autocmd FileType javascript,perl,python set ts=4 sw=4 sts=4
 
