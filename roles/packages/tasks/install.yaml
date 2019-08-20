@@ -3,7 +3,7 @@
     name: [
       vim, zsh, tree, tig, coreutils,
       go, node, jq,
-      moreutils, fzf, cmake, rg, automake,
+      moreutils, fzf, cmake, rg, automake, bison,
       watch, telnet
     ]
     state: present
