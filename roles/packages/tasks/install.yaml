@@ -1,9 +1,24 @@
 ---
 - homebrew:
-    name: vim,zsh,tree,tig,coreutils,moreutils,fzf,cmake,rg,node,jq,telnet
+    name: [
+      vim, zsh, tree, tig, coreutils,
+      go, node, jq,
+      moreutils, fzf, cmake, rg,
+      watch, telnet
+    ]
     state: present
   when: skip_slow_stuff != 'yes'
 - homebrew_cask:
-    name: docker
+    name: [
+      docker, karabiner-elements,
+      multifirefox, iterm2, obs, postico,
+      mudlet,
+      vlc, cleanmymac, kindle, spotify,
+      caffeine, unity, omnifocus, evernote,
+      sketch, visual-studio-code,
+      zoomus, skype, oracle-jdk,
+      1password, 1password-cli, intellij-idea,
+      slack, postman, postgres
+    ]
     state: present
   when: skip_slow_stuff != 'yes'
