@@ -341,6 +341,7 @@ alias rrr='pip install -r requirements'
 function j() {
     print -z vim $(history | awk '$2 == "vim" { print $3 }' | tail -n50 | fzf)
 }
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
