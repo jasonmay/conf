@@ -4,7 +4,8 @@
       vim, zsh, tree, tig, coreutils,
       go, node, jq,
       moreutils, fzf, cmake, rg, automake, bison,
-      watch, telnet
+      watch, telnet,
+      redis
     ]
     state: present
   when: skip_slow_stuff != 'yes'
