@@ -16,9 +16,9 @@
       vlc, cleanmymac, kindle, spotify,
       caffeine, unity, omnifocus, evernote,
       sketch, visual-studio-code,
-      zoomus, skype, oracle-jdk, steam,
+      zoomus, skype, oracle-jdk, steam, discord, skype,
       1password, 1password-cli, intellij-idea,
-      slack, postman, postgres
+      slack, postman, postgres, vagrant
     ]
     state: present
   when: skip_slow_stuff != 'yes'

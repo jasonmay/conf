@@ -19,3 +19,8 @@
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && ln -sf ~/.zshrc.pre-oh-my-zsh ~/.zshrc
   args:
     creates: ~/.oh-my-zsh/oh-my-zsh.sh
+
+- name: Vagrant Linode
+  shell: vagrant plugin install vagrant-linode
+  args:
+    creates: ~/.vagrant.d/gems/2.4.6/specifications/vagrant-linode-0.4.1.gemspec
