@@ -1,38 +1,30 @@
-" some of the machines I use has a read-only home directory
-"  and it's pretty terrible. this is for working around that
-let s:on_broken_machine = len($BROKEN_WORKSERVER_DIR) > 0
-let s:on_work_machine =  len($ON_WORK_MACHINE) > 0
+filetype off
 
-if !s:on_broken_machine
-    " vundle is all kinds of broken on a read-only home dir :/
-    filetype off
+set rtp+=$VUNDLE_RTP
 
-    set rtp+=$VUNDLE_RTP
+call vundle#begin()
 
-    call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'sartak/sumi'
+Plugin 'psf/black'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'posva/vim-vue'
 
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'derekwyatt/vim-scala'
-    Plugin 'sartak/sumi'
-    Plugin 'psf/black'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'mustache/vim-mustache-handlebars'
-    Plugin 'nanotech/jellybeans.vim'
-    Plugin 'posva/vim-vue'
+Bundle 'ervandew/supertab'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'davidhalter/jedi'
+" Bundle 'SirVer/ultisnips'
+Bundle 'nvie/vim-flake8'
+Bundle 'junegunn/fzf'
+Bundle 'Glench/Vim-Jinja2-Syntax'
+"Plugin 'scrooloose/syntastic'
 
-    Bundle 'ervandew/supertab'
-    Bundle 'Valloric/YouCompleteMe'
-    Bundle 'davidhalter/jedi'
-    " Bundle 'SirVer/ultisnips'
-    Bundle 'nvie/vim-flake8'
-    Bundle 'junegunn/fzf'
-    Bundle 'Glench/Vim-Jinja2-Syntax'
-    "Plugin 'scrooloose/syntastic'
+Bundle 'romainl/vim-qf'
 
-    Bundle 'romainl/vim-qf'
-
-    call vundle#end()
-endif
+call vundle#end()
 
 filetype plugin indent on
 
@@ -73,11 +65,7 @@ set tildeop
 set backspace=indent,eol,start
 "set wildmenu
 set wildignore+=.log,.out,.o
-if s:on_broken_machine
-    let &viminfo="!,'1000,f1,/1000,:1000,<1000,@1000,h,n"+$BROKEN_WORKSERVER_DIR+"/.viminfo"
-else
-    set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
-endif
+set viminfo=!,'1000,f1,/1000,:1000,<1000,@1000,h,n~/.viminfo
 set isfname+=:
 set wildmode=longest,list,full
 set hidden
@@ -258,9 +246,3 @@ nnoremap QQ :bd!
 if filereadable($HOME . "/.local.vim")
     source ~/.local.vim
 endif
-
-if s:on_work_machine
-    autocmd FileType ruby,eruby,html,haml,coffee,python set ts=4 sw=4 sts=4
-endif
-
-"let g:syntastic_python_checkers = ['python']
