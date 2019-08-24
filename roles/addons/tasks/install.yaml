@@ -1,11 +1,23 @@
 ---
+- name: download FZF
+  shell: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  args:
+    creates: ~/.fzf/install
+  when: machine_type == 'vps'
+
+- name: install FZF
+  shell: ~/.fzf/install --key-bindings --completion --no-update-rc
+  args:
+    creates: ~/.fzf/bin/fzf
+  when: machine_type == 'vps'
+
 - name: ensure vundle
   shell: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   args:
     creates: ~/.vim/bundle/Vundle.vim
 
 - name: vim +PluginInstall
-  shell: VUNDLE_RTP=~/.vim/bundle/Vundle.vim /usr/local/bin/vim +PluginInstall +qall
+  shell: VUNDLE_RTP=~/.vim/bundle/Vundle.vim /usr/bin/vim +PluginInstall +qall
   args:
     creates: ~/.vim/bundle/YouCompleteMe/README.md
 
@@ -14,6 +26,7 @@
   args:
     chdir: ~/.vim/bundle/YouCompleteMe/
     creates: ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex/regex_2/_regex.so
+  when: machine_type == 'workstation'
 
 - name: oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && ln -sf ~/.zshrc.pre-oh-my-zsh ~/.zshrc

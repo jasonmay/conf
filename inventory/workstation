@@ -1,6 +1,7 @@
-[personalmac]
+[workstation]
 localhost
 
-[personalmac:vars]
+[workstation:vars]
 ansible_python_interpreter=~/.pyenv/versions/conf-ansible/bin/python
 skip_slow_stuff=no
+machine_type=workstation

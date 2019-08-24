@@ -355,3 +355,4 @@ bindkey "^B" backward-word
 export VUNDLE_RTP="${HOME}/.vim/bundle/Vundle.vim"
 
 export PATH="$PATH:/Applications/Postgres.app//Contents/Versions/11/bin"
+export PATH="$HOME/.local/vim/bin:$PATH"

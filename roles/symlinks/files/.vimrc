@@ -3,24 +3,25 @@ filetype off
 set rtp+=$VUNDLE_RTP
 
 call vundle#begin()
-
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'sartak/sumi'
-Plugin 'psf/black'
+if $ON_VPS != 1
+    Plugin 'psf/black'
+endif
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'posva/vim-vue'
 
 Bundle 'ervandew/supertab'
-Bundle 'Valloric/YouCompleteMe'
+if $ON_VPS != 1
+    Bundle 'Valloric/YouCompleteMe'
+endif
 Bundle 'davidhalter/jedi'
-" Bundle 'SirVer/ultisnips'
 Bundle 'nvie/vim-flake8'
 Bundle 'junegunn/fzf'
 Bundle 'Glench/Vim-Jinja2-Syntax'
-"Plugin 'scrooloose/syntastic'
 
 Bundle 'romainl/vim-qf'
 

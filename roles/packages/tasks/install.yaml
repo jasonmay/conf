@@ -8,7 +8,7 @@
       redis
     ]
     state: present
-  when: skip_slow_stuff != 'yes'
+  when: skip_slow_stuff != 'yes' and machine_type == 'workstation'
 - homebrew_cask:
     name: [
       docker, karabiner-elements,
@@ -22,4 +22,19 @@
       slack, postman, postgres, vagrant
     ]
     state: present
-  when: skip_slow_stuff != 'yes'
+  when: skip_slow_stuff != 'yes' and machine_type == 'workstation'
+
+- yum_repository:
+    name: carlwgeorge-ripgrep-epel-7.repo
+    description: why is description required
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/epel-7-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/carlwgeorge/ripgrep/pubkey.gpg
+  become_user: root
+  when: machine_type == 'vps'
+
+- yum:
+    name: [ripgrep, cmake, epel-release, python2-certbot-nginx, nginx]
+    state: present
+  become: yes
+  when: skip_slow_stuff != 'yes' and machine_type == 'vps'

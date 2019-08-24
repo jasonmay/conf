@@ -1,8 +1,8 @@
-#!/usr/bin/env bash ./bin/ansible-playbook-bootstrap.sh
+#!/usr/bin/env bash ./bin/ansible-playbook-bootstrap-osx.sh
 #
 ---
 - gather_facts: no
-  hosts: personalmac
+  hosts: workstation
   become: false
   connection: local
   tasks:

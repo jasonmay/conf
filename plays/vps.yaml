@@ -1,0 +1,19 @@
+#!./bin/ansible-playbook-bootstrap.sh --ask-become-pass
+---
+- gather_facts: no
+  hosts: vps
+  become: false
+  connection: local
+  tasks:
+  - name: Packages
+    include_role:
+      name: packages
+      tasks_from: install.yaml
+  - name: Symlinks
+    include_role:
+      name: symlinks
+      tasks_from: install.yaml
+  - name: Add-ons
+    include_role:
+      name: addons
+      tasks_from: install.yaml
