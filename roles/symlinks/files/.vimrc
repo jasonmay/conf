@@ -14,6 +14,9 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'posva/vim-vue'
 
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
 Bundle 'ervandew/supertab'
 if $ON_VPS != 1
     Bundle 'Valloric/YouCompleteMe'
