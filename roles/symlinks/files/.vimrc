@@ -126,7 +126,7 @@ autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
 autocmd BufNewFile,BufRead *.vue      set ft=vue
 
-autocmd FileType ruby,eruby,html,haml,vue set ts=2 sw=2 sts=2
+autocmd FileType ruby,eruby,html,haml,vue,yaml set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
 autocmd FileType javascript,perl,python set ts=4 sw=4 sts=4
 
