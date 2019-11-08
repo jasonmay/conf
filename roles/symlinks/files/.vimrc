@@ -125,6 +125,7 @@ autocmd BufNewFile,BufRead share/html/* set ft=mason
 autocmd BufNewFile,BufRead etc/upgrade/*/content set ft=perl
 autocmd BufNewFile,BufRead *.md      set ft=markdown
 autocmd BufNewFile,BufRead *.vue      set ft=vue
+autocmd BufNewFile,BufRead Vagrantfile set ft=ruby
 
 autocmd FileType ruby,eruby,html,haml,vue,yaml set ts=2 sw=2 sts=2
 autocmd FileType java set ts=3 sw=3 sts=3
