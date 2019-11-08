@@ -25,6 +25,7 @@ Bundle 'davidhalter/jedi'
 Bundle 'nvie/vim-flake8'
 Bundle 'junegunn/fzf'
 Bundle 'Glench/Vim-Jinja2-Syntax'
+Plugin 'Vimjas/vim-python-pep8-indent'
 
 Bundle 'romainl/vim-qf'
 
