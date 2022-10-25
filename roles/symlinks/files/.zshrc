@@ -9,13 +9,13 @@ unset zle_bracketed_paste
 
 [ -e ~/.local.zsh ] && source ~/.local.zsh
 
-if [ -d "$HOME/.oh-my-zsh" ]
-then
-    ZSH=$HOME/.oh-my-zsh
-    ZSH_THEME="robbyrussell"
-    plugins=(git github safe-paste)
-    source $ZSH/oh-my-zsh.sh
-fi
+# if [ -d "$HOME/.oh-my-zsh" ]
+# then
+#     ZSH=$HOME/.oh-my-zsh
+#     ZSH_THEME="robbyrussell"
+#     plugins=(git github safe-paste)
+#     source $ZSH/oh-my-zsh.sh
+# fi
 
 if type -f jasonmay_after_omz > /dev/null; then
     jasonmay_after_omz
@@ -62,12 +62,14 @@ alias tto='telnet termcast.org'
 add_quick_note "nao: telnet nethack.alt.org"
 alias nao='telnet nethack.alt.org'
 
-if check_exec gls
-then
-    alias ls='gls --color=auto'
-else
-    alias ls='ls -G'
-fi
+alias hhh='ssh 192.168.0.15'
+
+# if check_exec gls
+# then
+#     alias ls='gls --color=auto'
+# else
+#     alias ls='ls -G'
+# fi
 alias sl='ls'
 alias lcd='ls;cd'
 for vim_typo in viim vmi bim cim vo, viom vin ivm vom; do alias "$vim_typo"='vim'; done
@@ -147,9 +149,8 @@ export MANPATH="/usr/local/man:/usr/share/man:$MANPATH"
 export LESS="-r -f"
 export EDITOR=vim
 setopt noglobalrcs
-export PAGER="less -RSFX"
-export PERLDOC_PAGER="$PAGER"
-export MANPAGER="$PAGER"
+export PAGER="bat"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 check_exec lesspipe    && eval `lesspipe`
 check_exec lesspipe.sh && eval `lesspipe.sh`
 
@@ -319,7 +320,7 @@ function gupo() {
 if type -f jasonmay_after_everything > /dev/null; then 
     jasonmay_after_everything
 fi
-echo $QUICK_NOTE | /usr/bin/python -c "
+echo $QUICK_NOTE | python3 -c "
 import fileinput
 import random
 lines = []
@@ -341,13 +342,15 @@ alias rrr='pip install -r requirements'
 function j() {
     print -z vim $(history | awk '$2 == "vim" { print $3 }' | tail -n50 | fzf)
 }
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)"
+    export PATH="$HOME/.pyenv/shims:$PATH"
+fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-bindkey -s "^ ^ " '^E^Uvim $(fzf)^I'
-bindkey -s "^ ^F" '$(fzf)^I'
 bindkey "^B" backward-word
 
 /usr/bin/ssh-add -K
@@ -356,3 +359,33 @@ export VUNDLE_RTP="${HOME}/.vim/bundle/Vundle.vim"
 
 export PATH="$PATH:/Applications/Postgres.app//Contents/Versions/11/bin"
 export PATH="$HOME/.local/vim/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+function NT() {
+    tmux new-session -d ';' split-window -h ipython ';' last-pane ';' attach
+}
+
+function GT() {
+    tmux new-session -d ';' split-window -h modd ';' last-pane ';' attach
+}
+
+function KT() {
+    echo "cool with killing this session?"
+    read
+    tmux kill-session
+}
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+bindkey -s "^ ^ " '^E^Uprint -z vim $(fzf)^M'
+
+alias cy='cal -y'
+alias vvv='vim ~/.vimrc'
+alias zzz='vim ~/.zshrc'
+
+function vrg() {
+    vim $(rg --color=never -l $1)
+}
+
+export HASS_SERVER=http://192.168.0.15:8123
+export HASS_TOKEN=$(cat ~/.ha_token)
+#export LEFTHAND=1
